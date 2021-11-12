@@ -3,23 +3,23 @@ package com.kabunx.erp.exception;
 /**
  * 统一的API异常类
  */
-public class ErpException extends RuntimeException {
+public class BizException extends RuntimeException {
     private ExceptionEnum exceptionEnum;
 
-    public ErpException(ExceptionEnum exceptionEnum) {
+    public BizException(ExceptionEnum exceptionEnum) {
         super(exceptionEnum.getMessage());
         this.exceptionEnum = exceptionEnum;
     }
 
-    public ErpException(String message) {
+    public BizException(String message) {
         super(message);
     }
 
-    public ErpException(Throwable cause) {
+    public BizException(Throwable cause) {
         super(cause);
     }
 
-    public ErpException(String message, Throwable cause) {
+    public BizException(String message, Throwable cause) {
         super(message, cause);
     }
 

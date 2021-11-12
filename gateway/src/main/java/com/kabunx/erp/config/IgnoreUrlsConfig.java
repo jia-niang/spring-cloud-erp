@@ -9,8 +9,8 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Configuration
 @ConfigurationProperties(prefix = "safety.ignore")
+@Configuration
 public class IgnoreUrlsConfig {
-    private List<String> urls;
+    private List<String> uris;
 }

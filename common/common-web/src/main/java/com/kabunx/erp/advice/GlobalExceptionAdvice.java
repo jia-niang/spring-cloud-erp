@@ -1,6 +1,7 @@
-package com.kabunx.erp.exception;
+package com.kabunx.erp.advice;
 
 import com.kabunx.erp.domain.JsonResponseBody;
+import com.kabunx.erp.exception.BizException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * 统一的全局异常处理
  */
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionAdvice {
 
-    @ExceptionHandler(value = ErpException.class)
-    public JsonResponseBody<Object> handle(ErpException e) {
+    @ExceptionHandler(value = BizException.class)
+    public JsonResponseBody<Object> handle(BizException e) {
         if (e.getErrorCode() != null) {
             return JsonResponseBody.failed(e.getErrorCode());
         }

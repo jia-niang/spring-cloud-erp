@@ -16,6 +16,7 @@
         <module>common-redis</module>
         <module>common-mybatis-plus</module>
         <module>common-elasticsearch</module>
+        <module>common-web</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

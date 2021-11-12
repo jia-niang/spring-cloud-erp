@@ -22,19 +22,15 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
         // 从token中解析用户信息并设置到Header中去
-        try {
-            String realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");
-            JWSObject jwsObject = JWSObject.parse(realToken);
-            String userStr = jwsObject.getPayload().toString();
-            log.info("AuthGlobalFilter.filter() user:{}", userStr);
-            ServerHttpRequest request = exchange.getRequest()
-                    .mutate()
-                    .header(AuthConstant.USER_TOKEN_HEADER, userStr)
-                    .build();
-            exchange = exchange.mutate().request(request).build();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");
+        String userStr = "123123";
+        log.info("AuthGlobalFilter.filter() user:{}", userStr);
+        ServerHttpRequest request = exchange.getRequest()
+                .mutate()
+                .header(AuthConstant.USER_TOKEN_HEADER, userStr)
+                .build();
+        exchange = exchange.mutate().request(request).build();
+
         return chain.filter(exchange);
     }
 
