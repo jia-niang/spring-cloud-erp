@@ -1,5 +1,6 @@
 package com.kabunx.erp.domain;
 
+import com.kabunx.erp.domain.dto.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

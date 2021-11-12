@@ -1,7 +1,7 @@
 package com.kabunx.erp.controller;
 
 import com.kabunx.erp.constant.AuthConstant;
-import com.kabunx.erp.domain.Oauth2TokenDto;
+import com.kabunx.erp.domain.dto.Oauth2TokenDto;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;

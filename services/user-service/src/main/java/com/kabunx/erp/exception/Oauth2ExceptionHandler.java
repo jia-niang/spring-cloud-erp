@@ -1,6 +1,6 @@
 package com.kabunx.erp.exception;
 
-import com.kabunx.erp.domain.JsonResponse;
+import com.kabunx.erp.domain.JsonResponseBody;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class Oauth2ExceptionHandler {
 
     @ExceptionHandler(value = OAuth2Exception.class)
-    public JsonResponse<Object> handleOauth2Exception(OAuth2Exception e) {
-        return JsonResponse.failed(e.getMessage());
+    public JsonResponseBody<Object> handleOauth2Exception(OAuth2Exception e) {
+        return JsonResponseBody.failed(e.getMessage());
     }
 }

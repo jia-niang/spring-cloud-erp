@@ -1,6 +1,6 @@
 package com.kabunx.erp.biz;
 
-import com.kabunx.erp.domain.UserDto;
+import com.kabunx.erp.domain.dto.UserDto;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public interface AdminService {

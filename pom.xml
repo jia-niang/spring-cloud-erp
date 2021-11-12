@@ -24,6 +24,7 @@
         <druid.version>1.2.8</druid.version>
         <mysql-connector.version>8.0.20</mysql-connector.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
+        <jedis.version>2.9.3</jedis.version>
         <lombok.version>1.18.22</lombok.version>
         <hutool.version>5.7.16</hutool.version>
         <jjwt.version>0.11.2</jjwt.version>
@@ -58,6 +59,12 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector.version}</version>
             </dependency>
+            <!-- redis客户端 -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
             <!--集成druid连接池-->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -76,7 +83,12 @@
             </dependency>
             <dependency>
                 <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-json</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
             <dependency>

@@ -5,7 +5,7 @@ import com.kabunx.erp.biz.MemberService;
 import com.kabunx.erp.constant.AuthConstant;
 import com.kabunx.erp.constant.OAuth2Constant;
 import com.kabunx.erp.domain.SecurityUser;
-import com.kabunx.erp.domain.UserDto;
+import com.kabunx.erp.domain.dto.UserDto;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;

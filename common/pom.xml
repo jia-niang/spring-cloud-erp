@@ -10,7 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common</artifactId>
-
+    <packaging>pom</packaging>
+    <modules>
+        <module>common-core</module>
+        <module>common-redis</module>
+        <module>common-mybatis-plus</module>
+        <module>common-elasticsearch</module>
+    </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
