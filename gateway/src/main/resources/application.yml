@@ -26,7 +26,7 @@ spring:
 
 safety:
   ignore:
-    uris:
+    urls:
       - https://www.baidu.com
 
 # 开启SpringBoot-Admin的监控

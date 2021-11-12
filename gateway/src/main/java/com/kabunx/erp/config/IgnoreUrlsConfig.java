@@ -12,5 +12,5 @@ import java.util.List;
 @ConfigurationProperties(prefix = "safety.ignore")
 @Configuration
 public class IgnoreUrlsConfig {
-    private List<String> uris;
+    private List<String> urls;
 }
