@@ -1,6 +1,6 @@
 package com.kabunx.erp.controller;
 
-import com.kabunx.erp.constant.AuthConstant;
+import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.domain.dto.Oauth2TokenDto;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
@@ -30,7 +30,7 @@ public class OAuthController {
                 .token(oAuth2AccessToken.getValue())
                 .refreshToken(oAuth2AccessToken.getRefreshToken().getValue())
                 .expiresIn(oAuth2AccessToken.getExpiresIn())
-                .tokenHeader(AuthConstant.JWT_TOKEN_PREFIX)
+                .tokenHeader(SecurityConstant.JWT_TOKEN_PREFIX)
                 .build();
     }
 }

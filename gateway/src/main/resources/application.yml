@@ -27,7 +27,8 @@ spring:
 safety:
   ignore:
     urls:
-      - https://www.baidu.com
+      - /jobs
+      - /articles
 
 # 开启SpringBoot-Admin的监控
 management:

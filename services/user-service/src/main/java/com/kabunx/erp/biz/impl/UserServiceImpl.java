@@ -2,7 +2,7 @@ package com.kabunx.erp.biz.impl;
 
 import com.kabunx.erp.biz.AdminService;
 import com.kabunx.erp.biz.MemberService;
-import com.kabunx.erp.constant.AuthConstant;
+import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.constant.OAuth2Constant;
 import com.kabunx.erp.domain.SecurityUser;
 import com.kabunx.erp.domain.dto.UserDto;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String clientId = request.getParameter("client_id");
         UserDto userDto;
-        if (AuthConstant.ADMIN_CLIENT_ID.equals(clientId)) {
+        if (SecurityConstant.ADMIN_CLIENT_ID.equals(clientId)) {
             userDto = adminService.loadUserByUsername(username);
         } else {
             userDto = memberService.loadUserByUsername(username);

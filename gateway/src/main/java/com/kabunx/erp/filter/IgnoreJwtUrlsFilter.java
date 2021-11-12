@@ -1,7 +1,8 @@
 package com.kabunx.erp.filter;
 
 import com.kabunx.erp.config.IgnoreUrlsConfig;
-import com.kabunx.erp.constant.AuthConstant;
+import com.kabunx.erp.constant.SecurityConstant;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
@@ -23,14 +24,16 @@ public class IgnoreJwtUrlsFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        ServerHttpRequest request = exchange.getRequest();
-        URI uri = request.getURI();
+        URI uri = exchange.getRequest().getURI();
         PathMatcher pathMatcher = new AntPathMatcher();
         //白名单路径移除JWT请求头
-        List<String> ignoreUris = ignoreUrlsConfig.getUrls();
-        for (String ignoreUrl : ignoreUris) {
+        List<String> ignoreUrls = ignoreUrlsConfig.getUrls();
+        for (String ignoreUrl : ignoreUrls) {
             if (pathMatcher.match(ignoreUrl, uri.getPath())) {
-                request = exchange.getRequest().mutate().header(AuthConstant.JWT_TOKEN_HEADER, "").build();
+                ServerHttpRequest request = exchange.getRequest()
+                        .mutate()
+                        .header(SecurityConstant.JWT_TOKEN_HEADER, Strings.EMPTY)
+                        .build();
                 exchange = exchange.mutate().request(request).build();
                 return chain.filter(exchange);
             }
