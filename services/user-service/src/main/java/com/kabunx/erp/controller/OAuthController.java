@@ -21,15 +21,18 @@ public class OAuthController {
     private TokenEndpoint tokenEndpoint;
 
     @PostMapping("/login")
-    public Oauth2TokenDto login(Principal principal, @RequestParam Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
-        OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
-        if (oAuth2AccessToken == null) {
+    public Oauth2TokenDto login(
+            Principal principal,
+            @RequestParam Map<String, String> parameters
+    ) throws HttpRequestMethodNotSupportedException {
+        OAuth2AccessToken accessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+        if (accessToken == null) {
             return null;
         }
         return Oauth2TokenDto.builder()
-                .token(oAuth2AccessToken.getValue())
-                .refreshToken(oAuth2AccessToken.getRefreshToken().getValue())
-                .expiresIn(oAuth2AccessToken.getExpiresIn())
+                .token(accessToken.getValue())
+                .refreshToken(accessToken.getRefreshToken().getValue())
+                .expiresIn(accessToken.getExpiresIn())
                 .tokenHeader(SecurityConstant.JWT_TOKEN_PREFIX)
                 .build();
     }

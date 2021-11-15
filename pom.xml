@@ -28,6 +28,8 @@
         <lombok.version>1.18.22</lombok.version>
         <hutool.version>5.7.16</hutool.version>
         <jjwt.version>0.11.2</jjwt.version>
+        <spring-cloud-starter-security.version>2.2.5.RELEASE</spring-cloud-starter-security.version>
+        <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
     </properties>
     <!-- 加入版本信息 -->
     <dependencyManagement>
@@ -113,6 +115,16 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
                 <version>${spring-boot-admin-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-security</artifactId>
+                <version>${spring-cloud-starter-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>${spring-cloud-starter-oauth2.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

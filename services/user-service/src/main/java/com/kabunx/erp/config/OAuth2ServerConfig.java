@@ -1,6 +1,6 @@
 package com.kabunx.erp.config;
 
-import com.kabunx.erp.biz.impl.UserServiceImpl;
+import com.kabunx.erp.service.impl.UserServiceImpl;
 import com.kabunx.erp.component.JwtTokenEnhancer;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +35,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // 配置两个客户端,都使用password认证
         clients.inMemory()
                 .withClient("erp-admin")
                 .secret(passwordEncoder.encode("123123"))
@@ -52,7 +53,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
         List<TokenEnhancer> delegates = new ArrayList<>();
         delegates.add(jwtTokenEnhancer);

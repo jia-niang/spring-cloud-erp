@@ -16,7 +16,6 @@ public interface SecurityConstant {
      */
     String APP_CLIENT_ID = "erp-app";
 
-
     /**
      * 后台管理接口路径匹配
      */
@@ -50,5 +49,5 @@ public interface SecurityConstant {
     /**
      * 解析后的用户信息传递的Header Key
      */
-    String USER_TOKEN_HEADER = "security-user-token";
+    String USER_ID_HEADER = "security-user-id";
 }
