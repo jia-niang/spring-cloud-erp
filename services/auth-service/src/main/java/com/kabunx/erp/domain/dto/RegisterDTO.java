@@ -1,4 +1,4 @@
-package com.kabunx.erp.domain.request;
+package com.kabunx.erp.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterRequest implements Serializable {
+public class RegisterDTO implements Serializable {
     private String account;
     private String phone;
     private String password;

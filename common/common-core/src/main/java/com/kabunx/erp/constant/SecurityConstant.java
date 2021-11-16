@@ -37,6 +37,16 @@ public interface SecurityConstant {
     String JWT_TOKEN_PREFIX = "Bearer ";
 
     /**
+     * JWT授权令牌
+     */
+    String JWT_ACCESS_TYPE = "ACCESS";
+
+    /**
+     * JWT刷新令牌
+     */
+    String JWT_REFRESH_TYPE = "REFRESH";
+
+    /**
      * JWT存储权限前缀
      */
     String AUTHORITY_PREFIX = "ROLE_";

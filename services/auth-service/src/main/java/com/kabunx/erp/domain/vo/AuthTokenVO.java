@@ -1,4 +1,4 @@
-package com.kabunx.erp.domain.response;
+package com.kabunx.erp.domain.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthTokenResponse {
+public class AuthTokenVO {
     private String accessToken;
     private String refreshToken;
 }

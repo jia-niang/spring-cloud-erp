@@ -23,12 +23,20 @@ public class JsonResponseBody<T> {
         this.message = message;
     }
 
+    public boolean hasFallbackError() {
+        return ExceptionEnum.FALLBACK.getCode().equals(code);
+    }
+
+    public static <T> JsonResponseBody<T> withFallbackError() {
+        return new JsonResponseBody<>(false, ExceptionEnum.FALLBACK.getCode(), ExceptionEnum.FALLBACK.getMessage());
+    }
+
     public static <T> JsonResponseBody<T> success() {
         return new JsonResponseBody<>();
     }
 
     public static <T> JsonResponseBody<T> success(T data) {
-        return new JsonResponseBody<>(true, 0, "成功", data);
+        return new JsonResponseBody<>(true, ExceptionEnum.SUCCESS.getCode(), ExceptionEnum.SUCCESS.getMessage(), data);
     }
 
     public static <T> JsonResponseBody<T> failed(Integer code, String message) {
@@ -36,7 +44,7 @@ public class JsonResponseBody<T> {
     }
 
     public static <T> JsonResponseBody<T> failed(String message) {
-        return new JsonResponseBody<>(false, 400000, message);
+        return new JsonResponseBody<>(false, ExceptionEnum.FAILED.getCode(), message);
     }
 
     public static <T> JsonResponseBody<T> failed(ExceptionEnum exceptionEnum) {
@@ -49,6 +57,7 @@ public class JsonResponseBody<T> {
     public static <T> JsonResponseBody<T> validateFailed() {
         return failed(ExceptionEnum.VALIDATE_FAILED);
     }
+
 
     /**
      * 参数验证失败返回结果

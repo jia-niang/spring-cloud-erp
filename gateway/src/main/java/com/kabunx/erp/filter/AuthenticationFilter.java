@@ -29,7 +29,8 @@ public class AuthenticationFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        if (routerValidator.isSecured.test(request)) {
+        if (routerValidator.isProtected.test(request)) {
+            // 受保护的接口
             if (this.isAuthMissing(request)) {
                 return this.onError(exchange, "Authorization header is missing in request");
             }
@@ -38,6 +39,14 @@ public class AuthenticationFilter implements GatewayFilter {
                 return this.onError(exchange, "Authorization header is invalid");
             }
             this.populateRequestWithHeaders(exchange, token);
+        } else if (routerValidator.isDispensable.test(request)) {
+            // 对鉴权可有可无的接口
+            if (!this.isAuthMissing(request)) {
+                final String token = this.getAuthHeader(request);
+                if (!jwtUtil.isInvalid(token)) {
+                    this.populateRequestWithHeaders(exchange, token);
+                }
+            }
         }
         return chain.filter(exchange);
     }

@@ -11,38 +11,31 @@
 
     <artifactId>user-service</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>user-service-core</module>
+        <module>user-service-api</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <spring-cloud-oauth2.version>2.2.5.RELEASE</spring-cloud-oauth2.version>
-        <common-core.version>1.0-SNAPSHOT</common-core.version>
+        <common-web.version>1.0-SNAPSHOT</common-web.version>
         <common-redis.version>1.0-SNAPSHOT</common-redis.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.kabunx.erp</groupId>
-            <artifactId>common-core</artifactId>
-            <version>${common-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.kabunx.erp</groupId>
-            <artifactId>common-redis</artifactId>
-            <version>${common-redis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kabunx.erp</groupId>
+                <artifactId>common-web</artifactId>
+                <version>${common-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kabunx.erp</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>${common-redis.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

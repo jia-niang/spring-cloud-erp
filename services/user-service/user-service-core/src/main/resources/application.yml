@@ -1,0 +1,21 @@
+server:
+  port: 7020
+
+spring:
+  application:
+    name: erp-user-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+      config:
+        server-addr: http://localhost:8848
+        file-extension: yml
+
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
