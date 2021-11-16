@@ -23,12 +23,16 @@ spring:
     port: 6379
     password:
     database: 0
+  sleuth:
+    sampler:
+      probability: 1
 
 safety:
   ignore:
     urls:
       - /jobs
       - /articles
+
 jwt:
   secret: ZBvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByYZ
 
