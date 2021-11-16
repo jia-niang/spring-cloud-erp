@@ -23,7 +23,9 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <common.version>1.0-SNAPSHOT</common.version>
+        <common-web.version>1.0-SNAPSHOT</common-web.version>
+        <common-mybatis-plus.version>1.0-SNAPSHOT</common-mybatis-plus.version>
+        <common-redis.version>1.0-SNAPSHOT</common-redis.version>
     </properties>
 
     <dependencies>
@@ -34,6 +36,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -54,5 +60,24 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kabunx.erp</groupId>
+                <artifactId>common-web</artifactId>
+                <version>${common-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kabunx.erp</groupId>
+                <artifactId>common-mybatis-plus</artifactId>
+                <version>${common-mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kabunx.erp</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>${common-redis.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

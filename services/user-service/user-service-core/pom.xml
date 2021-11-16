@@ -14,11 +14,16 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <common-mybatis-plus.version>1.0-SNAPSHOT</common-mybatis-plus.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.kabunx.erp</groupId>
             <artifactId>common-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kabunx.erp</groupId>
+            <artifactId>common-mybatis-plus</artifactId>
         </dependency>
         <dependency>
             <groupId>com.kabunx.erp</groupId>

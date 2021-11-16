@@ -1,8 +1,9 @@
 package com.kabunx.erp.service;
 
 import com.kabunx.erp.dto.UserDTO;
+import com.kabunx.erp.vo.UserVO;
 
 public interface UserService {
 
-    Object create(UserDTO userDTO);
+    UserVO create(UserDTO userDTO);
 }

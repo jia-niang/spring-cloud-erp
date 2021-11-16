@@ -4,6 +4,7 @@ import com.kabunx.erp.dto.UserDTO;
 import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
+import com.kabunx.erp.vo.UserVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,10 +18,8 @@ public class UserServiceImpl implements UserService {
     @Resource
     MemberService memberService;
 
-
     @Override
-    public Object create(UserDTO userDTO) {
-       "".equals(userDTO.getType());
+    public UserVO create(UserDTO userDTO) {
         return null;
     }
 }
