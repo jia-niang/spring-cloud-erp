@@ -12,11 +12,12 @@ spring:
         server-addr: http://localhost:8848
       config:
         server-addr: http://localhost:8848
-        file-extension: yml
+        file-extension: yaml
 feign:
   sentinel:
     enabled: true
 
+
 jwt:
   secret: ZBvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByYZ
-  expirationTime: 12000
+  expiration-time: 12000

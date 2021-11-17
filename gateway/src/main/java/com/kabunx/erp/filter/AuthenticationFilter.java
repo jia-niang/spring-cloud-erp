@@ -4,7 +4,7 @@ import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.util.JwtUtil;
 import com.kabunx.erp.validator.RouterValidator;
 import io.jsonwebtoken.Claims;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.http.HttpStatus;
@@ -16,12 +16,12 @@ import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
 
-@RefreshScope
 @Component
+@RequiredArgsConstructor
 public class AuthenticationFilter implements GatewayFilter {
     // custom route validator
     @Resource
-    private RouterValidator routerValidator;
+    RouterValidator routerValidator;
 
     @Resource
     private JwtUtil jwtUtil;
