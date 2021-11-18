@@ -71,10 +71,10 @@ public class WebLogAspect {
         String urlStr = request.getRequestURL().toString();
         WebLogContent webLog = new WebLogContent();
         webLog.setIp(request.getRemoteUser());
-        webLog.setUri(request.getRequestURI());
+        webLog.setMethod(request.getMethod());
         webLog.setUrl(request.getRequestURL().toString());
         webLog.setBasePath(StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
-        webLog.setMethod(request.getMethod());
+        webLog.setUri(request.getRequestURI());
         webLog.setParameter(getParameter(method, joinPoint.getArgs()));
         webLog.setResult(result);
         webLog.setStartTime(startTime);

@@ -1,5 +1,7 @@
 server:
   port: 7010
+  servlet:
+    context-path: /auth
 
 spring:
   application:
@@ -13,10 +15,12 @@ spring:
       config:
         server-addr: http://localhost:8848
         file-extension: yaml
+        shared-configs[0]:
+          data-id: common.yaml
+          refresh: true
 feign:
   sentinel:
     enabled: true
-
 
 jwt:
   secret: ZBvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByYZ

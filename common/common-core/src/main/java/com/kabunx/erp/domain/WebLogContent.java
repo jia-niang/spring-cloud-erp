@@ -30,6 +30,21 @@ public class WebLogContent {
     private Integer spendTime;
 
     /**
+     * IP地址
+     */
+    private String ip;
+
+    /**
+     * 请求类型
+     */
+    private String method;
+
+    /**
+     * URL
+     */
+    private String url;
+
+    /**
      * 根路径
      */
     private String basePath;
@@ -38,21 +53,6 @@ public class WebLogContent {
      * URI
      */
     private String uri;
-
-    /**
-     * URL
-     */
-    private String url;
-
-    /**
-     * 请求类型
-     */
-    private String method;
-
-    /**
-     * IP地址
-     */
-    private String ip;
 
     /**
      * 请求参数

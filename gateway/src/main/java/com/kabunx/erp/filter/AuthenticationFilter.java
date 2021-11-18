@@ -29,6 +29,7 @@ public class AuthenticationFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
+        //
         if (routerValidator.isProtected.test(request)) {
             // 受保护的接口
             if (this.isAuthMissing(request)) {
