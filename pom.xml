@@ -32,6 +32,9 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <wechat-miniapp.version>4.2.0</wechat-miniapp.version>
         <wechat-mp.version>4.2.0</wechat-mp.version>
+        <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
+        <docker-repository.url>hub.docker.com</docker-repository.url>
+        <docker-repository.group>kabunx</docker-repository.group>
     </properties>
     <!-- 加入版本信息 -->
     <dependencyManagement>
@@ -135,13 +138,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${dockerfile-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

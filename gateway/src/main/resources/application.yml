@@ -5,7 +5,7 @@ spring:
   application:
     name: erp-gateway-service
   profiles:
-    active: dev
+    active: @profiles.active@
   cloud:
     gateway:
       discovery:

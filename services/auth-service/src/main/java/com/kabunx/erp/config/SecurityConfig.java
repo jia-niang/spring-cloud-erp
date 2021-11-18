@@ -28,7 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 直接跳过filter访问的路由
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/register", "/login/**", "/errors/**", "/h2-console/**");
+        web.ignoring().antMatchers(
+                "/auth/register",
+                "/auth/sms-code/**",
+                "/errors/**",
+                "/h2-console/**"
+        );
     }
 
     @Override
@@ -48,9 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setFilterProcessesUrl("/auth/login/account");
         return filter;
     }
-
-
-
 
 
 }

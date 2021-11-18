@@ -17,7 +17,6 @@
         <module>common-mybatis-plus</module>
         <module>common-elasticsearch</module>
         <module>common-web</module>
-        <module>common-h2</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
