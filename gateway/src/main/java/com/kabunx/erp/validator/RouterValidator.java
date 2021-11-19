@@ -16,9 +16,4 @@ public class RouterValidator {
     public Predicate<ServerHttpRequest> isProtected =
             request -> routerConfig.getOpenApis().stream()
                     .noneMatch(uri -> request.getURI().getPath().contains(uri));
-
-    public Predicate<ServerHttpRequest> isDispensable =
-            request -> routerConfig.getDispensableApis().stream()
-                    .anyMatch(uri -> request.getURI().getPath().contains(uri));
-
 }

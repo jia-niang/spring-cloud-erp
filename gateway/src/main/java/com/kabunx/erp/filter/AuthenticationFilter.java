@@ -33,21 +33,25 @@ public class AuthenticationFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        boolean authenticated = false;
+        boolean authorized = false;
         if (!this.isAuthorizationMissing(request)) {
             Optional<String> token = this.getAuthorizationToken(request);
             if (token.isPresent()) {
-                authenticated = this.fillRequestHeaders(exchange, token.get());
+                Optional<User> auth = authenticationService.parseToken(token.get());
+                if (auth.isPresent()) {
+                    authorized = true;
+                    fillRequestHeaders(exchange, auth.get());
+                }
             }
         }
         // 受保护的接口且没有认证
-        if (routerValidator.isProtected.test(request) && !authenticated) {
-            return this.onAuthorizationError(exchange);
+        if (routerValidator.isProtected.test(request) && !authorized) {
+            return this.onAuthenticationError(exchange);
         }
         return chain.filter(exchange);
     }
 
-    private Mono<Void> onAuthorizationError(ServerWebExchange exchange) {
+    private Mono<Void> onAuthenticationError(ServerWebExchange exchange) {
         ServerHttpResponse response = exchange.getResponse();
         DataBuffer dataBuffer = response.bufferFactory()
                 .wrap(SecurityConstant.AUTHORIZATION_ERROR.getBytes(StandardCharsets.UTF_8));
@@ -61,7 +65,8 @@ public class AuthenticationFilter implements GatewayFilter {
         if (token == null) {
             return Optional.empty();
         }
-        return Optional.of(token.replace(SecurityConstant.AUTHORIZATION_TOKEN_PREFIX, Strings.EMPTY));
+        token = token.replace(SecurityConstant.AUTHORIZATION_TOKEN_PREFIX, Strings.EMPTY).trim();
+        return token.isEmpty() ? Optional.empty() : Optional.of(token);
     }
 
     private String getAuthorizationHeader(ServerHttpRequest request) {
@@ -73,16 +78,11 @@ public class AuthenticationFilter implements GatewayFilter {
     }
 
     // 将解析的用户填充到header中并返回是否验证通过
-    private boolean fillRequestHeaders(ServerWebExchange exchange, String token) {
-        Optional<User> result = authenticationService.parseToken(token);
-        if (!result.isPresent()) {
-            return false;
-        }
+    private void fillRequestHeaders(ServerWebExchange exchange, User user) {
         exchange.getRequest()
                 .mutate()
-                .header(SecurityConstant.USER_ID_HEADER, result.get().getId())
-                .header(SecurityConstant.USER_TYPE_HEADER, result.get().getType())
+                .header(SecurityConstant.USER_ID_HEADER, user.getId())
+                .header(SecurityConstant.USER_TYPE_HEADER, user.getType())
                 .build();
-        return true;
     }
 }

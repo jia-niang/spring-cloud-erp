@@ -12,15 +12,15 @@ import java.util.Optional;
 public class HashUtilTests {
 
     @Test
-    void testGenerate() throws NoSuchAlgorithmException {
+    void testHashEncrypt() throws NoSuchAlgorithmException {
         String expected = "7dcf407fa84a0e0519c7991154c4148de0244d7589020c0d9842db9efad82094";
         String actual = HashUtils.encryptSha256("a1b2c3d4");
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    void testOptionalString() {
-        String str = null;
-        Optional.empty();
+    void testOptionalEmpty() {
+        Optional<String> empty = Optional.empty();
+        Assertions.assertFalse(empty.isPresent());
     }
 }
