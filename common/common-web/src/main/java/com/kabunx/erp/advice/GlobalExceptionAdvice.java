@@ -9,6 +9,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * 统一的全局异常处理
  */
@@ -25,12 +30,12 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public JsonResponseBody<Object> handleValidException(MethodArgumentNotValidException e) {
-        return JsonResponseBody.validateFailed(collectErrorMessage(e.getBindingResult()));
+        return JsonResponseBody.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
     @ExceptionHandler(value = BindException.class)
     public JsonResponseBody<Object> handleValidException(BindException e) {
-        return JsonResponseBody.validateFailed(collectErrorMessage(e.getBindingResult()));
+        return JsonResponseBody.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
     /**
@@ -39,14 +44,15 @@ public class GlobalExceptionAdvice {
      * @param bindingResult 绑定结果
      * @return 错误信息
      */
-    private String collectErrorMessage(BindingResult bindingResult) {
-        String message = null;
+    private HashMap<String, ArrayList<String>> collectFieldErrors(BindingResult bindingResult) {
+        HashMap<String, ArrayList<String>> errors = new HashMap<>();
         if (bindingResult.hasErrors()) {
-            FieldError fieldError = bindingResult.getFieldError();
-            if (fieldError != null) {
-                message = fieldError.getField() + fieldError.getDefaultMessage();
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            for (FieldError fieldError : fieldErrors) {
+                ArrayList<String> fErrors = errors.computeIfAbsent(fieldError.getField(), k -> new ArrayList<>());
+                fErrors.add(fieldError.getDefaultMessage());
             }
         }
-        return message;
+        return errors;
     }
 }

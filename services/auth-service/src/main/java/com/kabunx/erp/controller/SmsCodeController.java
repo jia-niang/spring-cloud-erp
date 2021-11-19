@@ -1,7 +1,6 @@
 package com.kabunx.erp.controller;
 
 import com.kabunx.erp.config.NacosConfig;
-import com.kabunx.erp.domain.JsonResponseBody;
 import com.kabunx.erp.domain.dto.LoginKeyValueDTO;
 import com.kabunx.erp.service.SmsCodeService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +22,8 @@ public class SmsCodeController {
     }
 
     @GetMapping("/config")
-    public JsonResponseBody<String> config(NacosConfig nacosConfig) {
-        log.info("{}", nacosConfig.toString());
-        return JsonResponseBody.success("123123");
+    public NacosConfig config(NacosConfig nacosConfig) {
+        return nacosConfig;
     }
 
     @GetMapping("/string")

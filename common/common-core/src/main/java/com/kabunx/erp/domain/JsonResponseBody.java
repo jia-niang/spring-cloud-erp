@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * 统一的响应结构
  */
@@ -58,14 +60,11 @@ public class JsonResponseBody<T> {
         return failed(ExceptionEnum.VALIDATE_FAILED);
     }
 
-
     /**
      * 参数验证失败返回结果
-     *
-     * @param message 提示信息
      */
-    public static <T> JsonResponseBody<T> validateFailed(String message) {
-        return new JsonResponseBody<>(false, ExceptionEnum.VALIDATE_FAILED.getCode(), message, null);
+    public static <T> JsonResponseBody<T> validateFailed(T errors) {
+        return new JsonResponseBody<>(false, ExceptionEnum.VALIDATE_FAILED.getCode(), ExceptionEnum.VALIDATE_FAILED.getMessage(), errors);
     }
 
     /**
