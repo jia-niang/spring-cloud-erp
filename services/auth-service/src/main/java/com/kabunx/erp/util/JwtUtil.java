@@ -49,7 +49,7 @@ public class JwtUtil {
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String type) {
         long expirationTimeLong;
-        if (SecurityConstant.JWT_ACCESS_TYPE.equals(type)) {
+        if (SecurityConstant.AUTHORIZATION_ACCESS_TYPE.equals(type)) {
             expirationTimeLong = Long.parseLong(jwtConfig.getExpirationTime()) * 1000;
         } else {
             expirationTimeLong = Long.parseLong(jwtConfig.getExpirationTime()) * 1000 * 5;

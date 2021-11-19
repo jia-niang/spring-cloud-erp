@@ -21,4 +21,9 @@ public class UserFeignClientFallback implements UserFeignClient {
         log.error("Openfeign远程调用用户服务（创建用户）异常的降级方法");
         return JsonResponseBody.withFallbackError();
     }
+
+    @Override
+    public JsonResponseBody<UserVO> show(String id) {
+        return JsonResponseBody.withFallbackError();
+    }
 }

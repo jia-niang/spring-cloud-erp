@@ -5,10 +5,7 @@ import com.kabunx.erp.domain.JsonResponseBody;
 import com.kabunx.erp.dto.UserDTO;
 import com.kabunx.erp.vo.UserVO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "erp-user-service", fallback = UserFeignClientFallback.class)
 public interface UserFeignClient {
@@ -18,4 +15,7 @@ public interface UserFeignClient {
 
     @PostMapping("users")
     JsonResponseBody<UserVO> create(@RequestBody UserDTO userDTO);
+
+    @GetMapping("users/{id}")
+    JsonResponseBody<UserVO> show(@PathVariable("id") String id);
 }
