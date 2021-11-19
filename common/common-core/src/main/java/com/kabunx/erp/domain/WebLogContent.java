@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
  * 统一的日志结构体
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 public class WebLogContent {
     /**
      * 操作描述
@@ -18,16 +18,6 @@ public class WebLogContent {
      * 操作用户
      */
     private String username;
-
-    /**
-     * 操作时间
-     */
-    private Long startTime;
-
-    /**
-     * 消耗时间
-     */
-    private Integer spendTime;
 
     /**
      * IP地址
@@ -63,4 +53,14 @@ public class WebLogContent {
      * 返回结果
      */
     private Object result;
+
+    /**
+     * 操作时间
+     */
+    private Long startTime;
+
+    /**
+     * 消耗时间
+     */
+    private Integer spendTime;
 }
