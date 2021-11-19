@@ -4,7 +4,6 @@ import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.entity.User;
 import com.kabunx.erp.service.AuthenticationService;
 import com.kabunx.erp.validator.RouterValidator;
-import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -21,7 +20,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
 public class AuthenticationFilter implements GatewayFilter {
     // custom route validator
     @Resource

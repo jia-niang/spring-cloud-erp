@@ -1,7 +1,10 @@
 package com.kabunx.erp.advice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kabunx.erp.annotation.IgnoreJsonResponseBodyAdvice;
 import com.kabunx.erp.domain.JsonResponseBody;
+import com.kabunx.erp.exception.ExceptionEnum;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -25,10 +28,21 @@ public class JsonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         if (body == null) {
             return JsonResponseBody.success();
+        } else if (body instanceof String) {
+            try {
+                return toJsonString(JsonResponseBody.success(body));
+            } catch (JsonProcessingException e) {
+                return JsonResponseBody.failed(ExceptionEnum.FAILED);
+            }
         } else if (body instanceof JsonResponseBody) {
             return body;
         } else {
             return JsonResponseBody.success(body);
         }
+    }
+
+    private String toJsonString(JsonResponseBody<Object> body) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(body);
     }
 }
