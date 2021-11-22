@@ -5,11 +5,12 @@ import com.kabunx.erp.entity.User;
 import com.kabunx.erp.service.AuthenticationService;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.JwtUtils;
-import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.vo.UserTokenVo;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -26,20 +27,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return isCustomToken(token) ? parseCustomToken(token) : parseJwt(token);
     }
 
+    /**
+     * @param token header token
+     * @return 是否为自定义token
+     */
+    private boolean isCustomToken(String token) {
+        return token.contains(SecurityConstant.AUTHORIZATION_CUSTOM_TOKEN_SPLIT);
+    }
+
     private Optional<User> parseCustomToken(String token) {
-        UserVO userVO = userService.findAndValidateByToken(token);
-        if (userVO == null) {
+        UserTokenVo userToken = userService.findAndValidateByToken(token);
+        if (userToken == null) {
             return Optional.empty();
         }
         return Optional.of(User.builder()
-                .id(userVO.getId())
+                .id(userToken.getId())
                 .type("user")
                 .build());
     }
 
     private Optional<User> parseJwt(String token) {
         Claims claims = jwtUtils.getAllClaimsFromToken(token);
-        if (claims.isEmpty()) {
+        if (claims.isEmpty() || isTokenExpired(claims.getExpiration())) {
             return Optional.empty();
         }
         return Optional.of(User.builder()
@@ -48,11 +57,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .build());
     }
 
-    /**
-     * @param token header token
-     * @return 是否为自定义token
-     */
-    private boolean isCustomToken(String token) {
-        return token.contains(SecurityConstant.AUTHORIZATION_CUSTOM_TOKEN_SPLIT);
+    private boolean isTokenExpired(Date date) {
+        return date.before(new Date());
     }
 }

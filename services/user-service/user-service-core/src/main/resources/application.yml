@@ -1,5 +1,7 @@
 server:
   port: 7020
+  servlet:
+    context-path: /user
 
 spring:
   application:
@@ -13,8 +15,3 @@ spring:
       config:
         server-addr: http://localhost:8848
         file-extension: yaml
-  redis:
-    host: localhost
-    port: 6379
-    password:
-    database: 0

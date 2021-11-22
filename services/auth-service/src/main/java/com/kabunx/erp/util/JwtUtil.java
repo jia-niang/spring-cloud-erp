@@ -2,11 +2,10 @@ package com.kabunx.erp.util;
 
 import com.kabunx.erp.config.JwtConfig;
 import com.kabunx.erp.constant.SecurityConstant;
-import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.vo.UserVo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -36,18 +35,18 @@ public class JwtUtil {
         return getAllClaimsFromToken(token).getExpiration();
     }
 
-    private Boolean isTokenExpired(String token) {
+    private boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-    public String generate(UserVO userVo, String type) {
+    public String generate(UserVo userVo, String type) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", userVo.getId());
-        return doGenerateToken(claims, userVo.getEmail(), type);
+        return generateToken(claims, userVo.getEmail(), type);
     }
 
-    private String doGenerateToken(Map<String, Object> claims, String subject, String type) {
+    private String generateToken(Map<String, Object> claims, String subject, String type) {
         long expirationTimeLong;
         if (SecurityConstant.AUTHORIZATION_ACCESS_TYPE.equals(type)) {
             expirationTimeLong = Long.parseLong(jwtConfig.getExpirationTime()) * 1000;
@@ -66,7 +65,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    public Boolean validateToken(String token) {
+    public boolean validateToken(String token) {
         return !isTokenExpired(token);
     }
 }

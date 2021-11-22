@@ -1,4 +1,9 @@
 package com.kabunx.erp.mapper;
 
-public interface UserMapper {
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kabunx.erp.model.User;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
 }

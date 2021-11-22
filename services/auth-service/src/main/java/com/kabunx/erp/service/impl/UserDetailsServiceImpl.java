@@ -2,9 +2,9 @@ package com.kabunx.erp.service.impl;
 
 import com.kabunx.erp.api.UserFeignClient;
 import com.kabunx.erp.constant.AuthConstant;
-import com.kabunx.erp.domain.JsonResponseBody;
+import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.AuthException;
-import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.vo.UserVo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,8 +14,8 @@ public class UserDetailsServiceImpl {
     @Resource
     UserFeignClient userFeignClient;
 
-    public UserVO loadUserByUsername(String username) {
-        JsonResponseBody<UserVO> response = userFeignClient.findByAccount(username);
+    public UserVo loadUserByUsername(String username) {
+        JsonResponse<UserVo> response = userFeignClient.list(username);
         if (response.hasFallbackError()) {
             throw new AuthException(response.getMessage());
         }

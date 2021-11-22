@@ -11,41 +11,40 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName(value = "sys_user_basic", autoResultMap = true)
-public class User extends Model {
-    @TableId(type = IdType.AUTO)
-    Integer id;
-    String account;
-    String password;
-    String name;
+@TableName(value = "gb_user_mpc", autoResultMap = true)
+public class Member extends Model {
+    @TableId(type = IdType.INPUT)
+    Integer userId;
 
-    Integer sex;
-
-    String avatar;
-    String phone;
-    String email;
-    String companyName;
-    String licenseUrl;
-    Integer points;
-    Integer inviterUid;
-    Integer source;
+    String position;
 
     Integer status;
 
-    Integer isExpire;
+    String accessToken;
 
     @TableField(typeHandler = DateTypeHandler.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Date expireTime;
-    Integer isOpen;
-    Integer isCiLogin;
-    Integer lastLogin;
-    Integer profileSource;
+    Date tokenExpiredTime;
+
+    String openid;
+
+    String unionid;
+
+    Integer addType;
+
+    String ch;
 
     @TableField(typeHandler = DateTypeHandler.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date addTime;
 
+    @TableField(typeHandler = DateTypeHandler.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    Date lastLogin;
+
     @TableLogic
     Boolean isDeleted;
+
+    @TableField(exist = false)
+    User user;
 }

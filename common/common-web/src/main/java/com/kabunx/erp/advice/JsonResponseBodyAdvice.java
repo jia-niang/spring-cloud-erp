@@ -3,7 +3,7 @@ package com.kabunx.erp.advice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kabunx.erp.annotation.IgnoreJsonResponseBodyAdvice;
-import com.kabunx.erp.domain.JsonResponseBody;
+import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.ExceptionEnum;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -27,21 +27,21 @@ public class JsonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         if (body == null) {
-            return JsonResponseBody.success();
+            return JsonResponse.success();
         } else if (body instanceof String) {
             try {
-                return toJsonString(JsonResponseBody.success(body));
+                return toJsonString(JsonResponse.success(body));
             } catch (JsonProcessingException e) {
-                return JsonResponseBody.failed(ExceptionEnum.FAILED);
+                return JsonResponse.failed(ExceptionEnum.FAILED);
             }
-        } else if (body instanceof JsonResponseBody) {
+        } else if (body instanceof JsonResponse) {
             return body;
         } else {
-            return JsonResponseBody.success(body);
+            return JsonResponse.success(body);
         }
     }
 
-    private String toJsonString(JsonResponseBody<Object> body) throws JsonProcessingException {
+    private String toJsonString(JsonResponse<Object> body) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(body);
     }

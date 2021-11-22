@@ -1,10 +1,11 @@
 package com.kabunx.erp.service.impl;
 
 import com.kabunx.erp.api.UserFeignClient;
-import com.kabunx.erp.domain.JsonResponseBody;
+import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.HashUtils;
-import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.vo.MemberVo;
+import com.kabunx.erp.vo.UserTokenVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,12 @@ public class UserServiceImpl implements UserService {
     private final UserFeignClient userFeignClient;
 
     @Override
-    public UserVO findAndValidateByToken(String authToken) {
+    public MemberVo findAndValidateByToken(String authToken) {
         String[] elements = authToken.split("\\|", 2);
-        String userId = elements[0];
+        int userId = Integer.parseInt(elements[0]);
         String plainToken = elements[1];
-        JsonResponseBody<UserVO> response = userFeignClient.show(userId);
-        if (!response.isSuccess()) {
+        JsonResponse<MemberVo> response = userFeignClient.findByIdWithToken(userId);
+        if (response.unavailable()) {
             return null;
         }
         String token = response.getData().toString();

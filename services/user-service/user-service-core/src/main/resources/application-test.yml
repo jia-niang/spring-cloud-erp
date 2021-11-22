@@ -1,0 +1,22 @@
+server:
+  port: 7020
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+      config:
+        server-addr: http://localhost:8848
+        file-extension: yaml
+  datasource:
+    name: geebox
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.150:3306/geebox_2_0?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ae6@b1c8ee6fA056
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0

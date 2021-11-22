@@ -1,6 +1,6 @@
 package com.kabunx.erp.advice;
 
-import com.kabunx.erp.domain.JsonResponseBody;
+import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.BizException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,21 +20,21 @@ import java.util.List;
 public class GlobalExceptionAdvice {
 
     @ExceptionHandler(value = BizException.class)
-    public JsonResponseBody<Object> handle(BizException e) {
+    public JsonResponse<Object> handle(BizException e) {
         if (e.getErrorCode() != null) {
-            return JsonResponseBody.failed(e.getErrorCode());
+            return JsonResponse.failed(e.getErrorCode());
         }
-        return JsonResponseBody.failed(e.getMessage());
+        return JsonResponse.failed(e.getMessage());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public JsonResponseBody<Object> handleValidException(MethodArgumentNotValidException e) {
-        return JsonResponseBody.validateFailed(collectFieldErrors(e.getBindingResult()));
+    public JsonResponse<Object> handleValidException(MethodArgumentNotValidException e) {
+        return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
     @ExceptionHandler(value = BindException.class)
-    public JsonResponseBody<Object> handleValidException(BindException e) {
-        return JsonResponseBody.validateFailed(collectFieldErrors(e.getBindingResult()));
+    public JsonResponse<Object> handleValidException(BindException e) {
+        return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
     /**

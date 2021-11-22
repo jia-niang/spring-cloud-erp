@@ -1,7 +1,8 @@
 package com.kabunx.erp.service;
 
-import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.vo.MemberVo;
+import com.kabunx.erp.vo.UserTokenVo;
 
 public interface UserService {
-    UserVO findAndValidateByToken(String authToken);
+    MemberVo findAndValidateByToken(String authToken);
 }
