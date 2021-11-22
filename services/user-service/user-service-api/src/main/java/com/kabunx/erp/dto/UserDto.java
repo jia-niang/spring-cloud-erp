@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto extends Dto {
+    long page = 1L;
+    long pageSize = 10L;
     @NotNull(message = "用户名不能为NULL")
     @NotEmpty(message = "用户名不能为空")
     String username;

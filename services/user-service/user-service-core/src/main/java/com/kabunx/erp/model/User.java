@@ -34,17 +34,17 @@ public class User extends Model {
 
     Integer isExpire;
 
-    @TableField(typeHandler = DateTypeHandler.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Date expireTime;
+//    @TableField(typeHandler = DateTypeHandler.class)
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    Date expireTime;
     Integer isOpen;
     Integer isCiLogin;
     Integer lastLogin;
     Integer profileSource;
 
-    @TableField(typeHandler = DateTypeHandler.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Date addTime;
+//    @TableField(typeHandler = DateTypeHandler.class)
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    Date addTime;
 
     @TableLogic
     Boolean isDeleted;

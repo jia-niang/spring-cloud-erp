@@ -13,19 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFeignClientFallback implements UserFeignClient {
     @Override
-    public JsonResponse<UserVo> list(String username) {
-        errorLog();
-        return JsonResponse.withFallbackError();
-    }
-
-    @Override
     public JsonResponse<UserVo> show(Integer id) {
-        errorLog();
-        return JsonResponse.withFallbackError();
-    }
-
-    @Override
-    public JsonResponse<MemberVo> findByIdWithToken(Integer id) {
         errorLog();
         return JsonResponse.withFallbackError();
     }

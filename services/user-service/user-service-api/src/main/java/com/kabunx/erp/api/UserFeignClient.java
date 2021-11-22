@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "erp-user-service", fallback = UserFeignClientFallback.class)
 public interface UserFeignClient {
 
-    @GetMapping("/users")
-    JsonResponse<UserVo> list(@RequestParam("account") String account);
-
     @GetMapping("/users/{id}")
     JsonResponse<UserVo> show(@PathVariable("id") Integer id);
 

@@ -2,7 +2,9 @@ package com.kabunx.erp.controller;
 
 import com.kabunx.erp.api.UserFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
+import com.kabunx.erp.domain.dto.UserFilterDto;
 import com.kabunx.erp.dto.UserDto;
+import com.kabunx.erp.model.User;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVo;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +18,9 @@ public class UserController implements UserFeignClient {
     @Resource
     UserService userService;
 
-    @Override
-    public JsonResponse<UserVo> list(String account) {
-        return null;
+    @GetMapping("/users")
+    public Object pagination(@RequestBody UserFilterDto<User> filterDto) {
+        return userService.paginate(filterDto);
     }
 
     @Override
