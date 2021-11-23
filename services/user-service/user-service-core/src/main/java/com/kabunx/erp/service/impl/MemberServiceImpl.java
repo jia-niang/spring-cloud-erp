@@ -1,8 +1,6 @@
 package com.kabunx.erp.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kabunx.erp.converter.ObjectConverter;
 import com.kabunx.erp.mapper.MemberMapper;
 import com.kabunx.erp.model.Member;
 import com.kabunx.erp.service.MemberService;
@@ -19,12 +17,6 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberVO findById(Integer id) {
         Member member = memberMapper.selectById(id);
-        try {
-            ObjectMapper om = new ObjectMapper();
-            om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            return om.readValue(om.writeValueAsString(member), MemberVO.class);
-        } catch (JsonProcessingException e) {
-            return null;
-        }
+        return ObjectConverter.map(member, MemberVO.class);
     }
 }

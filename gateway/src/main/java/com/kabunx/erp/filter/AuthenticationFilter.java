@@ -33,7 +33,7 @@ public class AuthenticationFilter implements GatewayFilter {
         ServerHttpRequest request = exchange.getRequest();
         boolean authorized = false;
         if (!this.isAuthorizationMissing(request)) {
-            Optional<String> token = this.getAuthorizationToken(request);
+            Optional<String> token = getAuthorizationToken(request);
             if (token.isPresent()) {
                 Optional<User> auth = authenticationService.parseToken(token.get());
                 if (auth.isPresent()) {
@@ -44,7 +44,7 @@ public class AuthenticationFilter implements GatewayFilter {
         }
         // 受保护的接口且没有认证
         if (routerValidator.isProtected.test(request) && !authorized) {
-            return this.onAuthenticationError(exchange);
+            return onAuthenticationError(exchange);
         }
         return chain.filter(exchange);
     }

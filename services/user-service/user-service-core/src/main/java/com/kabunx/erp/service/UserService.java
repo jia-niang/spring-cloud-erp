@@ -1,6 +1,7 @@
 package com.kabunx.erp.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserFilterDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.model.User;
@@ -12,4 +13,7 @@ public interface UserService {
 
     IPage<User> paginate(UserFilterDTO<User> userFilter);
 
+    IPage<UserVO> simplePaginate(UserDTO userDTO);
+
+    IPage<UserVO> xmlPaginate(UserDTO userDTO);
 }

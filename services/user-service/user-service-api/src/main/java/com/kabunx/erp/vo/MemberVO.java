@@ -15,5 +15,5 @@ public class MemberVO extends BaseVO {
 
     Date tokenExpiredTime;
 
-    private UserVO userVo;
+    private UserVO user;
 }

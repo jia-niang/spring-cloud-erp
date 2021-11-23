@@ -1,7 +1,9 @@
 package com.kabunx.erp.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kabunx.erp.converter.ObjectConverter;
+import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserFilterDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
@@ -34,5 +36,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public IPage<User> paginate(UserFilterDTO<User> userFilter) {
         return userMapper.selectPage(userFilter.getPage(), userFilter.getQueryWrapper());
+    }
+
+    @Override
+    public IPage<UserVO> simplePaginate(UserDTO userDTO) {
+        Page<UserVO> page = new Page<>(1, 10);
+        return userMapper.simpleSelectPage(page, userDTO);
+    }
+
+    public IPage<UserVO> xmlPaginate(UserDTO userDTO) {
+        Page<UserVO> page = new Page<>(1, 10);
+        return userMapper.xmlSelectPage(page, userDTO);
     }
 }

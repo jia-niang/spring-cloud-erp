@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kabunx.erp.mapper.UserMapper">
+    <select id="xmlSelectPage"
+            resultType="com.kabunx.erp.vo.UserVO">
+        select *
+        from sys_user_basic
+        <where>
+            <if test="ps.name != null and ps.name != ''">
+                and (name like #{ps.name} or account like #{ps.name})
+            </if>
+            <if test="ps.sex != null">
+                and sex = #{ps.sex}
+            </if>
+        </where>
+    </select>
+</mapper>

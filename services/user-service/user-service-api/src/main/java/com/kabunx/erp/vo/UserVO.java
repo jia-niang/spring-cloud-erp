@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class UserVO extends BaseVO {
     private String id;
-    private String username;
-    private String testKey;
-    private String email;
+    private String account;
+    private String name;
+    private Integer sex;
 }
