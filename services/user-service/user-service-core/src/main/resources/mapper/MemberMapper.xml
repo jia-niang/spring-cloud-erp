@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kabunx.erp.mapper.MemberMapper">
     <resultMap id="memberWithUserMap" type="com.kabunx.erp.vo.MemberVO">
+        <association property="user" javaType="com.kabunx.erp.vo.UserVO">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+        </association>
     </resultMap>
     <select id="selectWithUser"
             resultType="com.kabunx.erp.vo.MemberVO">

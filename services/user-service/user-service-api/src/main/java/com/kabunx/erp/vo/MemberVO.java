@@ -1,6 +1,5 @@
 package com.kabunx.erp.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.kabunx.erp.pojo.BaseVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +19,5 @@ public class MemberVO extends BaseVO {
 
     Date tokenExpiredTime;
 
-    @JSONField(name = "user")
     private UserVO user;
 }
