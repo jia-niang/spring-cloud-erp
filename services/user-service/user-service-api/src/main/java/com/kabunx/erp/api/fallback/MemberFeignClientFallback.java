@@ -2,11 +2,11 @@ package com.kabunx.erp.api.fallback;
 
 import com.kabunx.erp.api.MemberFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
-import com.kabunx.erp.vo.MemberVo;
+import com.kabunx.erp.vo.MemberVO;
 
 public class MemberFeignClientFallback implements MemberFeignClient {
     @Override
-    public JsonResponse<MemberVo> findById(Integer id) {
+    public JsonResponse<MemberVO> findById(Integer id) {
         return JsonResponse.withFallbackError();
     }
 }

@@ -2,7 +2,7 @@ package com.kabunx.erp.model;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kabunx.erp.base.Model;
+import com.kabunx.erp.pojo.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.DateTypeHandler;
@@ -23,7 +23,6 @@ public class Member extends Model {
     String accessToken;
 
     @TableField(typeHandler = DateTypeHandler.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date tokenExpiredTime;
 
     String openid;
@@ -39,7 +38,6 @@ public class Member extends Model {
     Date addTime;
 
     @TableField(typeHandler = DateTypeHandler.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date lastLogin;
 
     @TableLogic

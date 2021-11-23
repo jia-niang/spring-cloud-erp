@@ -2,10 +2,8 @@ package com.kabunx.erp.api.fallback;
 
 import com.kabunx.erp.api.UserFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
-import com.kabunx.erp.dto.UserDto;
-import com.kabunx.erp.vo.MemberVo;
-import com.kabunx.erp.vo.UserTokenVo;
-import com.kabunx.erp.vo.UserVo;
+import com.kabunx.erp.dto.UserFromDTO;
+import com.kabunx.erp.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFeignClientFallback implements UserFeignClient {
     @Override
-    public JsonResponse<UserVo> show(Integer id) {
+    public JsonResponse<UserVO> show(Integer id) {
         errorLog();
         return JsonResponse.withFallbackError();
     }
 
     @Override
-    public JsonResponse<UserVo> create(UserDto userDTO) {
+    public JsonResponse<UserVO> create(UserFromDTO userFromDTO) {
         errorLog();
         return JsonResponse.withFallbackError();
     }

@@ -1,13 +1,9 @@
 package com.kabunx.erp.model;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kabunx.erp.base.Model;
+import com.kabunx.erp.pojo.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.ibatis.type.DateTypeHandler;
-
-import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

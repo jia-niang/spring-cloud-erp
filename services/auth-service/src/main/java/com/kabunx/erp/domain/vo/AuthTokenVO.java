@@ -1,15 +1,14 @@
 package com.kabunx.erp.domain.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.kabunx.erp.pojo.BaseVO;
+import lombok.*;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthTokenVO {
+public class AuthTokenVO extends BaseVO {
     private String accessToken;
     private String refreshToken;
 }

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kabunx.erp.base.Model;
+import com.kabunx.erp.pojo.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.DateTypeHandler;

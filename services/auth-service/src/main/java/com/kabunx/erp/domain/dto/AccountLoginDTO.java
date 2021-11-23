@@ -1,18 +1,17 @@
 package com.kabunx.erp.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.kabunx.erp.pojo.BaseDTO;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountLoginDTO {
+public class AccountLoginDTO extends BaseDTO {
 
     @NotNull
     @NotEmpty

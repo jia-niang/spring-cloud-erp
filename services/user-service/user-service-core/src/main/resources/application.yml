@@ -8,10 +8,6 @@ spring:
     name: erp-user-service
   profiles:
     active: dev
-  cloud:
-    nacos:
-      discovery:
-        server-addr: http://localhost:8848
-      config:
-        server-addr: http://localhost:8848
-        file-extension: yaml
+
+logging:
+  config: classpath:log4j2.xml

@@ -1,8 +1,7 @@
 package com.kabunx.erp.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kabunx.erp.vo.MemberVo;
+import com.kabunx.erp.vo.MemberVO;
 
 public interface MemberService {
-    MemberVo findById(Integer id);
+    MemberVO findById(Integer id);
 }

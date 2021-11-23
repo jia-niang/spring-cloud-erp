@@ -1,6 +1,6 @@
 package com.kabunx.erp.dto;
 
-import com.kabunx.erp.base.Dto;
+import com.kabunx.erp.pojo.BaseDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,9 +11,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto extends Dto {
-    long page = 1L;
-    long pageSize = 10L;
+public class UserFromDTO extends BaseDTO {
     @NotNull(message = "用户名不能为NULL")
     @NotEmpty(message = "用户名不能为空")
     String username;
@@ -25,4 +23,6 @@ public class UserDto extends Dto {
     @NotNull(message = "登录类型不能为NULL")
     @NotEmpty(message = "登录类型不能为空")
     String type;
+
+    String testKey;
 }

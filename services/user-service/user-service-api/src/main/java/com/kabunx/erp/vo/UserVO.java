@@ -1,6 +1,6 @@
 package com.kabunx.erp.vo;
 
-import com.kabunx.erp.base.Vo;
+import com.kabunx.erp.pojo.BaseVO;
 import lombok.*;
 
 @Data
@@ -8,8 +8,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserVo extends Vo {
+public class UserVO extends BaseVO {
     private String id;
+    private String username;
+    private String testKey;
     private String email;
-    private String role;
 }

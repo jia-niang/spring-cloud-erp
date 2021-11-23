@@ -1,6 +1,6 @@
 package com.kabunx.erp.vo;
 
-import com.kabunx.erp.base.Vo;
+import com.kabunx.erp.pojo.BaseVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,12 +8,12 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MemberVo extends Vo {
+public class MemberVO extends BaseVO {
     private Integer userId;
 
     private String accessToken;
 
     Date tokenExpiredTime;
 
-    private UserVo userVo;
+    private UserVO userVo;
 }

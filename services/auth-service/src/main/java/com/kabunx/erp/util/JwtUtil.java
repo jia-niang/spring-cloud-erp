@@ -2,7 +2,7 @@ package com.kabunx.erp.util;
 
 import com.kabunx.erp.config.JwtConfig;
 import com.kabunx.erp.constant.SecurityConstant;
-import com.kabunx.erp.vo.UserVo;
+import com.kabunx.erp.vo.UserVO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -40,7 +40,7 @@ public class JwtUtil {
         return expiration.before(new Date());
     }
 
-    public String generate(UserVo userVo, String type) {
+    public String generate(UserVO userVo, String type) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", userVo.getId());
         return generateToken(claims, userVo.getEmail(), type);

@@ -1,13 +1,11 @@
 package com.kabunx.erp.domain;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * 统一的日志结构体
  */
 @Data
-@EqualsAndHashCode
 public class WebLogContent {
     /**
      * 操作描述
