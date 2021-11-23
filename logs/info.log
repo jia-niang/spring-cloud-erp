@@ -1276,3 +1276,841 @@ java.lang.NullPointerException: null
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
 [13:53:03:718] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
 [13:53:03:730] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[13:53:10:603] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[13:53:10:652] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 8352 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[13:53:10:655] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[13:53:10:711] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[13:53:10:711] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[13:53:12:160] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[13:53:12:164] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[13:53:12:207] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+[13:53:12:699] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[13:53:13:134] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[13:53:13:144] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[13:53:13:761] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[13:53:13:771] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[13:53:13:772] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[13:53:13:772] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[13:53:13:879] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[13:53:13:879] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3167 ms
+[13:53:16:746] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[13:53:17:900] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[13:53:18:331] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[13:53:18:471] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[13:53:18:850] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[13:53:18:868] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[13:53:18:879] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[13:53:19:043] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.059 seconds (JVM running for 10.462)
+[13:53:19:228] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[13:53:19:402] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[13:53:19:402] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[13:53:19:404] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[13:53:19:495] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[13:53:23:256] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:82) - {method=POST, uri=/user/users, url=http://127.0.0.1:7020/user/users, result={code=0, data={testKey=hello, username=张三}, message=操作成功, success=true}, basePath=http://127.0.0.1:7020, parameter={type=mp, password=123123, testKey=hello, username=张三}, startTime=1637646803204, spendTime=10}
+[13:53:26:350] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:82) - {method=POST, uri=/user/users, url=http://127.0.0.1:7020/user/users, result={code=0, data={testKey=hello, username=张三}, message=操作成功, success=true}, basePath=http://127.0.0.1:7020, parameter={type=mp, password=123123, testKey=hello, username=张三}, startTime=1637646806346, spendTime=3}
+[14:07:18:734] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@4b5d4099 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:737] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@65035b6a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:738] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@447b96db (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:740] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@42c40272 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:742] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@48c4c1bb (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:743] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@37e30bc2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:744] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@2f368eab (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:745] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@4d83cead (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:746] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@23a417bf (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:18:747] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@c36a512 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:07:19:067] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:82) - {method=GET, uri=/user/users, url=http://127.0.0.1:7020/user/users, result={optimizeCountSql=true, records=[{licenseUrl=, lastLogin=0, sex=0, companyName=, avatar=, source=0, points=0, inviterUid=0, password=$2y$13$azizFodb2wwJ0/F7yysxZOen48Td6SeGgRpVvadpeHPGCu8RQN7MC, profileSource=0, isOpen=1, isCiLogin=1, isDeleted=false, phone=15850243619, name=Johnny Hu(胡东明), id=2, isExpire=0, account=ci9871, email=Johnnyhu@careerintlinc.com, status=4}, {licenseUrl=, lastLogin=1552984524, sex=2, companyName=, avatar=/geebox/avatar/2018/02/01/file_1517470922969.jpg, source=0, points=0, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=13776160695, name=CC, id=3, isExpire=0, account=13776160695, email=, status=4}, {licenseUrl=, lastLogin=1611124643, sex=0, companyName=, avatar=/geebox/avatar/2019/05/06/file_1557142833135.jpg, source=0, points=0, inviterUid=0, password=$2y$13$0x8L0DkyuWF3DYvR.oXEoO6nDwl.ksEdQjsVm83ZP.ekjOMd28rhm, profileSource=0, isOpen=1, isCiLogin=1, isDeleted=false, phone=13732649235, name=Bert Zhou(周正雨), id=5, isExpire=0, account=ci11446, email=deniseyang@careerintlinc.com, status=4}, {licenseUrl=, lastLogin=1562689512, sex=1, companyName=, avatar=/geebox/avatar/2018/01/29/file_1517216595332.png, source=0, points=0, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=13732629363, name=common, id=8, isExpire=0, account=13732629363, email=, status=4}, {licenseUrl=, lastLogin=1573112494, sex=0, companyName=, avatar=, source=0, points=0, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=15950083790, name=15950083790, id=9, isExpire=0, account=15950083790, email=, status=4}, {licenseUrl=, lastLogin=0, sex=0, companyName=测试123, avatar=, source=0, points=0, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=13285145174, name=13285145174, id=10, isExpire=0, account=13285145174, email=, status=4}, {licenseUrl=, lastLogin=0, sex=1, companyName=, avatar=/geebox/avatar/2018/01/29/file_1517220263869.png, source=0, points=0, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=13771829576, name=马战鹏, id=11, isExpire=0, account=13771829576, email=, status=4}, {licenseUrl=, lastLogin=1619419368, sex=2, companyName=, avatar=/geebox/avatar/2018/01/30/file_1517277340469.png, source=0, points=170, inviterUid=0, password=, profileSource=0, isOpen=2, isCiLogin=0, isDeleted=false, phone=13862582844, name=顾辛未, id=12, isExpire=0, account=13862582844, email=, status=4}, {licenseUrl=, lastLogin=1598839804, sex=1, companyName=, avatar=/geebox/avatar/2018/01/30/file_1517278780934.png, source=0, points=290, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=18550252902, name=付付付付付付华！, id=14, isExpire=0, account=18550252902, email=, status=4}, {licenseUrl=, lastLogin=1540536685, sex=1, companyName=, avatar=/geebox/avatar/2018/01/30/file_1517290281380.png, source=0, points=0, inviterUid=0, password=, profileSource=0, isOpen=1, isCiLogin=0, isDeleted=false, phone=13862563732, name=王瑞, id=15, isExpire=0, account=13862563732, email=, status=4}], searchCount=true, total=114960, current=1, size=10, orders=[]}, basePath=http://127.0.0.1:7020, parameter={pageSize=10, page={optimizeCountSql=true, records=[], searchCount=true, total=0, current=1, size=10, orders=[]}}, startTime=1637647638586, spendTime=474}
+[14:25:36:449] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:25:36:449] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:25:36:450] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:25:36:451] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:25:36:576] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:25:36:578] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:25:42:998] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:25:43:003] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:25:43:009] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:25:52:203] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:25:52:252] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 9792 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:25:52:255] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:25:52:311] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:25:52:312] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:25:53:758] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:25:53:761] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:25:53:805] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+[14:25:54:309] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:25:54:743] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:25:54:753] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:25:55:366] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:25:55:376] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:25:55:377] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:25:55:377] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:25:55:482] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:25:55:482] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3170 ms
+[14:25:58:272] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:25:59:385] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:25:59:800] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:25:59:904] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:26:00:271] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:26:00:288] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:26:00:299] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:26:00:463] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 8.868 seconds (JVM running for 10.281)
+[14:26:00:870] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:26:00:870] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:26:00:872] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:26:00:896] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:26:01:094] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:28:10:683] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:75) - WebLogContent(description=null, username=null, ip=null, method=GET, url=http://127.0.0.1:7020/user/users, params=UserFilterDTO(name=null), startTime=1637648890429, spendTime=252)
+[14:31:17:955] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:31:17:956] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:31:17:957] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:31:17:958] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:31:18:083] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:31:18:086] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:31:24:712] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:31:24:718] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:31:24:724] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:31:30:678] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:31:30:729] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 15412 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:31:30:732] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:31:30:790] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:31:30:790] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:31:32:385] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:31:32:389] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:31:32:435] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+[14:31:32:993] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:31:33:463] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:31:33:473] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:31:34:118] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:31:34:129] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:31:34:129] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:31:34:130] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:31:34:239] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:31:34:239] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3448 ms
+[14:31:37:364] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:31:38:674] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:31:39:096] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:31:39:210] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:31:39:595] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:31:39:613] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:31:39:624] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:31:39:789] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.748 seconds (JVM running for 11.161)
+[14:31:40:328] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:31:40:329] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:31:40:331] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:31:40:356] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:31:40:576] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:31:45:780] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:76) - {"description":null,"username":null,"ip":null,"method":"GET","url":"http://127.0.0.1:7020/user/users","params":{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"useAnnotationOrderBy":true,"sqlSegment":"","sqlSet":null,"customSqlSegment":"","emptyOfWhere":true,"emptyOfEntity":true,"targetSql":"","emptyOfNormal":true}},"startTime":1637649105518,"spendTime":251}
+[14:35:49:744] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:35:49:744] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:35:49:746] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:35:49:747] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:35:49:876] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:35:49:878] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:35:53:876] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:35:53:881] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:35:53:887] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:35:59:543] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:35:59:592] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 7508 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:35:59:595] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:35:59:651] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:35:59:652] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:36:01:101] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:36:01:104] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:36:01:149] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+[14:36:01:651] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:36:02:083] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:36:02:092] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:36:02:711] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:36:02:721] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:36:02:721] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:36:02:721] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:36:02:827] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:36:02:827] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3175 ms
+[14:36:05:654] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:36:06:743] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:36:07:156] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:36:07:260] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:36:07:621] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:36:07:638] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:36:07:649] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:36:07:813] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 8.88 seconds (JVM running for 10.255)
+[14:36:08:094] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:36:08:095] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:36:08:097] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:36:08:122] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:36:08:330] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:39:25:293] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:64) - {"description":null,"username":null,"ip":null,"method":"GET","url":"http://127.0.0.1:7020/user/users","params":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"sqlSegment":"","useAnnotationOrderBy":true,"sqlSet":null,"customSqlSegment":"","emptyOfEntity":true,"targetSql":"","emptyOfWhere":true,"emptyOfNormal":true}}],"startTime":1637649564562,"spendTime":246}
+[14:39:45:850] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:39:45:850] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:39:45:850] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:39:45:852] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:39:45:984] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:39:45:986] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:39:51:970] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:39:51:985] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:39:51:997] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:39:56:756] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:39:56:806] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 14920 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:39:56:809] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:39:56:865] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:39:56:866] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:39:58:468] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:39:58:473] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:39:58:523] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
+[14:39:59:048] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:39:59:522] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:39:59:531] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:40:00:157] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:40:00:168] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:40:00:169] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:40:00:169] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:40:00:281] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:40:00:282] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3415 ms
+[14:40:03:167] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:40:04:282] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:40:04:697] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:40:04:800] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:40:05:165] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:40:05:182] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:40:05:193] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:40:05:357] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.207 seconds (JVM running for 10.815)
+[14:40:06:304] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:40:06:304] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:40:06:307] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 3 ms
+[14:40:06:337] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:40:06:633] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:40:50:021] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:40:50:021] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:40:50:023] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:40:50:024] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:40:50:161] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:40:50:164] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:40:56:399] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:40:56:404] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:40:56:411] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:41:02:216] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:41:02:266] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 16884 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:41:02:268] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:41:02:324] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:41:02:325] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:41:03:779] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:41:03:782] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:41:03:826] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+[14:41:04:320] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:41:04:766] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:41:04:776] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:41:05:412] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:41:05:423] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:41:05:423] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:41:05:424] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:41:05:532] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:41:05:533] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3208 ms
+[14:41:08:480] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:41:09:672] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:41:10:134] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:41:10:247] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:41:10:639] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:41:10:657] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:41:10:669] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:41:10:834] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.231 seconds (JVM running for 10.633)
+[14:41:11:405] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:41:11:405] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:41:11:408] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:41:11:435] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:41:11:653] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:44:50:150] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@ee2e179 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:152] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@30453ded (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:154] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@29b5fbb5 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:156] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@54a8d47f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:157] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@4fdbc972 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:160] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@56682f31 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:162] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@50860e1a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:163] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@429f2359 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:171] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@531ee221 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:172] [WARN] - com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:184) - geebox - Failed to validate connection com.p6spy.engine.wrapper.ConnectionWrapper@44985ed4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+[14:44:50:335] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:64) - {"description":null,"username":null,"ip":null,"method":"GET","url":"http://127.0.0.1:7020/user/users","params":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"useAnnotationOrderBy":true,"sqlSegment":"","sqlSet":null,"emptyOfWhere":true,"emptyOfNormal":true,"targetSql":"","emptyOfEntity":true,"customSqlSegment":""}}],"startTime":1637649890032,"spendTime":285}
+[14:47:14:427] [WARN] - com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:788) - geebox - Thread starvation or clock leap detected (housekeeper delta=45s250ms56µs900ns).
+[14:47:14:542] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:64) - {"description":null,"username":null,"ip":null,"method":"GET","url":"http://127.0.0.1:7020/user/users","params":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"useAnnotationOrderBy":true,"sqlSegment":"","sqlSet":null,"emptyOfWhere":true,"emptyOfNormal":true,"targetSql":"","emptyOfEntity":true,"customSqlSegment":""}}],"startTime":1637649910307,"spendTime":124226}
+[14:47:44:429] [WARN] - com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:788) - geebox - Thread starvation or clock leap detected (housekeeper delta=2m17s327ms738µs300ns).
+[14:54:21:553] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:54:21:553] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:54:21:554] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:54:21:555] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:54:21:685] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:54:21:687] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:54:30:323] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:54:30:337] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:54:30:346] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:54:36:998] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:54:37:049] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 4104 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:54:37:052] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:54:37:110] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:54:37:111] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:54:38:659] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:54:38:662] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:54:38:707] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+[14:54:39:235] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:54:39:710] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:54:39:719] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:54:40:333] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:54:40:343] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:54:40:343] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:54:40:343] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:54:40:452] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:54:40:453] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3341 ms
+[14:54:43:331] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:54:44:426] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:54:44:836] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:54:44:941] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:54:45:303] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:54:45:321] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:54:45:335] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:54:45:501] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.13 seconds (JVM running for 10.705)
+[14:54:46:084] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:54:46:084] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:54:46:086] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:54:46:110] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:54:46:315] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:55:02:195] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:55:02:195] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:55:02:197] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:55:02:198] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:55:02:339] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:55:02:341] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:55:09:358] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:55:09:364] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:55:09:371] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:55:14:998] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:55:15:048] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 16880 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:55:15:051] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:55:15:109] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:55:15:109] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:55:16:586] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:55:16:589] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:55:16:634] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+[14:55:17:137] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:55:17:584] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:55:17:594] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:55:18:209] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:55:18:220] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:55:18:220] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:55:18:220] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:55:18:327] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:55:18:327] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3217 ms
+[14:55:21:176] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:55:22:256] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:55:22:666] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:55:22:768] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:55:23:125] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:55:23:142] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:55:23:154] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:55:23:318] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 8.962 seconds (JVM running for 10.376)
+[14:55:23:868] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:55:23:869] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:55:23:871] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:55:24:060] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:55:24:262] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:55:29:069] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doBefore(WebLogAspect.java:47) - 请求信息：{"ip":"127.0.0.1","method":"GET","uri":"/user/users","args":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"sqlSegment":"","useAnnotationOrderBy":true,"sqlSet":null,"emptyOfEntity":true,"emptyOfNormal":true,"targetSql":"","emptyOfWhere":true,"customSqlSegment":""}}],"classMethod":"com.kabunx.erp.controller.UserController.pagination"}
+[14:55:29:305] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:61) - 请求耗时：-1636382539512ms
+[14:58:05:298] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[14:58:05:298] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[14:58:05:299] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[14:58:05:300] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[14:58:05:430] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[14:58:05:432] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[14:58:14:476] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[14:58:14:491] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[14:58:14:501] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[14:58:21:133] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[14:58:21:182] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 12700 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[14:58:21:185] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[14:58:21:241] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[14:58:21:241] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[14:58:22:691] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[14:58:22:695] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[14:58:22:742] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+[14:58:23:258] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[14:58:23:704] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:58:23:714] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[14:58:24:343] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[14:58:24:353] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[14:58:24:354] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[14:58:24:354] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[14:58:24:462] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[14:58:24:462] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3220 ms
+[14:58:27:379] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[14:58:28:557] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[14:58:28:990] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[14:58:29:103] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[14:58:29:522] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[14:58:29:541] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[14:58:29:552] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[14:58:29:726] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.198 seconds (JVM running for 10.599)
+[14:58:30:083] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[14:58:30:083] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[14:58:30:085] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[14:58:30:190] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[14:58:30:330] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doBefore(WebLogAspect.java:47) - 请求信息：{"ip":"127.0.0.1","method":"GET","uri":"/user/users","args":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"sqlSegment":"","useAnnotationOrderBy":true,"customSqlSegment":"","sqlSet":null,"targetSql":"","emptyOfWhere":true,"emptyOfNormal":true,"emptyOfEntity":true}}],"call":"com.kabunx.erp.controller.UserController.pagination"}
+[14:58:30:428] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[14:58:30:583] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:61) - 请求耗时：287ms
+[14:58:35:325] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doBefore(WebLogAspect.java:47) - 请求信息：{"ip":"127.0.0.1","method":"GET","uri":"/user/users","args":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"sqlSegment":"","useAnnotationOrderBy":true,"customSqlSegment":"","sqlSet":null,"targetSql":"","emptyOfWhere":true,"emptyOfNormal":true,"emptyOfEntity":true}}],"call":"com.kabunx.erp.controller.UserController.pagination"}
+[14:58:35:428] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:61) - 请求耗时：112ms
+[15:03:55:167] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[15:03:55:167] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[15:03:55:168] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[15:03:55:170] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[15:03:55:299] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[15:03:55:301] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[15:04:03:816] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[15:04:03:821] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[15:04:03:828] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[15:04:11:254] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[15:04:11:304] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 7856 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[15:04:11:307] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[15:04:11:428] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[15:04:11:429] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[15:04:13:913] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[15:04:13:916] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[15:04:13:969] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+[15:04:14:620] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[15:04:15:156] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:04:15:165] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:04:15:776] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[15:04:15:785] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[15:04:15:786] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[15:04:15:786] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[15:04:15:892] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[15:04:15:892] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 4460 ms
+[15:04:18:745] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[15:04:19:875] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[15:04:20:362] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[15:04:20:469] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[15:04:20:859] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[15:04:20:877] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[15:04:20:889] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[15:04:21:057] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 10.73 seconds (JVM running for 12.178)
+[15:04:21:602] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[15:04:21:602] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[15:04:21:604] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[15:04:21:630] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[15:04:21:832] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[15:04:46:179] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[15:04:46:180] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[15:04:46:181] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[15:04:46:182] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[15:04:46:306] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[15:04:46:308] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[15:04:54:947] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[15:04:54:952] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[15:04:54:958] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[15:05:00:696] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[15:05:00:743] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 8148 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[15:05:00:746] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[15:05:00:802] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[15:05:00:802] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[15:05:02:254] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[15:05:02:257] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[15:05:02:302] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+[15:05:02:796] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[15:05:03:227] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:05:03:237] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:05:03:851] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[15:05:03:861] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[15:05:03:861] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[15:05:03:861] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[15:05:03:967] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[15:05:03:968] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3165 ms
+[15:05:06:791] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[15:05:07:903] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[15:05:08:328] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[15:05:08:470] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[15:05:08:873] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[15:05:08:891] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[15:05:08:903] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[15:05:09:067] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 8.978 seconds (JVM running for 10.375)
+[15:05:09:237] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[15:05:09:237] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[15:05:09:240] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[15:05:09:270] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[15:05:09:513] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[15:05:15:198] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doBefore(WebLogAspect.java:48) - 请求信息：{"ip":"127.0.0.1","method":"GET","uri":"/user/users","args":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"sqlSegment":"","useAnnotationOrderBy":true,"emptyOfWhere":true,"emptyOfNormal":true,"emptyOfEntity":true,"targetSql":"","sqlSet":null,"customSqlSegment":""}}],"signature":"com.kabunx.erp.controller.UserController.pagination"}
+[15:05:15:436] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAfterReturning(WebLogAspect.java:55) - 响应信息：com.baomidou.mybatisplus.extension.plugins.pagination.Page@26cd4576
+[15:05:15:437] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:64) - 请求耗时：267ms
+[15:05:36:756] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[15:05:36:756] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[15:05:36:757] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[15:05:36:758] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[15:05:36:888] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[15:05:36:891] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[15:05:42:928] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[15:05:42:943] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[15:05:42:954] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[15:05:48:699] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[15:05:48:751] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 11804 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[15:05:48:754] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[15:05:48:813] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[15:05:48:813] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[15:05:50:421] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[15:05:50:424] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[15:05:50:472] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+[15:05:51:036] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[15:05:51:505] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:05:51:515] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:05:52:147] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[15:05:52:157] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[15:05:52:158] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[15:05:52:158] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[15:05:52:274] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[15:05:52:274] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3460 ms
+[15:05:55:397] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[15:05:56:562] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[15:05:56:984] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[15:05:57:098] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[15:05:57:492] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[15:05:57:512] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[15:05:57:523] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[15:05:57:697] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.647 seconds (JVM running for 11.066)
+[15:05:58:229] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[15:05:58:229] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[15:05:58:231] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[15:05:58:257] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[15:05:58:477] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[15:06:17:967] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doBefore(WebLogAspect.java:48) - 请求信息：{"ip":"127.0.0.1","method":"GET","uri":"/user/users","args":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"useAnnotationOrderBy":true,"sqlSegment":"","sqlSet":null,"emptyOfNormal":true,"targetSql":"","emptyOfEntity":true,"emptyOfWhere":true,"customSqlSegment":""}}],"signature":"com.kabunx.erp.controller.UserController.pagination"}
+[15:06:18:209] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAfterReturning(WebLogAspect.java:55) - 响应信息：com.baomidou.mybatisplus.extension.plugins.pagination.Page@139830e
+[15:06:18:209] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:64) - 请求耗时：270ms
+[15:06:58:573] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[15:06:58:573] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[15:06:58:575] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[15:06:58:575] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[15:06:58:703] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[15:06:58:705] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[15:07:07:717] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[15:07:07:722] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[15:07:07:728] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[15:07:13:384] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[15:07:13:432] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 8188 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[15:07:13:435] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[15:07:13:492] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[15:07:13:492] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[15:07:14:944] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[15:07:14:947] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[15:07:14:991] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+[15:07:15:495] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[15:07:15:929] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:07:15:939] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:07:16:558] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[15:07:16:568] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[15:07:16:569] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[15:07:16:569] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[15:07:16:675] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[15:07:16:676] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3183 ms
+[15:07:19:452] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[15:07:20:546] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[15:07:20:958] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[15:07:21:061] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[15:07:21:436] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[15:07:21:453] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[15:07:21:464] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[15:07:21:627] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 8.845 seconds (JVM running for 10.268)
+[15:07:21:847] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[15:07:21:847] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[15:07:21:849] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[15:07:21:872] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[15:07:22:087] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
+[15:07:27:730] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doBefore(WebLogAspect.java:47) - 请求信息：{"ip":"127.0.0.1","method":"GET","uri":"/user/users","args":[{"page":{"records":[],"total":0,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":0},"pageSize":10,"name":null,"queryWrapper":{"paramNameValuePairs":{},"paramAlias":"ew","sqlComment":null,"sqlFirst":null,"entity":null,"expression":{"normal":[],"groupBy":[],"having":[],"orderBy":[],"sqlSegment":""},"entityClass":null,"sqlSelect":null,"sqlSegment":"","useAnnotationOrderBy":true,"sqlSet":null,"customSqlSegment":"","emptyOfWhere":true,"emptyOfNormal":true,"targetSql":"","emptyOfEntity":true}}],"signature":"com.kabunx.erp.controller.UserController.pagination"}
+[15:07:27:977] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAfterReturning(WebLogAspect.java:53) - 响应信息：{"records":[{"id":2,"account":"ci9871","password":"$2y$13$azizFodb2wwJ0/F7yysxZOen48Td6SeGgRpVvadpeHPGCu8RQN7MC","name":"Johnny Hu(胡东明)","sex":0,"avatar":"","phone":"15850243619","email":"Johnnyhu@careerintlinc.com","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":1,"lastLogin":0,"profileSource":0,"isDeleted":false},{"id":3,"account":"13776160695","password":"","name":"CC","sex":2,"avatar":"/geebox/avatar/2018/02/01/file_1517470922969.jpg","phone":"13776160695","email":"","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":1552984524,"profileSource":0,"isDeleted":false},{"id":5,"account":"ci11446","password":"$2y$13$0x8L0DkyuWF3DYvR.oXEoO6nDwl.ksEdQjsVm83ZP.ekjOMd28rhm","name":"Bert Zhou(周正雨)","sex":0,"avatar":"/geebox/avatar/2019/05/06/file_1557142833135.jpg","phone":"13732649235","email":"deniseyang@careerintlinc.com","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":1,"lastLogin":1611124643,"profileSource":0,"isDeleted":false},{"id":8,"account":"13732629363","password":"","name":"common","sex":1,"avatar":"/geebox/avatar/2018/01/29/file_1517216595332.png","phone":"13732629363","email":"","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":1562689512,"profileSource":0,"isDeleted":false},{"id":9,"account":"15950083790","password":"","name":"15950083790","sex":0,"avatar":"","phone":"15950083790","email":"","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":1573112494,"profileSource":0,"isDeleted":false},{"id":10,"account":"13285145174","password":"","name":"13285145174","sex":0,"avatar":"","phone":"13285145174","email":"","companyName":"测试123","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":0,"profileSource":0,"isDeleted":false},{"id":11,"account":"13771829576","password":"","name":"马战鹏","sex":1,"avatar":"/geebox/avatar/2018/01/29/file_1517220263869.png","phone":"13771829576","email":"","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":0,"profileSource":0,"isDeleted":false},{"id":12,"account":"13862582844","password":"","name":"顾辛未","sex":2,"avatar":"/geebox/avatar/2018/01/30/file_1517277340469.png","phone":"13862582844","email":"","companyName":"","licenseUrl":"","points":170,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":2,"isCiLogin":0,"lastLogin":1619419368,"profileSource":0,"isDeleted":false},{"id":14,"account":"18550252902","password":"","name":"付付付付付付华！","sex":1,"avatar":"/geebox/avatar/2018/01/30/file_1517278780934.png","phone":"18550252902","email":"","companyName":"","licenseUrl":"","points":290,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":1598839804,"profileSource":0,"isDeleted":false},{"id":15,"account":"13862563732","password":"","name":"王瑞","sex":1,"avatar":"/geebox/avatar/2018/01/30/file_1517290281380.png","phone":"13862563732","email":"","companyName":"","licenseUrl":"","points":0,"inviterUid":0,"source":0,"status":4,"isExpire":0,"isOpen":1,"isCiLogin":0,"lastLogin":1540536685,"profileSource":0,"isDeleted":false}],"total":114960,"size":10,"current":1,"orders":[],"optimizeCountSql":true,"searchCount":true,"countId":null,"maxLimit":null,"pages":11496}
+[15:07:27:978] [INFO] - com.kabunx.erp.aspect.WebLogAspect.doAround(WebLogAspect.java:62) - 请求耗时：283ms
+[15:08:35:077] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:108) - [HttpClientBeanHolder] Start destroying common HttpClient
+[15:08:35:076] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:145) - [NotifyCenter] Start destroying Publisher
+[15:08:35:079] [WARN] - com.alibaba.nacos.common.notify.NotifyCenter.shutdown(NotifyCenter.java:162) - [NotifyCenter] Destruction of the end
+[15:08:35:079] [WARN] - com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:114) - [HttpClientBeanHolder] Destruction of the end
+[15:08:35:208] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:90) - De-registering from Nacos Server now...
+[15:08:35:210] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.deregister(NacosServiceRegistry.java:110) - De-registration finished.
+[15:08:42:671] [WARN] - org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:325) - Custom destroy method 'close' on bean with name 'nacosServiceRegistry' threw an exception
+java.lang.NullPointerException: null
+	at com.alibaba.cloud.nacos.NacosServiceManager.nacosServiceShutDown(NacosServiceManager.java:115) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.close(NacosServiceRegistry.java:116) ~[spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar:2021.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_311]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_311]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_311]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_311]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:318) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:252) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.6.jar:2.5.6]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.12.jar:5.3.12]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_311]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.6.jar:2.5.6]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
+[15:08:42:676] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
+[15:08:42:682] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.

@@ -26,4 +26,13 @@ public class ObjectConverter {
             return Optional.empty();
         }
     }
+
+    public static String toString(Object object) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
 }

@@ -4,17 +4,13 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
-
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "mybatis.tenant")
-public class TenantConfig {
-    boolean enable = false;
+@ConfigurationProperties(prefix = "mybatis.fill")
+public class FillConfig {
+    String timestamp = "s";
 
-    String id;
+    String createdColumn = "createdAt";
 
-    String column;
-
-    List<String> tables;
+    String updatedColumn = "updatedAt";
 }

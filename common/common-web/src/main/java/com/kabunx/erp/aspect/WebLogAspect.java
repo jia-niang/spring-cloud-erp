@@ -1,30 +1,17 @@
 package com.kabunx.erp.aspect;
 
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
-import cn.hutool.json.JSONUtil;
+import com.kabunx.erp.converter.ObjectConverter;
 import com.kabunx.erp.domain.WebLogContent;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 统一日志处理切面
@@ -46,73 +33,32 @@ public class WebLogAspect {
     }
 
     @Before("webLog()")
-    public void doBefore(JoinPoint joinPoint) throws Throwable {
+    public void doBefore(JoinPoint joinPoint) {
+        // 获取当前请求对象
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes != null) {
+            HttpServletRequest request = attributes.getRequest();
+            WebLogContent logContent = new WebLogContent();
+            logContent.setIp(request.getRemoteAddr());
+            logContent.setMethod(request.getMethod());
+            logContent.setUri(request.getRequestURI());
+            logContent.setArgs(joinPoint.getArgs());
+            logContent.setSignature(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+            log.info("请求信息：{}", ObjectConverter.toString(logContent));
+        }
     }
 
-    @AfterReturning(value = "webLog()", returning = "ret")
-    public void doAfterReturning(Object ret) throws Throwable {
+    @AfterReturning(value = "webLog()", returning = "response")
+    public void doAfterReturning(Object response) {
     }
 
+    // 耗时记录
     @Around("webLog()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = joinPoint.proceed();
-        // 获取当前请求对象
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (attributes == null) {
-            return result;
-        }
-        HttpServletRequest request = attributes.getRequest();
-        // 记录请求信息
-        Signature signature = joinPoint.getSignature();
-        MethodSignature methodSignature = (MethodSignature) signature;
-        Method method = methodSignature.getMethod();
         long endTime = System.currentTimeMillis();
-        String urlStr = request.getRequestURL().toString();
-        WebLogContent webLog = new WebLogContent();
-        webLog.setIp(request.getRemoteUser());
-        webLog.setMethod(request.getMethod());
-        webLog.setUrl(request.getRequestURL().toString());
-        webLog.setBasePath(StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
-        webLog.setUri(request.getRequestURI());
-        webLog.setParameter(getParameter(method, joinPoint.getArgs()));
-        webLog.setResult(result);
-        webLog.setStartTime(startTime);
-        webLog.setSpendTime((int) (endTime - startTime));
-        log.info("{}", JSONUtil.parse(webLog));
+        log.info("请求耗时：{}ms", (int) (endTime - startTime));
         return result;
-    }
-
-    /**
-     * 根据方法和传入的参数获取请求参数
-     */
-    private Object getParameter(Method method, Object[] args) {
-        List<Object> argList = new ArrayList<>();
-        Parameter[] parameters = method.getParameters();
-        for (int i = 0; i < parameters.length; i++) {
-            // 将RequestBody注解修饰的参数作为请求参数
-            RequestBody requestBody = parameters[i].getAnnotation(RequestBody.class);
-            if (requestBody != null) {
-                argList.add(args[i]);
-            }
-            // 将RequestParam注解修饰的参数作为请求参数
-            RequestParam requestParam = parameters[i].getAnnotation(RequestParam.class);
-            if (requestParam != null) {
-                Map<String, Object> map = new HashMap<>();
-                String key = parameters[i].getName();
-                if (!ObjectUtils.isEmpty(requestParam.value())) {
-                    key = requestParam.value();
-                }
-                map.put(key, args[i]);
-                argList.add(map);
-            }
-        }
-        if (argList.size() == 0) {
-            return null;
-        } else if (argList.size() == 1) {
-            return argList.get(0);
-        } else {
-            return argList;
-        }
     }
 }
