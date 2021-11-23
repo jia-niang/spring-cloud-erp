@@ -29,9 +29,7 @@
         <p6spy.version>3.9.1</p6spy.version>
         <jedis.version>3.6.3</jedis.version>
         <lombok.version>1.18.22</lombok.version>
-        <hutool.version>5.7.16</hutool.version>
         <jjwt.version>0.11.2</jjwt.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
         <wechat-miniapp.version>4.2.0</wechat-miniapp.version>
         <wechat-mp.version>4.2.0</wechat-mp.version>
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
@@ -101,16 +99,6 @@
                 <version>${lombok.version}</version>
             </dependency>
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-core</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-json</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
                 <version>${jjwt.version}</version>
@@ -126,11 +114,6 @@
                 <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
                 <version>${jjwt.version}</version>
                 <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${mapstruct.version}</version>
             </dependency>
             <!--集成SpringBoot Admin监控-->
             <dependency>

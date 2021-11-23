@@ -2114,3 +2114,33 @@ java.lang.NullPointerException: null
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_311]
 [15:08:42:676] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350) - geebox - Shutdown initiated...
 [15:08:42:682] [INFO] - com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352) - geebox - Shutdown completed.
+[15:08:48:427] [INFO] - org.hibernate.validator.internal.util.Version.<clinit>(Version.java:21) - HV000001: Hibernate Validator 6.2.0.Final
+[15:08:48:475] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting UserServiceApplication using Java 1.8.0_311 on CISZ03-0693 with PID 15008 (C:\Users\ci24192\JavaProject\kabunx\services\user-service\user-service-core\target\classes started by CI24192 in C:\Users\ci24192\JavaProject\kabunx)
+[15:08:48:478] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:663) - The following profiles are active: dev
+[15:08:48:536] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[15:08:48:536] [INFO] - org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[15:08:50:044] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.multipleStoresDetected(RepositoryConfigurationDelegate.java:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+[15:08:50:047] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132) - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[15:08:50:091] [INFO] - org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201) - Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+[15:08:50:629] [INFO] - org.springframework.cloud.context.scope.GenericScope.setSerializationId(GenericScope.java:283) - BeanFactory id=51db72e7-d39a-3f05-bbcf-e7450342fc7b
+[15:08:51:079] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:08:51:088] [INFO] - org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization(PostProcessorRegistrationDelegate.java:376) - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[15:08:51:713] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108) - Tomcat initialized with port(s): 7020 (http)
+[15:08:51:723] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-7020"]
+[15:08:51:724] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[15:08:51:724] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[15:08:51:837] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[15:08:51:838] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290) - Root WebApplicationContext: initialization completed in 3300 ms
+[15:08:54:892] [INFO] - com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration.addInterceptors(SentinelWebAutoConfiguration.java:80) - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+[15:08:56:036] [INFO] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:58) - LiveReload server is running on port 35729
+[15:08:56:452] [WARN] - org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger.logWarning(LoadBalancerCacheAutoConfiguration.java:82) - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+[15:08:56:563] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58) - Exposing 1 endpoint(s) beneath base path '/actuator'
+[15:08:56:955] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-7020"]
+[15:08:56:972] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220) - Tomcat started on port(s): 7020 (http) with context path '/user'
+[15:08:56:983] [INFO] - com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:75) - nacos registry, DEFAULT_GROUP erp-user-service 192.168.140.125:7020 register finished
+[15:08:57:147] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started UserServiceApplication in 9.33 seconds (JVM running for 10.964)
+[15:08:57:643] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[15:08:57:643] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[15:08:57:645] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 2 ms
+[15:08:57:668] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - geebox - Starting...
+[15:08:57:866] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - geebox - Start completed.
