@@ -19,4 +19,9 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberMapper.selectById(id);
         return ObjectConverter.map(member, MemberVO.class);
     }
+
+    @Override
+    public MemberVO findByIdWithUser(Integer id) {
+        return memberMapper.findByIdWithUser(id);
+    }
 }

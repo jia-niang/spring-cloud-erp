@@ -3,11 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kabunx.erp.mapper.MemberMapper">
-    <select id="selectPageToMemberVO"
+    <resultMap id="memberWithUserMap" type="com.kabunx.erp.vo.MemberVO">
+    </resultMap>
+    <select id="selectWithUser"
             resultType="com.kabunx.erp.vo.MemberVO">
         select *
         from gb_user_mpc member
                  inner join sys_user_basic user
         on member.user_id = user.id
+        where member.is_deleted = 0
+    </select>
+
+    <select id="findByIdWithUser"
+            parameterType="int"
+            resultMap="memberWithUserMap">
+        select *
+        from gb_user_mpc member
+                 inner join sys_user_basic user
+        on member.user_id = user.id
+        where member.user_id = #{id} and member.is_deleted = 0
     </select>
 </mapper>

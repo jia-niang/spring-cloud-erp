@@ -8,5 +8,7 @@ import com.kabunx.erp.vo.MemberVO;
 import java.util.List;
 
 public interface MemberMapper extends BaseMapper<Member> {
-    List<MemberVO> selectPageToMemberVO(IPage<MemberVO> page);
+    List<MemberVO> selectWithUser(IPage<MemberVO> page);
+
+    MemberVO findByIdWithUser(Integer id);
 }
