@@ -1,4 +1,4 @@
-package com.kabunx.erp.vo;
+package com.kabunx.erp.domain.vo;
 
 import com.kabunx.erp.pojo.BaseVO;
 import lombok.*;
@@ -8,6 +8,5 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserTokenVO extends BaseVO {
-    private String id;
+public class UserVO extends BaseVO {
 }

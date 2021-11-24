@@ -5,7 +5,7 @@ import com.kabunx.erp.entity.User;
 import com.kabunx.erp.service.AuthenticationService;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.JwtUtils;
-import com.kabunx.erp.vo.UserTokenVO;
+import com.kabunx.erp.vo.MemberVO;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 
@@ -36,13 +36,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private Optional<User> parseCustomToken(String token) {
-        UserTokenVO userToken = userService.findAndValidateByToken(token);
-        if (userToken == null) {
+        MemberVO member = userService.findAndValidateMember(token);
+        if (member == null) {
             return Optional.empty();
         }
         return Optional.of(User.builder()
-                .id(userToken.getId())
-                .type("user")
+                .id(member.getUserId().toString())
+                .type("member")
                 .build());
     }
 

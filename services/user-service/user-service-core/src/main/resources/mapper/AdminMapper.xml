@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kabunx.erp.mapper.AdminMapper">
+    <select id="selectWithUser"
+            resultType="com.kabunx.erp.vo.AdminVO">
+        select *
+        from gb_user_hh hr
+                 inner join sys_user_basic user
+        on hr.user_id = user.id
+        where hr.token = 'td154c0bd0e062f8' and hr.is_deleted = 0 and user.is_deleted = 0
+    </select>
+</mapper>

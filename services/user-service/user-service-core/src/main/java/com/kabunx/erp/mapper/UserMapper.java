@@ -3,14 +3,14 @@ package com.kabunx.erp.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kabunx.erp.domain.dto.UserDTO;
-import com.kabunx.erp.model.User;
+import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<UserDO> {
     /**
      * 通过注解简单处理
      *

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kabunx.erp.pojo.Model;
+import com.kabunx.erp.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.DateTypeHandler;
@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName(value = "gb_user_hh", autoResultMap = true)
-public class Admin extends Model {
+public class AdminDO extends BaseDO {
     @TableId
     Integer userId;
 
@@ -69,7 +69,4 @@ public class Admin extends Model {
 
     @TableLogic
     Integer isDeleted;
-
-    @TableField(exist = false)
-    User user;
 }

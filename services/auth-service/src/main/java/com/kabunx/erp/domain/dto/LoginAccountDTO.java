@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountLoginDTO extends BaseDTO {
+public class LoginAccountDTO extends BaseDTO {
 
     @NotNull
     @NotEmpty

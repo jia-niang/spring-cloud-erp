@@ -7,7 +7,7 @@ import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserFilterDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
-import com.kabunx.erp.model.User;
+import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public IPage<User> paginate(UserFilterDTO<User> userFilter) {
+    public IPage<UserDO> paginate(UserFilterDTO<UserDO> userFilter) {
         return userMapper.selectPage(userFilter.getPage(), userFilter.getQueryWrapper());
     }
 

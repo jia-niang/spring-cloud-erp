@@ -4,6 +4,6 @@ import com.kabunx.erp.CommonCoreVersion;
 
 import java.io.Serializable;
 
-public class Model implements Serializable {
+public class BaseDO implements Serializable {
     private static final long serialVersionUID = CommonCoreVersion.SERIAL_VERSION_UID;
 }

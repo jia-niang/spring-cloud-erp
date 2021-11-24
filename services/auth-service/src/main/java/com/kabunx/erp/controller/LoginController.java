@@ -1,8 +1,8 @@
 package com.kabunx.erp.controller;
 
-import com.kabunx.erp.domain.dto.AccountLoginDTO;
-import com.kabunx.erp.domain.dto.SmsCodeLoginDTO;
-import com.kabunx.erp.domain.dto.MiniAppLoginDTO;
+import com.kabunx.erp.domain.dto.LoginAccountDTO;
+import com.kabunx.erp.domain.dto.LoginSmsCodeDTO;
+import com.kabunx.erp.domain.dto.LoginMiniAppDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,18 +15,18 @@ import javax.validation.Valid;
 public class LoginController {
 
     @PostMapping("/account")
-    public AccountLoginDTO loginByAccount(@RequestBody @Valid AccountLoginDTO accountLoginDTO) {
-        return accountLoginDTO;
+    public LoginAccountDTO loginByAccount(@RequestBody @Valid LoginAccountDTO loginAccountDTO) {
+        return loginAccountDTO;
     }
 
     @PostMapping("/sms-code")
-    public SmsCodeLoginDTO loginBySmsCode(@RequestBody @Valid SmsCodeLoginDTO codeLoginDTO) {
-        return codeLoginDTO;
+    public LoginSmsCodeDTO loginBySmsCode(@RequestBody @Valid LoginSmsCodeDTO loginSmsCodeDTO) {
+        return loginSmsCodeDTO;
     }
 
     @PostMapping("/mini-app")
-    public MiniAppLoginDTO loginByMiniApp(@RequestBody @Valid MiniAppLoginDTO miniAppLoginDTO) {
-        return miniAppLoginDTO;
+    public LoginMiniAppDTO loginByMiniApp(@RequestBody @Valid LoginMiniAppDTO loginMiniAppDTO) {
+        return loginMiniAppDTO;
     }
 }
 

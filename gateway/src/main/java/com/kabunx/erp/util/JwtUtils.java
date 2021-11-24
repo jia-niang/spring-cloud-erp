@@ -1,6 +1,6 @@
 package com.kabunx.erp.util;
 
-import com.kabunx.erp.config.JwtConfig;
+import com.kabunx.erp.property.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -14,13 +14,13 @@ import java.security.Key;
 public class JwtUtils {
 
     @Resource
-    JwtConfig jwtConfig;
+    JwtProperties jwtProperties;
 
     private Key key;
 
     @PostConstruct
     public void init() {
-        this.key = Keys.hmacShaKeyFor(jwtConfig.getSecret().getBytes());
+        this.key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
     }
 
     public Claims getAllClaimsFromToken(String token) {

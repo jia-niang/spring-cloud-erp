@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class SmsCodeLoginDTO extends BaseDTO {
+public class LoginSmsCodeDTO extends BaseDTO {
 }

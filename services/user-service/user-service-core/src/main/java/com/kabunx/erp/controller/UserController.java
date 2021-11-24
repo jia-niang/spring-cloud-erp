@@ -1,13 +1,12 @@
 package com.kabunx.erp.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kabunx.erp.api.UserFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserFilterDTO;
 import com.kabunx.erp.dto.UserFromDTO;
-import com.kabunx.erp.model.User;
+import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ public class UserController implements UserFeignClient {
     UserService userService;
 
     @GetMapping("/users")
-    public IPage<User> paginate(@RequestBody UserFilterDTO<User> filterDto) {
+    public IPage<UserDO> paginate(@RequestBody UserFilterDTO<UserDO> filterDto) {
         return userService.paginate(filterDto);
     }
 

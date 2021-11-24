@@ -14,7 +14,7 @@
         from gb_user_mpc member
                  inner join sys_user_basic user
         on member.user_id = user.id
-        where member.is_deleted = 0
+        where member.is_deleted = 0 and user.is_deleted = 0
     </select>
 
     <select id="findByIdWithUser"
@@ -24,6 +24,6 @@
         from gb_user_mpc member
                  inner join sys_user_basic user
         on member.user_id = user.id
-        where member.user_id = #{id} and member.is_deleted = 0
+        where member.user_id = #{id} and member.is_deleted = 0 and user.is_deleted = 0
     </select>
 </mapper>

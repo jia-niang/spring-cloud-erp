@@ -1,15 +1,15 @@
-package com.kabunx.erp.config;
+package com.kabunx.erp.property;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Data
-@Configuration
+@Component
 @ConfigurationProperties(prefix = "mybatis.tenant")
-public class TenantConfig {
+public class TenantProperties {
     boolean enable = false;
 
     String id;

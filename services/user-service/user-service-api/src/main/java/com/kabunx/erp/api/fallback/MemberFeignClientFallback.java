@@ -6,7 +6,7 @@ import com.kabunx.erp.vo.MemberVO;
 
 public class MemberFeignClientFallback implements MemberFeignClient {
     @Override
-    public JsonResponse<MemberVO> findById(Integer id) {
+    public JsonResponse<MemberVO> findByUserId(Integer id) {
         return JsonResponse.withFallbackError();
     }
 }

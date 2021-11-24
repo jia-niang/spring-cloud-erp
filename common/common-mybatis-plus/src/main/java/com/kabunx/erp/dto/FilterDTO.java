@@ -1,4 +1,4 @@
-package com.kabunx.erp.domain;
+package com.kabunx.erp.dto;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

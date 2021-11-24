@@ -1,6 +1,6 @@
 package com.kabunx.erp.domain.dto;
 
-import com.kabunx.erp.domain.FilterDTO;
+import com.kabunx.erp.dto.FilterDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

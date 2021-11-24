@@ -1,4 +1,4 @@
-package com.kabunx.erp.config;
+package com.kabunx.erp.property;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "router")
-public class RouterConfig {
+public class RouterProperties {
     // 开发路由，直接跳过鉴权
     List<String> openApis;
 

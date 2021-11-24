@@ -1,6 +1,7 @@
 package com.kabunx.erp.service.impl;
 
-import com.kabunx.erp.api.UserFeignClient;
+import com.kabunx.erp.api.AdminFeignClient;
+import com.kabunx.erp.api.MemberFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.HashUtils;
@@ -14,14 +15,16 @@ import java.security.NoSuchAlgorithmException;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserFeignClient userFeignClient;
+    private final MemberFeignClient memberFeignClient;
+
+    private final AdminFeignClient adminFeignClient;
 
     @Override
-    public MemberVO findAndValidateByToken(String authToken) {
+    public MemberVO findAndValidateMember(String authToken) {
         String[] elements = authToken.split("\\|", 2);
         int userId = Integer.parseInt(elements[0]);
         String plainToken = elements[1];
-        JsonResponse<MemberVO> response = userFeignClient.findByIdWithToken(userId);
+        JsonResponse<MemberVO> response = memberFeignClient.findByUserId(userId);
         if (response.unavailable()) {
             return null;
         }

@@ -1,7 +1,14 @@
 package com.kabunx.erp.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kabunx.erp.model.Admin;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.kabunx.erp.model.AdminDO;
+import com.kabunx.erp.vo.AdminVO;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface AdminMapper extends BaseMapper<Admin> {
+import java.util.List;
+
+@Mapper
+public interface AdminMapper extends BaseMapper<AdminDO> {
+    List<AdminVO> selectWithUser(IPage<AdminVO> page);
 }

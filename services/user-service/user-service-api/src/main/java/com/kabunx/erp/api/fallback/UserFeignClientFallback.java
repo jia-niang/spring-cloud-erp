@@ -25,8 +25,4 @@ public class UserFeignClientFallback implements UserFeignClient {
     private void errorLog() {
         log.error("Openfeign远程调用用户服务（创建用户）异常的降级方法");
     }
-
-    private void errorLog(String message) {
-        log.error(message);
-    }
 }

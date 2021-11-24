@@ -2,7 +2,7 @@ package com.kabunx.erp.model;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kabunx.erp.pojo.Model;
+import com.kabunx.erp.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.DateTypeHandler;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName(value = "gb_user_mpc", autoResultMap = true)
-public class Member extends Model {
+public class MemberDO extends BaseDO {
     @TableId(type = IdType.INPUT)
     Integer userId;
 
@@ -42,7 +42,4 @@ public class Member extends Model {
 
     @TableLogic
     Boolean isDeleted;
-
-    @TableField(exist = false)
-    User user;
 }

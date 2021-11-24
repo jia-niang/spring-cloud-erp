@@ -1,6 +1,6 @@
 package com.kabunx.erp.validator;
 
-import com.kabunx.erp.config.RouterConfig;
+import com.kabunx.erp.property.RouterProperties;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,9 @@ import java.util.function.Predicate;
 public class RouterValidator {
 
     @Resource
-    RouterConfig routerConfig;
+    RouterProperties routerProperties;
 
     public Predicate<ServerHttpRequest> isProtected =
-            request -> routerConfig.getOpenApis().stream()
+            request -> routerProperties.getOpenApis().stream()
                     .noneMatch(uri -> request.getURI().getPath().contains(uri));
 }
