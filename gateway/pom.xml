@@ -123,6 +123,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <!--配置镜像名称-->
+                        <name>${docker-repository.group}/${project.artifactId}:${profiles.active}-${project.version}</name>
+                        <!--镜像打包完成后自动推送到镜像仓库-->
+                        <publish>false</publish>
+                    </image>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>

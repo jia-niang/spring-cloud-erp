@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "mybatis.fill")
+@ConfigurationProperties(prefix = "mybatis.meta")
 public class MetaProperties {
     String timestamp = "s";
 

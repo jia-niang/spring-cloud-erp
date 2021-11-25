@@ -10,5 +10,6 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper extends BaseMapper<AdminDO> {
+    AdminVO findByUserId(Integer userId);
     List<AdminVO> selectWithUser(IPage<AdminVO> page);
 }

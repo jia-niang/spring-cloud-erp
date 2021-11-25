@@ -139,6 +139,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spirng-boot.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.spotify</groupId>

@@ -1,15 +1,13 @@
 package com.kabunx.erp.vo;
 
 import com.kabunx.erp.pojo.BaseVO;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserVO extends BaseVO {
-    private String id;
+    private Integer id;
     private String account;
     private String name;
     private Integer sex;

@@ -3,12 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kabunx.erp.mapper.AdminMapper">
-    <select id="selectWithUser"
-            resultType="com.kabunx.erp.vo.AdminVO">
-        select *
+    <resultMap id="AdminWithUserResultMap" type="com.kabunx.erp.vo.AdminVO" autoMapping="true">
+        <id property="userId" column="user_id"/>
+        <association property="user" javaType="com.kabunx.erp.vo.UserVO" autoMapping="true">
+            <id property="id" column="id"/>
+        </association>
+    </resultMap>
+    <select id="findByUserId" parameterType="int" resultMap="AdminWithUserResultMap">
+        select user_id, access_token, active_time, id, account, name, sex
         from gb_user_hh hr
-                 inner join sys_user_basic user
-        on hr.user_id = user.id
-        where hr.token = 'td154c0bd0e062f8' and hr.is_deleted = 0 and user.is_deleted = 0
+                 inner join sys_user_basic u
+                            on hr.user_id = u.id
+        where hr.user_id = #{userId}
+          and hr.token = 'td154c0bd0e062f8'
+          and hr.is_deleted = 0
+          and u.is_deleted = 0
     </select>
+    <select id="selectWithUser" resultMap="AdminWithUserResultMap">
+        select user_id, access_token, active_time, id, account, name, sex
+        from gb_user_hh hr
+                 inner join sys_user_basic u
+                            on hr.user_id = u.id
+        where hr.token = 'td154c0bd0e062f8'
+          and hr.is_deleted = 0
+          and u.is_deleted = 0
+    </select>
+
 </mapper>
