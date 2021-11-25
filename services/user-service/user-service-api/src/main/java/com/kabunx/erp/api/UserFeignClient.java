@@ -7,7 +7,7 @@ import com.kabunx.erp.vo.UserVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "erp-user-service", fallback = UserFeignClientFallback.class)
+@FeignClient(value = "erp-user-service", contextId = "user", fallback = UserFeignClientFallback.class)
 public interface UserFeignClient {
 
     @GetMapping("/users/{id}")

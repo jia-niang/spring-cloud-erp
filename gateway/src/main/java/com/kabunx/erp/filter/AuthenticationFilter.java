@@ -7,6 +7,7 @@ import com.kabunx.erp.validator.RouterValidator;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -20,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Component
-public class AuthenticationFilter implements GatewayFilter {
+public class AuthenticationFilter implements GatewayFilter, Ordered {
     // custom route validator
     @Resource
     RouterValidator routerValidator;
@@ -82,5 +83,10 @@ public class AuthenticationFilter implements GatewayFilter {
                 .header(SecurityConstant.USER_ID_HEADER, user.getId())
                 .header(SecurityConstant.USER_TYPE_HEADER, user.getType())
                 .build();
+    }
+
+    @Override
+    public int getOrder() {
+        return 0;
     }
 }

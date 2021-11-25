@@ -1,23 +1,20 @@
 package com.kabunx.erp.service.impl;
 
-import com.kabunx.erp.api.AdminFeignClient;
 import com.kabunx.erp.api.MemberFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.HashUtils;
 import com.kabunx.erp.vo.MemberVO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.security.NoSuchAlgorithmException;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final MemberFeignClient memberFeignClient;
-
-    private final AdminFeignClient adminFeignClient;
+    @Resource
+    MemberFeignClient memberFeignClient;
 
     @Override
     public MemberVO findAndValidateMember(String authToken) {
