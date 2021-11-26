@@ -4,8 +4,6 @@ server:
     context-path: /auth
 
 spring:
-  application:
-    name: erp-auth-service
   profiles:
     active: dev
   cloud:
@@ -14,14 +12,12 @@ spring:
         server-addr: http://localhost:8848
       config:
         server-addr: http://localhost:8848
-        file-extension: yaml
-        shared-configs[0]:
-          data-id: common.yaml
-          refresh: true
 feign:
   sentinel:
     enabled: true
-
-jwt:
-  secret: ZBvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByYZ
-  expiration-time: 12000
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000
+        logger-level: basic

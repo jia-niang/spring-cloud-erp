@@ -1,17 +1,21 @@
 package com.kabunx.erp.controller;
 
-import com.kabunx.erp.config.NacosConfig;
 import com.kabunx.erp.domain.dto.LoginKeyValueDTO;
+import com.kabunx.erp.property.JwtProperties;
 import com.kabunx.erp.service.SmsCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 @Slf4j
 @RestController
 @RequestMapping("/sms-code")
 public class SmsCodeController {
+
+    @Resource
+    JwtProperties jwtProperties;
 
     @PostMapping("/login")
     public boolean login(
@@ -22,8 +26,8 @@ public class SmsCodeController {
     }
 
     @GetMapping("/config")
-    public NacosConfig config(NacosConfig nacosConfig) {
-        return nacosConfig;
+    public JwtProperties config() {
+        return jwtProperties;
     }
 
     @GetMapping("/string")

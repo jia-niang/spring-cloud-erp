@@ -9,9 +9,6 @@ spring:
       config:
         server-addr: http://localhost:8848
         file-extension: yaml
-        shared-configs[0]:
-          data-id: common.yaml
-          refresh: true
   redis:
     host: localhost
     port: 6379

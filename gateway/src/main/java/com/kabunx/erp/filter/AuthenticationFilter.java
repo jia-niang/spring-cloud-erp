@@ -5,8 +5,8 @@ import com.kabunx.erp.entity.User;
 import com.kabunx.erp.service.AuthenticationService;
 import com.kabunx.erp.validator.RouterValidator;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Component
-public class AuthenticationFilter implements GatewayFilter, Ordered {
+public class AuthenticationFilter implements GlobalFilter, Ordered {
     // custom route validator
     @Resource
     RouterValidator routerValidator;

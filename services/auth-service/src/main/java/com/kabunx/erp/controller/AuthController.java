@@ -1,21 +1,29 @@
 package com.kabunx.erp.controller;
 
+import com.kabunx.erp.service.impl.UserDetailsServiceImpl;
+import com.kabunx.erp.vo.UserVO;;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
-@RequestMapping(value = "/auth")
+@RefreshScope
 public class AuthController {
 
-    @GetMapping("/info")
-    public String info() {
-        return "123123";
+    @Resource
+    UserDetailsServiceImpl userDetailsService;
+
+    @GetMapping("/info/{id}")
+    public UserVO info(@PathVariable("id") Integer id) {
+        return userDetailsService.loadUserById(id);
     }
 
     @PostMapping("/logout")
-    public boolean logout() {
-        return true;
+    public String logout() {
+        return "name";
     }
 }

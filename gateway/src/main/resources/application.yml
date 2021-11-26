@@ -26,7 +26,15 @@ spring:
   sleuth:
     sampler:
       probability: 1
-
+feign:
+  sentinel:
+    enabled: true
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000
+        logger-level: basic
 safety:
   ignore:
     urls:
