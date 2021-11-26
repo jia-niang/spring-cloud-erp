@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RefreshScope
 public class AuthController {
 
     @Resource

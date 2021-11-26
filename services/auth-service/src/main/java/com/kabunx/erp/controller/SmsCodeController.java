@@ -26,8 +26,8 @@ public class SmsCodeController {
     }
 
     @GetMapping("/config")
-    public JwtProperties config() {
-        return jwtProperties;
+    public String config() {
+        return jwtProperties.getExpirationTime();
     }
 
     @GetMapping("/string")
