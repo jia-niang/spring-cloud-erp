@@ -1,7 +1,7 @@
 package com.kabunx.erp.service;
 
-import com.kabunx.erp.domain.dto.LoginKeyValueDTO;
+import com.kabunx.erp.domain.dto.SmsCodeDTO;
 
 public interface SmsCodeService {
-    boolean sendByLoginKeyValue(LoginKeyValueDTO loginKeyValueDTO);
+    boolean send(SmsCodeDTO smsCodeDTO);
 }

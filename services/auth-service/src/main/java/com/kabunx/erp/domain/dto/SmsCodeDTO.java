@@ -9,12 +9,15 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LoginKeyValueDTO extends BaseDTO {
+public class SmsCodeDTO extends BaseDTO {
     @NotNull
     @NotEmpty
-    String captchaKey;
+    String type;
 
-    @NotNull
-    @NotEmpty
-    String captchaCode;
+    String phone;
+
+    /**
+     * 前后端统一加密
+     */
+    String secret;
 }

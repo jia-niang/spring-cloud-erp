@@ -1,7 +1,6 @@
 package com.kabunx.erp.controller;
 
-import com.kabunx.erp.domain.dto.LoginKeyValueDTO;
-import com.kabunx.erp.property.JwtProperties;
+import com.kabunx.erp.domain.dto.SmsCodeDTO;
 import com.kabunx.erp.service.SmsCodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +14,10 @@ import javax.validation.Valid;
 public class SmsCodeController {
 
     @Resource
-    JwtProperties jwtProperties;
+    SmsCodeService smsCodeService;
 
-    @PostMapping("/login")
-    public boolean login(
-            @RequestBody @Valid LoginKeyValueDTO loginKeyValueDTO,
-            SmsCodeService smsCodeService
-    ) {
-        return smsCodeService.sendByLoginKeyValue(loginKeyValueDTO);
-    }
-
-    @GetMapping("/config")
-    public String config() {
-        return jwtProperties.getExpirationTime();
-    }
-
-    @GetMapping("/string")
-    public String string() {
-        return "123123";
+    @PostMapping("")
+    public boolean send(@RequestBody @Valid SmsCodeDTO smsCodeDTO) {
+        return smsCodeService.send(smsCodeDTO);
     }
 }

@@ -3,7 +3,6 @@ package com.kabunx.erp.service.impl;
 import com.google.code.kaptcha.Producer;
 import com.kabunx.erp.cache.CacheType;
 import com.kabunx.erp.cache.RedisStringCache;
-import com.kabunx.erp.domain.dto.LoginKeyValueDTO;
 import com.kabunx.erp.domain.vo.CaptchaVO;
 import com.kabunx.erp.service.CaptchaService;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +58,13 @@ public class CaptchaServiceImpl implements CaptchaService {
     }
 
     @Override
-    public boolean verifyKeyValue(LoginKeyValueDTO loginKeyValueDTO) {
-        return true;
+    public boolean verify(String key, String value, CacheType cacheType) {
+        String code = RedisStringCache.get(key, cacheType);
+        boolean result = value.equals(code);
+        // 验证成功需要清楚缓存
+        if (result) {
+            RedisStringCache.del(key, cacheType);
+        }
+        return result;
     }
 }
