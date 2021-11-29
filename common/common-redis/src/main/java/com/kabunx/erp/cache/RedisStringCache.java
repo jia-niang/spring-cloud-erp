@@ -1,6 +1,5 @@
 package com.kabunx.erp.cache;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -39,9 +38,7 @@ public class RedisStringCache {
             default:
                 timeout = 120;
         }
-        redisStringCache.getTemplate()
-                .opsForValue()
-                .set(cacheType.getType() + key, value, timeout, TimeUnit.SECONDS);
+        set(cacheType.getType() + key, value, timeout);
     }
 
     public static void set(String key, String value, int timeout) {
@@ -52,14 +49,22 @@ public class RedisStringCache {
 
     // 查询缓存
     public static String get(String key, CacheType cacheType) {
+        return get(cacheType.getType() + key);
+    }
+
+    public static String get(String key) {
         return redisStringCache.getTemplate()
                 .opsForValue()
-                .get(cacheType.getType() + key);
+                .get(key);
     }
 
     // 清除缓存
     public static Boolean delete(String key, CacheType cacheType) {
+        return delete(cacheType.getType() + key);
+    }
+
+    public static Boolean delete(String key) {
         return redisStringCache.getTemplate()
-                .delete(cacheType.getType() + key);
+                .delete(key);
     }
 }
