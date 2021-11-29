@@ -30,22 +30,22 @@ public class CaptchaServiceImpl implements CaptchaService {
     @Override
     public CaptchaVO generate(String type) {
         // 1、创建验证码
-        String text;
+        String text, code;
         BufferedImage image;
         if ("math".equals(type)) {
             text = mathCodeKaptcha.createText();
             String s1 = text.substring(0, 1);
             String s2 = text.substring(1, 2);
             int count = Integer.parseInt(s1) + Integer.parseInt(s2);
-            log.info("count is {}", count);
+            code = String.valueOf(count);
             image = mathCodeKaptcha.createImage(s1 + "+" + s2 + "=?");
         } else {
-            text = textCodeKaptcha.createText();
+            code = text = textCodeKaptcha.createText();
             image = textCodeKaptcha.createImage(text);
         }
         // 2、将text存入redis缓存<id, text>
         String key = UUID.randomUUID().toString();
-        RedisStringCache.set(key, text, CacheType.CAPTCHA);
+        RedisStringCache.set(key, code, CacheType.CAPTCHA);
         // 3、转化为BASE64
         try {
             ByteArrayOutputStream output = new ByteArrayOutputStream();
