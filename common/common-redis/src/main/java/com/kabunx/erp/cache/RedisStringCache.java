@@ -59,11 +59,11 @@ public class RedisStringCache {
     }
 
     // 清除缓存
-    public static Boolean delete(String key, CacheType cacheType) {
-        return delete(cacheType.getType() + key);
+    public static Boolean del(String key, CacheType cacheType) {
+        return del(cacheType.getType() + key);
     }
 
-    public static Boolean delete(String key) {
+    public static Boolean del(String key) {
         return redisStringCache.getTemplate()
                 .delete(key);
     }
