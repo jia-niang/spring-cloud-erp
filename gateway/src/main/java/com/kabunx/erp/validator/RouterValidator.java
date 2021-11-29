@@ -14,6 +14,6 @@ public class RouterValidator {
     RouterProperties routerProperties;
 
     public Predicate<ServerHttpRequest> isProtected =
-            request -> routerProperties.getOpenApis().stream()
+            request -> routerProperties.getOpenPaths().stream()
                     .noneMatch(uri -> request.getURI().getPath().contains(uri));
 }

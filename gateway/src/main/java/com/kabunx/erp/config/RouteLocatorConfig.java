@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouteLocatorConfig {
 
-
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         RouteLocatorBuilder.Builder routes = builder.routes();

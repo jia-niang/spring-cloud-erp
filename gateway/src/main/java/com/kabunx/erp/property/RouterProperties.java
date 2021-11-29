@@ -11,8 +11,5 @@ import java.util.List;
 @ConfigurationProperties(prefix = "router")
 public class RouterProperties {
     // 开发路由，直接跳过鉴权
-    List<String> openApis;
-
-    // 非必要鉴权的路由
-    List<String> dispensableApis;
+    List<String> openPaths;
 }

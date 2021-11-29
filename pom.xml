@@ -29,6 +29,7 @@
         <p6spy.version>3.9.1</p6spy.version>
         <jedis.version>3.6.3</jedis.version>
         <lombok.version>1.18.22</lombok.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
         <jjwt.version>0.11.2</jjwt.version>
         <wechat-miniapp.version>4.2.0</wechat-miniapp.version>
         <wechat-mp.version>4.2.0</wechat-mp.version>
@@ -97,6 +98,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: erp-auth-service
+    name: erp-gateway-service
   cloud:
     nacos:
       config:
