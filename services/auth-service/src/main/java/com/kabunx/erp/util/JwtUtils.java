@@ -17,6 +17,7 @@ import java.util.Map;
 
 @Component
 public class JwtUtils {
+
     @Resource
     JwtProperties jwtProperties;
 
