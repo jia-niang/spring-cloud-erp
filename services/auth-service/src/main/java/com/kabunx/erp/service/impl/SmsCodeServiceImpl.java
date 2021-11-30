@@ -38,7 +38,7 @@ public class SmsCodeServiceImpl implements SmsCodeService {
         boolean result = value.equals(code);
         // 验证成功需要清楚缓存
         if (result) {
-            RedisStringCache.del(key, cacheType);
+//            RedisStringCache.del(key, cacheType);
         }
         return result;
     }

@@ -20,7 +20,6 @@ public class UserController implements UserFeignClient {
     @Resource
     UserService userService;
 
-
     @Override
     public JsonResponse<UserVO> show(@PathVariable("id") Integer id) {
         return null;

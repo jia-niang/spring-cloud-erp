@@ -12,21 +12,21 @@ import org.springframework.stereotype.Component;
 public class UserFeignClientFallback implements UserFeignClient {
     @Override
     public JsonResponse<UserVO> show(Integer id) {
-        return withFallbackError();
+        return withFallbackError("ID检索");
     }
 
     @Override
     public JsonResponse<UserVO> phone(String phone) {
-        return withFallbackError();
+        return withFallbackError("电话检索");
     }
 
     @Override
     public JsonResponse<UserVO> create(UserFromDTO userFromDTO) {
-        return withFallbackError();
+        return withFallbackError("创建用户");
     }
 
-    private JsonResponse<UserVO> withFallbackError() {
-        log.error("Openfeign远程调用用户服务（创建用户）异常的降级方法");
+    private JsonResponse<UserVO> withFallbackError(String name) {
+        log.error("Openfeign远程调用用户服务[{}]异常的降级方法", name);
         return JsonResponse.withFallbackError();
     }
 }
