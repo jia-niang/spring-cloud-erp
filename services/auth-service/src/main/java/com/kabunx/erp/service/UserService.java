@@ -4,4 +4,6 @@ import com.kabunx.erp.vo.UserVO;
 
 public interface UserService {
     UserVO loadByUsername(String username);
+
+    UserVO loadByPhone(String phone);
 }

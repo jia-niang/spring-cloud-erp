@@ -13,6 +13,9 @@ public interface UserFeignClient {
     @GetMapping("/users/{id}")
     JsonResponse<UserVO> show(@PathVariable("id") Integer id);
 
+    @GetMapping("/users/phone/{phone}")
+    JsonResponse<UserVO> phone(@PathVariable("phone") String phone);
+
     @PostMapping("/users")
     JsonResponse<UserVO> create(@RequestBody UserFromDTO userFromDTO);
 }

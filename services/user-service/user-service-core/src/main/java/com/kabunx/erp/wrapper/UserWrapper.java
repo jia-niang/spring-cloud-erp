@@ -1,4 +1,10 @@
 package com.kabunx.erp.wrapper;
 
-public class UserWrapper {
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
+public class UserWrapper<T> extends QueryWrapper<T> {
+
+    public void wherePhone(String phone) {
+        this.eq("phone", phone);
+    }
 }

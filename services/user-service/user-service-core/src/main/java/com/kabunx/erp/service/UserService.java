@@ -9,6 +9,8 @@ import com.kabunx.erp.vo.UserVO;
 
 public interface UserService {
 
+    UserVO findByPhone(String phone);
+
     UserVO create(UserFromDTO userFromDto);
 
     IPage<UserDO> paginate(UserFilterDTO<UserDO> userFilter);

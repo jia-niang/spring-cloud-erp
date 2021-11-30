@@ -53,18 +53,15 @@ public class RedisStringCache {
     }
 
     public static String get(String key) {
-        return redisStringCache.getTemplate()
-                .opsForValue()
-                .get(key);
+        return redisStringCache.getTemplate().opsForValue().get(key);
     }
 
     // 清除缓存
-    public static Boolean del(String key, CacheType cacheType) {
-        return del(cacheType.getType() + key);
+    public static void del(String key, CacheType cacheType) {
+        del(cacheType.getType() + key);
     }
 
-    public static Boolean del(String key) {
-        return redisStringCache.getTemplate()
-                .delete(key);
+    public static void del(String key) {
+        redisStringCache.getTemplate().delete(key);
     }
 }

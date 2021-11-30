@@ -1,6 +1,7 @@
 package com.kabunx.erp.service.impl;
 
 import com.kabunx.erp.api.MemberFeignClient;
+import com.kabunx.erp.constant.GlobalConstant;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.HashUtils;
@@ -18,7 +19,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MemberVO findAndValidateMember(String authToken) {
-        String[] elements = authToken.split("\\|", 2);
+        if (authToken == null || authToken.isEmpty()) {
+            return null;
+        }
+        String[] elements = authToken.split(GlobalConstant.BASE_STRING_REGEX, 2);
+        if (elements.length != 2) {
+            return null;
+        }
         int userId = Integer.parseInt(elements[0]);
         String plainToken = elements[1];
         JsonResponse<MemberVO> response = memberFeignClient.findByUserId(userId);

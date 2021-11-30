@@ -18,6 +18,15 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public UserVO loadByPhone(String phone) {
+        JsonResponse<UserVO> response = userFeignClient.phone(phone);
+        if (response.unavailable()) {
+            return null;
+        }
+        return response.getData();
+    }
+
     public UserVO loadUserById(Integer id) {
         JsonResponse<UserVO> response = userFeignClient.show(id);
         if (response.unavailable()) {

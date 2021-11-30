@@ -24,7 +24,7 @@ public class JwtUtils {
 
     @PostConstruct
     public void init() {
-        this.key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
+        key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
     }
 
     public Claims getAllClaimsFromToken(String token) {

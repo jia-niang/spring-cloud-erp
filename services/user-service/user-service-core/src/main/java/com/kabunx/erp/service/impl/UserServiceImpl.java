@@ -12,6 +12,7 @@ import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.wrapper.UserWrapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,6 +28,14 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     UserMapper userMapper;
+
+    @Override
+    public UserVO findByPhone(String phone) {
+        UserWrapper<UserDO> wrapper = new UserWrapper<>();
+        wrapper.wherePhone(phone);
+        UserDO user = userMapper.selectOne(wrapper);
+        return ObjectConverter.map(user, UserVO.class);
+    }
 
     @Override
     public UserVO create(UserFromDTO userFromDto) {

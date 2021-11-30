@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.security.NoSuchAlgorithmException;
 
 @SpringBootTest
-public class HashUtilTests {
+public class HashUtilsTests {
 
     @Test
     void testHashEncrypt() throws NoSuchAlgorithmException {
