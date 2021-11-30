@@ -39,7 +39,7 @@ public class HashSecretValidator implements ConstraintValidator<HashSecret, Stri
         if (value == null || value.isEmpty()) {
             return false;
         }
-        HashSecretEntity entity = decryptAndValidate(value);
+        HashSecretEntity entity = decrypt2Entity(value);
         if (entity == null) {
             return false;
         }
@@ -52,7 +52,7 @@ public class HashSecretValidator implements ConstraintValidator<HashSecret, Stri
                 : hashSecret.key();
     }
 
-    private HashSecretEntity decryptAndValidate(String value) {
+    private HashSecretEntity decrypt2Entity(String value) {
         String original = AESUtils.decrypt(value, getKey());
         if (original != null) {
             String[] data = original.split(GlobalConstant.BASE_STRING_REGEX, 2);
