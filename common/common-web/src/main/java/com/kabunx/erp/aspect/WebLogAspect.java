@@ -1,6 +1,6 @@
 package com.kabunx.erp.aspect;
 
-import com.kabunx.erp.converter.ObjectConverter;
+import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.domain.WebLogContent;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -44,7 +44,7 @@ public class WebLogAspect {
             logContent.setUri(request.getRequestURI());
             logContent.setArgs(joinPoint.getArgs());
             logContent.setSignature(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-            log.info("请求信息：{}", ObjectConverter.toString(logContent));
+            log.info("请求信息：{}", Hydrate.map2String(logContent));
         }
     }
 

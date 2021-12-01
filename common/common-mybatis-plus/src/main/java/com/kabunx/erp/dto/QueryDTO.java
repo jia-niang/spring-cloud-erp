@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class FilterDTO<T> extends BaseDTO {
+public class QueryDTO<T> extends BaseDTO {
     private long page = 1L;
     private long pageSize = 10L;
 
@@ -16,7 +16,7 @@ public class FilterDTO<T> extends BaseDTO {
         return new Page<>(page, pageSize);
     }
 
-    public QueryWrapper<T> getQueryWrapper() {
+    public QueryWrapper<T> getWrapper() {
         return new QueryWrapper<>();
     }
 }

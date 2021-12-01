@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 public class UserWrapper<T> extends QueryWrapper<T> {
 
-    public void wherePhone(String phone) {
+    public void eqPhone(String phone) {
         this.eq("phone", phone);
     }
 }

@@ -53,7 +53,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     private Mono<Void> onAuthenticationError(ServerWebExchange exchange) {
         ServerHttpResponse response = exchange.getResponse();
         DataBuffer dataBuffer = response.bufferFactory()
-                .wrap(SecurityConstant.AUTHORIZATION_ERROR.getBytes(StandardCharsets.UTF_8));
+                .wrap(SecurityConstant.AUTHORIZATION_ERROR_MESSAGE.getBytes(StandardCharsets.UTF_8));
         response.writeWith(Mono.just(dataBuffer));
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
         return response.setComplete();

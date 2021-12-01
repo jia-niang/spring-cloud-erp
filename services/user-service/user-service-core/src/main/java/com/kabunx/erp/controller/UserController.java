@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kabunx.erp.api.UserFeignClient;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.domain.dto.UserDTO;
-import com.kabunx.erp.domain.dto.UserFilterDTO;
+import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.service.UserService;
@@ -36,8 +36,8 @@ public class UserController implements UserFeignClient {
     }
 
     @GetMapping("/users")
-    public IPage<UserDO> paginate(@RequestBody UserFilterDTO<UserDO> filterDto) {
-        return userService.paginate(filterDto);
+    public IPage<UserDO> paginate(@RequestBody UserQueryDTO<UserDO> queryDTO) {
+        return userService.paginate(queryDTO);
     }
 
     /**

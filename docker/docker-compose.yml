@@ -1,17 +1,60 @@
 version: '3'
 services:
+  mysql:
+    container_name: erp-mysql
+    image: mysql:${MYSQL_VERSION:-latest}
+    restart: always
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION:-latest}
+        - MYSQL_TIMEZONE=${MYSQL_TIMEZONE:-UTC}
+    env_file:
+      - ./env/mysql.env
+    volumes:
+      - ./mysql/initdb.d/:/docker-entrypoint-initdb.d/
+      - ${MYSQL_DATA_DIR:-/var/docker/volumes/mysql/}:/var/lib/mysql/
+    ports:
+      - ${MYSQL_PORT:-3306}:3306
+    networks:
+      - database
+
   nacos:
-    image: nacos/nacos-server:2.0.3-slim
-#    build:
-#      context: ./nacos
-    container_name: nacos
+    container_name: erp-nacos-standalone
+    image: nacos:${NACOS_VERSION:-2.0.3}
+    build:
+      context: ./nacos
+      args:
+        - NACOS_VERSION=${NACOS_VERSION:-2.0.3}
+    restart: always
     env_file:
       - ./env/nacos-mysql.env
     volumes:
-      - ./logs/:/home/nacos/logs
+      - ./logs/nacos/:/home/nacos/logs/
       - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
     ports:
       - "8848:8848"
-      - "9848:9848"
-      - "9555:9555"
+    depends_on:
+      - mysql
+    networks:
+      - public
+      - database
+
+  sentinel:
+    container_name: erp-sentinel
+    image: sentinel:${SENTINEL_VERSION:-1.8.2}
+    build:
+      context: ./sentinel
+      args:
+        - SENTINEL_VERSION=${SENTINEL_VERSION:-1.8.2}
     restart: always
+    volumes:
+      - ./logs/sentinel/:/var/www/sentinel/logs/
+    ports:
+      - "8849:8849"
+    networks:
+      - public
+
+networks:
+  public:
+  database:

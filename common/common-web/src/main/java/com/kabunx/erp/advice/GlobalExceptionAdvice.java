@@ -2,6 +2,7 @@ package com.kabunx.erp.advice;
 
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.BizException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -16,11 +17,13 @@ import java.util.List;
 /**
  * 统一的全局异常处理
  */
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionAdvice {
 
     @ExceptionHandler(value = BizException.class)
     public JsonResponse<Object> handle(BizException e) {
+        log.error(e.getMessage());
         if (e.getErrorCode() != null) {
             return JsonResponse.failed(e.getErrorCode());
         }
@@ -29,11 +32,13 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public JsonResponse<Object> handleValidException(MethodArgumentNotValidException e) {
+        log.error(e.getMessage());
         return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
     @ExceptionHandler(value = BindException.class)
     public JsonResponse<Object> handleValidException(BindException e) {
+        log.error(e.getMessage());
         return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 

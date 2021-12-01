@@ -2,10 +2,14 @@
 
 ### core
 
+### log
+
 ### elasticsearch
 
 ### mybatis-plus
 
 ### redis
+
+### sms
 
 ### web

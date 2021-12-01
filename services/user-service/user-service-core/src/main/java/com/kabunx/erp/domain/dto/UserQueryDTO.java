@@ -1,11 +1,11 @@
 package com.kabunx.erp.domain.dto;
 
-import com.kabunx.erp.dto.FilterDTO;
+import com.kabunx.erp.dto.QueryDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserFilterDTO<T> extends FilterDTO<T> {
+public class UserQueryDTO<T> extends QueryDTO<T> {
     private String name;
 }

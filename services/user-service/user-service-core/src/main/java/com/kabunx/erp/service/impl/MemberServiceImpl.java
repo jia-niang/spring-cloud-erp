@@ -1,6 +1,6 @@
 package com.kabunx.erp.service.impl;
 
-import com.kabunx.erp.converter.ObjectConverter;
+import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.mapper.MemberMapper;
 import com.kabunx.erp.model.MemberDO;
 import com.kabunx.erp.service.MemberService;
@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberVO findById(Integer id) {
         MemberDO memberDO = memberMapper.selectById(id);
-        return ObjectConverter.map(memberDO, MemberVO.class);
+        return Hydrate.map(memberDO, MemberVO.class);
     }
 
     @Override

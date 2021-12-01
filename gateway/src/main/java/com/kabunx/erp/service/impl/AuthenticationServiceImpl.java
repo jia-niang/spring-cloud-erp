@@ -32,7 +32,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * @return 是否为自定义token
      */
     private boolean isCustomToken(String token) {
-        return token.contains(SecurityConstant.AUTHORIZATION_CUSTOM_TOKEN_SPLIT);
+        return token.contains(SecurityConstant.AUTHORIZATION_TOKEN_SPLIT);
     }
 
     private Optional<User> parseCustomToken(String token) {

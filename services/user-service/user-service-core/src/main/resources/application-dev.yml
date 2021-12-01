@@ -9,6 +9,9 @@ spring:
       config:
         server-addr: http://localhost:8848
         file-extension: yaml
+    sentinel:
+      transport:
+        dashboard: http://localhost:8849
   datasource:
     name: geebox
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver

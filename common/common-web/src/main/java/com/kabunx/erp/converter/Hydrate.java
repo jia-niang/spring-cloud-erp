@@ -6,7 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Optional;
 
-public class ObjectConverter {
+/**
+ * 简单的转化工具
+ */
+public class Hydrate {
     public static <T> T map(Object source, Class<T> target) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -17,17 +20,15 @@ public class ObjectConverter {
         }
     }
 
-    public static <T> Optional<T> optionalMap(Object source, Class<T> target) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        try {
-            return Optional.of(objectMapper.readValue(objectMapper.writeValueAsString(source), target));
-        } catch (JsonProcessingException e) {
+    public static <T> Optional<T> map2Optional(Object source, Class<T> target) {
+        T result = map(source, target);
+        if (result == null) {
             return Optional.empty();
         }
+        return Optional.of(result);
     }
 
-    public static String toString(Object object) {
+    public static String map2String(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.writeValueAsString(object);

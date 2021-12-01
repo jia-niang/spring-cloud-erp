@@ -37,9 +37,14 @@ public interface SecurityConstant {
     String AUTHORIZATION_TOKEN_PREFIX = "Bearer ";
 
     /**
-     * 自定义TOKEN分隔符
+     * TOKEN分隔符
      */
-    String AUTHORIZATION_CUSTOM_TOKEN_SPLIT = "|";
+    String AUTHORIZATION_TOKEN_SPLIT = "|";
+
+    /**
+     * TOKEN分隔符正则
+     */
+    String AUTHORIZATION_TOKEN_SPLIT_REGEX = "\\|";
 
     /**
      * 授权令牌
@@ -51,7 +56,10 @@ public interface SecurityConstant {
      */
     String AUTHORIZATION_REFRESH_TYPE = "REFRESH";
 
-    String AUTHORIZATION_ERROR = "用户认证失败";
+    /**
+     * 认证错误信息
+     */
+    String AUTHORIZATION_ERROR_MESSAGE = "用户认证失败";
 
     /**
      * 存储权限前缀

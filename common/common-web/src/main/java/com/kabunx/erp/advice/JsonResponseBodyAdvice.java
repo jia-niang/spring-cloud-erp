@@ -29,6 +29,7 @@ public class JsonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
         if (body == null) {
             return JsonResponse.success();
         } else if (body instanceof String) {
+            // 对String类型需要特殊处理，否则保存
             try {
                 return toJsonString(JsonResponse.success(body));
             } catch (JsonProcessingException e) {

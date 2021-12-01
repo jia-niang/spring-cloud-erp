@@ -12,4 +12,7 @@ import java.util.List;
 public class RouterProperties {
     // 开发路由，直接跳过鉴权
     List<String> openPaths;
+
+    // 白名单，直接清除
+    List<String> whitePaths;
 }
