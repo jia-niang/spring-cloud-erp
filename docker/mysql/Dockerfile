@@ -5,7 +5,6 @@ LABEL maintainer="jonathan<jianyang1209@outloook.com>"
 # Set Timezone
 #####################################
 ARG MYSQL_TIMEZONE=UTC
-ENV TZ ${MYSQL_TIMEZONE}
-RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone && chown -R mysql:root /var/lib/mysql/
+RUN ln -snf /usr/share/zoneinfo/${MYSQL_TIMEZONE} /etc/localtime && echo ${MYSQL_TIMEZONE} > /etc/timezone && chown -R mysql:root /var/lib/mysql/
 COPY ./my.cnf /etc/mysql/conf.d/my.cnf
 RUN chmod 0444 /etc/mysql/conf.d/my.cnf

@@ -1,9 +1,8 @@
 FROM amd64/buildpack-deps:buster-curl as installer
 
 ARG NACOS_VERSION=2.0.3
-ENV NV ${NACOS_VERSION}
 RUN set -x \
-    && curl -SL --output /var/tmp/nacos-server.tar.gz https://github.com/alibaba/nacos/releases/download/${NV}/nacos-server-${NV}.tar.gz \
+    && curl -SL --output /var/tmp/nacos-server.tar.gz https://github.com/alibaba/nacos/releases/download/${NACOS_VERSION}/nacos-server-${NACOS_VERSION}.tar.gz \
     && tar -xzvf /var/tmp/nacos-server.tar.gz -C /home \
     && rm -rf /var/tmp/nacos-server.tar.gz /home/nacos/bin/* /home/nacos/conf/*
 
@@ -19,7 +18,7 @@ ENV JAVA_HOME="/usr/local/openjdk-8" \
     CLUSTER_CONF="/home/nacos/conf/cluster.conf" \
     FUNCTION_MODE="all" \
     NACOS_USER="nacos" \
-    NACOS_APPLICATION_PORT = "8848" \
+    NACOS_APPLICATION_PORT="8848" \
     NACOS_DEBUG="n" \
     TOMCAT_ACCESSLOG_ENABLED="false" \
     TZ="Asia/Shanghai"
@@ -41,5 +40,5 @@ RUN mkdir -p logs \
     && ln -sf /dev/stderr start.out
 RUN chmod +x bin/docker-startup.sh
 
-EXPOSE $NACOS_APPLICATION_PORT
+EXPOSE 8848
 ENTRYPOINT ["bin/docker-startup.sh"]

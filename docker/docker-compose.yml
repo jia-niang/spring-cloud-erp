@@ -2,7 +2,7 @@ version: '3'
 services:
   mysql:
     container_name: erp-mysql
-    image: mysql:${MYSQL_VERSION:-latest}
+    image: kabunx/mysql:${MYSQL_VERSION:-latest}
     restart: always
     build:
       context: ./mysql
@@ -21,7 +21,7 @@ services:
 
   nacos:
     container_name: erp-nacos-standalone
-    image: nacos:${NACOS_VERSION:-2.0.3}
+    image: kabunx/nacos:${NACOS_VERSION:-2.0.3}
     build:
       context: ./nacos
       args:
@@ -42,7 +42,7 @@ services:
 
   sentinel:
     container_name: erp-sentinel
-    image: sentinel:${SENTINEL_VERSION:-1.8.2}
+    image: kabunx/sentinel:${SENTINEL_VERSION:-1.8.2}
     build:
       context: ./sentinel
       args:

@@ -1,10 +1,9 @@
 FROM amd64/buildpack-deps:buster-curl as installer
 
 ARG SENTINEL_VERSION=1.8.2
-ENV SV ${SENTINEL_VERSION}
 # 直接下载jar包
 RUN set -x \
-    && curl -SL --output /var/tmp/sentinel/sentinel-dashboard.jar https://github.com/alibaba/Sentinel/releases/download/${SV}/sentinel-dashboard-${SV}.jar
+    && curl -SL --output /var/tmp/sentinel-dashboard.jar https://github.com/alibaba/sentinel/releases/download/${SENTINEL_VERSION}/sentinel-dashboard-${SENTINEL_VERSION}.jar
 
 # 基础镜像
 FROM openjdk:8-jre-slim
@@ -19,7 +18,7 @@ ENV JAVA_HOME="/usr/local/openjdk-8" \
 WORKDIR $BASE_DIR
 
 # copy sentinel jar
-COPY --from=installer ["/var/tmp/sentinel", "/var/www/sentinel"]
+COPY --from=installer ["/var/tmp", "/var/www/sentinel"]
 
 # set startup log dir
 RUN mkdir -p logs \
@@ -32,5 +31,5 @@ RUN mkdir -p logs \
 ADD bin/docker-startup.sh bin/docker-startup.sh
 RUN chmod +x bin/docker-startup.sh
 
-EXPOSE $SENTINEL_PORT
+EXPOSE 8849
 ENTRYPOINT ["bin/docker-startup.sh"]
