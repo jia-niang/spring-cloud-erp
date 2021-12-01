@@ -44,14 +44,14 @@ JAVA_MAJOR_VERSION=$($JAVA -version 2>&1 | sed -E -n 's/.* version "([0-9]*).*$/
 if [[ "$JAVA_MAJOR_VERSION" -ge "9" ]] ; then
   JAVA_OPT="${JAVA_OPT} -Xlog:gc*:file=${BASE_DIR}/logs/nacos_gc.log:time,tags:filecount=10,filesize=102400"
 else
-#  JAVA_OPT_EXT_FIX="-Djava.ext.dirs=${JAVA_HOME}/lib/ext"
+  JAVA_OPT_EXT_FIX="-Djava.ext.dirs=${JAVA_HOME}/jre/lib/ext:${JAVA_HOME}/lib/ext"
   JAVA_OPT="${JAVA_OPT} -Xloggc:${BASE_DIR}/logs/nacos_gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
 fi
 
 JAVA_OPT="${JAVA_OPT} -Dloader.path=${BASE_DIR}/plugins/health,${BASE_DIR}/plugins/cmdb"
 JAVA_OPT="${JAVA_OPT} -Dnacos.home=${BASE_DIR}"
 JAVA_OPT="${JAVA_OPT} -jar ${BASE_DIR}/target/${SERVER}.jar"
-JAVA_OPT="${JAVA_OPT} ${JAVA_OPT_EXT_FIX}"
+JAVA_OPT="${JAVA_OPT} ${JAVA_OPT_EXT}"
 JAVA_OPT="${JAVA_OPT} --spring.config.additional-location=${CUSTOM_SEARCH_LOCATIONS}"
 JAVA_OPT="${JAVA_OPT} --logging.config=${BASE_DIR}/conf/nacos-logback.xml"
 JAVA_OPT="${JAVA_OPT} --server.max-http-header-size=524288"
@@ -70,6 +70,7 @@ if [ ! -f "${BASE_DIR}/logs/start.out" ]; then
   touch "${BASE_DIR}/logs/start.out"
 fi
 
-exec "$JAVA -jar ${BASE_DIR}/target/${SERVER}.jar"
-
 echo "nacos is starting, you can docker logs your container"
+
+# shellcheck disable=SC2086
+exec "$JAVA" "$JAVA_OPT_EXT_FIX" $JAVA_OPT
