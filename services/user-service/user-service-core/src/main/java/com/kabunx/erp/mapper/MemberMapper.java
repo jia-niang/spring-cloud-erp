@@ -12,5 +12,5 @@ import java.util.List;
 public interface MemberMapper extends BaseMapper<MemberDO> {
     List<MemberVO> selectWithUser(IPage<MemberVO> page);
 
-    MemberVO findByIdWithUser(Integer id);
+    MemberVO findByUserIdWithUser(Long userId);
 }

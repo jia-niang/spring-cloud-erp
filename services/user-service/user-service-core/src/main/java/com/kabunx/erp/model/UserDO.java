@@ -20,11 +20,7 @@ public class UserDO extends BaseDO {
     String name;
     Integer sex;
     String avatar;
-    Integer status;
     String password;
-
-    @TableField(typeHandler = DateTypeHandler.class)
-    Date expiredAt;
 
     @TableField(typeHandler = DateTypeHandler.class)
     Date emailVerifiedAt;
@@ -32,6 +28,10 @@ public class UserDO extends BaseDO {
     @TableField(typeHandler = DateTypeHandler.class)
     Date createdAt;
 
+    @TableField(typeHandler = DateTypeHandler.class)
+    Date updatedAt;
+
     @TableLogic
-    Boolean isDeleted;
+    @TableField(typeHandler = DateTypeHandler.class)
+    Date deletedAt;
 }

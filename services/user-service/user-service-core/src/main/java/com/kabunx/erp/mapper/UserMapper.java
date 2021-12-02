@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserMapper extends BaseMapper<UserDO> {
-    UserVO findById(Integer id);
+    UserVO findById(Long id);
 
     /**
      * 通过注解简单处理

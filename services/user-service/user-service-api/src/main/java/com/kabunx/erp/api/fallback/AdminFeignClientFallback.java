@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdminFeignClientFallback implements AdminFeignClient {
     @Override
-    public JsonResponse<AdminVO> findById(Integer id) {
+    public JsonResponse<AdminVO> findById(Long id) {
         return JsonResponse.withFallbackError();
     }
 }

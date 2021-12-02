@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kabunx.erp.mapper.MemberMapper">
-    <resultMap id="BaseResultMap" type="com.kabunx.erp.model.MemberDO">
-        <id property="userId" column="user_id"/>
-        <result property="accessToken" column="access_token"/>
-    </resultMap>
-    <!-- autoMapping 自动映射，但要显示指定id -->
-    <resultMap id="MemberWithUserResultMap" type="com.kabunx.erp.vo.MemberVO" autoMapping="true">
-        <id property="userId" column="user_id"/>
-        <association property="user" javaType="com.kabunx.erp.vo.UserVO" autoMapping="true">
-            <id property="id" column="id"/>
-        </association>
-    </resultMap>
-    <select id="selectWithUser" resultMap="MemberWithUserResultMap">
-        select user_id, access_token, token_expired_time, id, account, name, sex
-        from gb_user_mpc m
-                 inner join sys_user_basic u
-                            on m.user_id = u.id
-        where m.is_deleted = 0
-          and u.is_deleted = 0
-    </select>
-    <select id="findByIdWithUser" parameterType="int" resultMap="MemberWithUserResultMap">
-        select user_id, access_token, token_expired_time, id, account, name, sex
-        from gb_user_mpc m
-                 inner join sys_user_basic u
-                            on m.user_id = u.id
-        where m.user_id = #{id}
-          and m.is_deleted = 0
-          and u.is_deleted = 0
-    </select>
+  <resultMap id="BaseResultMap" type="com.kabunx.erp.model.MemberDO">
+    <id property="userId" column="user_id"/>
+    <result property="accessToken" column="access_token"/>
+  </resultMap>
+  <!-- autoMapping 自动映射，但要显示指定id -->
+  <resultMap id="MemberWithUserResultMap" type="com.kabunx.erp.vo.MemberVO" autoMapping="true">
+    <id property="userId" column="user_id"/>
+    <association property="user" javaType="com.kabunx.erp.vo.UserVO" autoMapping="true">
+      <id property="id" column="id"/>
+    </association>
+  </resultMap>
+  <select id="selectWithUser" resultMap="MemberWithUserResultMap">
+    select user_id, access_token, id, account, name, sex
+    from user_member
+           inner join user
+                      on user_member.user_id = user.id
+    where user_member.deleted_at is null
+      and user.deleted_at is null
+  </select>
+  <select id="findByUserIdWithUser" parameterType="long" resultMap="MemberWithUserResultMap">
+    select user_id, access_token, id, account, name, sex
+    from user_member
+           inner join user
+                      on user_member.user_id = user.id
+    where user_member.user_id = #{userId}
+      and user_member.deleted_at is null
+      and user.deleted_at is null
+  </select>
 </mapper>

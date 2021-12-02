@@ -1,6 +1,6 @@
 # base image
 FROM openjdk:8-jre-slim
-
+LABEL maintainer="jonathan<jianyang1209@outloook.com>"
 # set environment
 ENV BASE_DIR="/home/nacos" \
     MODE="standalone" \

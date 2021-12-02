@@ -14,7 +14,7 @@ public class AdminController implements AdminFeignClient {
     AdminService adminService;
 
     @Override
-    public JsonResponse<AdminVO> findById(Integer id) {
+    public JsonResponse<AdminVO> findById(Long id) {
         return JsonResponse.success(adminService.findByUserId(id));
     }
 }

@@ -13,7 +13,7 @@ public class AdminServiceImpl implements AdminService {
     AdminMapper adminMapper;
 
     @Override
-    public AdminVO findByUserId(Integer userId) {
+    public AdminVO findByUserId(Long userId) {
         return adminMapper.findByUserId(userId);
     }
 }

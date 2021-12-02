@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserVO extends BaseVO {
-    private Integer id;
+    private Long id;
     private String account;
     private String name;
     private Integer sex;

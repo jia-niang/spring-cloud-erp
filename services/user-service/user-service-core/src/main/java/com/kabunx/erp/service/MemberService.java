@@ -5,5 +5,5 @@ import com.kabunx.erp.vo.MemberVO;
 public interface MemberService {
     MemberVO findById(Integer id);
 
-    MemberVO findByIdWithUser(Integer id);
+    MemberVO findByIdWithUser(Long id);
 }

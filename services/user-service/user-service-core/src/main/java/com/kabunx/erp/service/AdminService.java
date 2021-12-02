@@ -4,5 +4,5 @@ import com.kabunx.erp.vo.AdminVO;
 
 public interface AdminService {
 
-    AdminVO findByUserId(Integer userId);
+    AdminVO findByUserId(Long userId);
 }

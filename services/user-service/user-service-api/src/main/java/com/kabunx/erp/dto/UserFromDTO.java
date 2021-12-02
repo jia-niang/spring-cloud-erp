@@ -14,15 +14,15 @@ import javax.validation.constraints.NotNull;
 public class UserFromDTO extends BaseDTO {
     @NotNull(message = "用户名不能为NULL")
     @NotEmpty(message = "用户名不能为空")
-    String username;
+    String account;
 
     @NotNull(message = "密码不能为NULL")
     @NotEmpty(message = "密码不能为空")
     String password;
 
-    @NotNull(message = "登录类型不能为NULL")
-    @NotEmpty(message = "登录类型不能为空")
-    String type;
+    @NotNull(message = "手机号不能为NULL")
+    @NotEmpty(message = "手机号不能为空")
+    String phone;
 
-    String testKey;
+    String type = "member";
 }

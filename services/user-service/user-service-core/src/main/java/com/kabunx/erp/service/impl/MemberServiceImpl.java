@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberVO findByIdWithUser(Integer id) {
-        return memberMapper.findByIdWithUser(id);
+    public MemberVO findByIdWithUser(Long id) {
+        return memberMapper.findByUserIdWithUser(id);
     }
 }

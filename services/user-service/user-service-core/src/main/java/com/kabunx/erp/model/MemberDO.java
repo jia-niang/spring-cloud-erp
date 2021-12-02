@@ -11,35 +11,27 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName(value = "gb_user_mpc", autoResultMap = true)
+@TableName(value = "user_member", autoResultMap = true)
 public class MemberDO extends BaseDO {
     @TableId(type = IdType.INPUT)
-    Integer userId;
-
-    String position;
+    Long userId;
 
     Integer status;
 
     String accessToken;
 
-    @TableField(typeHandler = DateTypeHandler.class)
-    Date tokenExpiredTime;
-
-    String openid;
-
-    String unionid;
-
-    Integer addType;
-
-    String ch;
+    Date lastLoginTime;
 
     @TableField(typeHandler = DateTypeHandler.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Date addTime;
+    Date createdAt;
 
     @TableField(typeHandler = DateTypeHandler.class)
-    Date lastLogin;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    Date updatedAt;
 
     @TableLogic
-    Boolean isDeleted;
+    @TableField(typeHandler = DateTypeHandler.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    Boolean deletedAt;
 }

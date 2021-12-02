@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         if (elements.length != 2) {
             return null;
         }
-        int userId = Integer.parseInt(elements[0]);
+        long userId = Long.parseLong(elements[0]);
         String plainToken = elements[1];
         JsonResponse<MemberVO> response = memberFeignClient.findByUserId(userId);
         if (response.unavailable()) {

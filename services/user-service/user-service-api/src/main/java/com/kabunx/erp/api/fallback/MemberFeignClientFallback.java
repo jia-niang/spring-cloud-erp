@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemberFeignClientFallback implements MemberFeignClient {
     @Override
-    public JsonResponse<MemberVO> findByUserId(Integer id) {
+    public JsonResponse<MemberVO> findByUserId(Long id) {
         return JsonResponse.withFallbackError();
     }
 }

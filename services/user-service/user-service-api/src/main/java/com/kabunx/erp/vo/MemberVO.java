@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class MemberVO extends BaseVO {
-    private Integer userId;
+    private Long userId;
 
     private String accessToken;
 
