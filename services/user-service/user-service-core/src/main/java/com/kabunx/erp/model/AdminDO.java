@@ -41,19 +41,18 @@ public class AdminDO extends BaseDO {
      */
     Integer status;
 
-    @TableField(typeHandler = DateTypeHandler.class)
+    @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.INSERT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date createdAt;
 
-    @TableField(typeHandler = DateTypeHandler.class)
+    @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.UPDATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date updatedAt;
 
     @TableField(typeHandler = DateTypeHandler.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Date activeTime;
+    Date activatedAt;
 
     @TableLogic
-    @TableField(typeHandler = DateTypeHandler.class)
-    Integer deletedAt;
+    Integer deletedTime;
 }

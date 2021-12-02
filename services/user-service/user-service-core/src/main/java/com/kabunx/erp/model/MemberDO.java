@@ -22,16 +22,14 @@ public class MemberDO extends BaseDO {
 
     Date lastLoginTime;
 
-    @TableField(typeHandler = DateTypeHandler.class)
+    @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.DEFAULT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date createdAt;
 
-    @TableField(typeHandler = DateTypeHandler.class)
+    @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.UPDATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date updatedAt;
 
     @TableLogic
-    @TableField(typeHandler = DateTypeHandler.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Boolean deletedAt;
+    Integer deletedTime;
 }

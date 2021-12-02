@@ -40,6 +40,11 @@ public class UserController implements UserFeignClient {
         return userService.paginate(queryDTO);
     }
 
+    @DeleteMapping("/users/{id}")
+    public JsonResponse<Integer> create(@PathVariable("id") Long id) {
+        return JsonResponse.success(userService.destroy(id));
+    }
+
     /**
      * @param userDTO 直接接受前端传参
      * @return 分页数据

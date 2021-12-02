@@ -12,9 +12,9 @@ spring:
 mybatis-plus:
   global-config:
     db-config:
-      logic-delete-field: deleted_at
-      logic-delete-value: now()
-      logic-not-delete-value: null
+      logic-delete-field: deleted_time
+      logic-delete-value: UNIX_TIMESTAMP()
+      logic-not-delete-value: 0
 
 logging:
   config: classpath:log4j2.xml

@@ -13,10 +13,12 @@ import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
 import com.kabunx.erp.wrapper.UserWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -39,7 +41,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO create(UserFromDTO userFromDto) {
-        return Hydrate.map(userFromDto, UserVO.class);
+        UserDO user = Hydrate.map(userFromDto, UserDO.class);
+        int count = userMapper.insert(user);
+        log.info("{}", count);
+        return Hydrate.map(user, UserVO.class);
+    }
+
+    @Override
+    public Integer destroy(Long id) {
+        return userMapper.deleteById(id);
     }
 
     @Override

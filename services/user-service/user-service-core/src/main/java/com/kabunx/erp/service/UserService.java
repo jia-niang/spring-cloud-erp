@@ -13,6 +13,8 @@ public interface UserService {
 
     UserVO create(UserFromDTO userFromDto);
 
+    Integer destroy(Long id);
+
     IPage<UserDO> paginate(UserQueryDTO<UserDO> userQuery);
 
     IPage<UserVO> simplePaginate(UserDTO userDTO);

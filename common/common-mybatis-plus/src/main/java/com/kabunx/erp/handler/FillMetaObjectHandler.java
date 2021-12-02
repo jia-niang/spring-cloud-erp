@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -17,24 +18,30 @@ public class FillMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.autoInsertFill(metaObject, metaProperties.getCreatedColumn());
+        switch (metaProperties.getTimestamp()) {
+            case "seconds":
+                this.strictInsertFill(metaObject, metaProperties.getCreatedColumn(), this::getSeconds, Integer.class);
+                break;
+            case "millis":
+                this.strictInsertFill(metaObject, metaProperties.getCreatedColumn(), this::getMillis, Long.class);
+                break;
+            case "datetime":
+                this.strictInsertFill(metaObject, metaProperties.getCreatedColumn(), this::getDatetime, Date.class);
+                break;
+        }
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.autoInsertFill(metaObject, metaProperties.getUpdatedColumn());
-    }
-
-    private void autoInsertFill(MetaObject metaObject, String fieldName) {
         switch (metaProperties.getTimestamp()) {
             case "seconds":
-                this.strictInsertFill(metaObject, fieldName, this::getSeconds, Integer.class);
+                this.strictUpdateFill(metaObject, metaProperties.getUpdatedColumn(), this::getSeconds, Integer.class);
                 break;
             case "millis":
-                this.strictInsertFill(metaObject, fieldName, this::getMillis, Long.class);
+                this.strictUpdateFill(metaObject, metaProperties.getUpdatedColumn(), this::getMillis, Long.class);
                 break;
             case "datetime":
-                this.strictInsertFill(metaObject, fieldName, this::getDatetime, String.class);
+                this.strictUpdateFill(metaObject, metaProperties.getUpdatedColumn(), this::getDatetime, Date.class);
                 break;
         }
     }
@@ -48,8 +55,7 @@ public class FillMetaObjectHandler implements MetaObjectHandler {
         return System.currentTimeMillis();
     }
 
-    private String getDatetime() {
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        return ft.format(new Date());
+    private Date getDatetime() {
+        return new Date();
     }
 }

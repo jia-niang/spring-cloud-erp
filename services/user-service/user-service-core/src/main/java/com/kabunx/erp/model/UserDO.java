@@ -1,6 +1,7 @@
 package com.kabunx.erp.model;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kabunx.erp.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,13 +26,12 @@ public class UserDO extends BaseDO {
     @TableField(typeHandler = DateTypeHandler.class)
     Date emailVerifiedAt;
 
-    @TableField(typeHandler = DateTypeHandler.class)
+    @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.INSERT)
     Date createdAt;
 
-    @TableField(typeHandler = DateTypeHandler.class)
+    @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.UPDATE)
     Date updatedAt;
 
     @TableLogic
-    @TableField(typeHandler = DateTypeHandler.class)
-    Date deletedAt;
+    Integer deletedTime;
 }
