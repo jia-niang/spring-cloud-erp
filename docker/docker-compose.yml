@@ -60,7 +60,7 @@ services:
         - SENTINEL_VERSION=${SENTINEL_VERSION:-1.8.2}
     restart: always
     volumes:
-      - ./logs/sentinel/:/var/www/sentinel/logs/
+      - ./logs/sentinel/:/home/sentinel/logs/
     ports:
       - "8849:8849"
     networks:

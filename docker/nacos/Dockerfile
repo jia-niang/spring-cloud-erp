@@ -2,9 +2,7 @@
 FROM openjdk:8-jre-slim
 
 # set environment
-ENV JAVA_HOME="/usr/local/openjdk-8" \
-    BASE_DIR="/home/nacos" \
-    CLASSPATH=".:/home/nacos/conf:$CLASSPATH" \
+ENV BASE_DIR="/home/nacos" \
     MODE="standalone" \
     PREFER_HOST_MODE="ip"\
     FUNCTION_MODE="all" \
@@ -18,8 +16,7 @@ WORKDIR $BASE_DIR
 
 # copy nacos jar
 COPY target/nacos-server.jar target/nacos-server.jar
-#
-ADD bin/docker-startup.sh bin/docker-startup.sh
+# config
 ADD conf/application.properties conf/application.properties
 ADD conf/nacos-logback.xml conf/nacos-logback.xml
 
@@ -29,6 +26,9 @@ RUN mkdir -p logs \
     && touch start.out \
     && ln -sf /dev/stdout start.out \
     && ln -sf /dev/stderr start.out
+
+# startup
+ADD bin/docker-startup.sh bin/docker-startup.sh
 RUN chmod +x bin/docker-startup.sh
 
 EXPOSE 8848
