@@ -23,7 +23,7 @@
         <alibaba-cloud.version>2021.1</alibaba-cloud.version>
         <alibaba-sentinel-transport.version>1.8.2</alibaba-sentinel-transport.version>
         <druid.version>1.2.8</druid.version>
-        <mysql-connector.version>5.1.47</mysql-connector.version>
+        <mysql-connector.version>8.0.25</mysql-connector.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.1</mybatis-plus-generator.version>
         <p6spy.version>3.9.1</p6spy.version>

@@ -10,35 +10,27 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName(value = "sys_user_basic", autoResultMap = true)
+@TableName(value = "user", autoResultMap = true)
 public class UserDO extends BaseDO {
     @TableId(type = IdType.AUTO)
-    Integer id;
+    Long id;
     String account;
-    String password;
+    String email;
+    String phone;
     String name;
     Integer sex;
     String avatar;
-    String phone;
-    String email;
-    String companyName;
-    String licenseUrl;
-    Integer points;
-    Integer inviterUid;
-    Integer source;
     Integer status;
-    Integer isExpire;
+    String password;
 
     @TableField(typeHandler = DateTypeHandler.class)
-    Date expireTime;
-
-    Integer isOpen;
-    Integer isCiLogin;
-    Integer lastLogin;
-    Integer profileSource;
+    Date expiredAt;
 
     @TableField(typeHandler = DateTypeHandler.class)
-    Date addTime;
+    Date emailVerifiedAt;
+
+    @TableField(typeHandler = DateTypeHandler.class)
+    Date createdAt;
 
     @TableLogic
     Boolean isDeleted;

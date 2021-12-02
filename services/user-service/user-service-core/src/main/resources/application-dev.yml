@@ -15,9 +15,9 @@ spring:
   datasource:
     name: geebox
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://192.168.140.215:3306/geebox_2_0?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
-    username: root
-    password: 111111
+    url: jdbc:p6spy:mysql://localhost:3306/spring_erp?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: admin
+    password: admin@123
   redis:
     host: localhost
     port: 6379

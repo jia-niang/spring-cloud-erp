@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "mybatis.meta")
 public class MetaProperties {
-    String timestamp = "s";
+    String timestamp = "datetime";
 
     String createdColumn = "createdAt";
 

@@ -6,6 +6,8 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -15,26 +17,26 @@ public class FillMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        if (isSecondTimestamp()) {
-            this.strictInsertFill(metaObject, metaProperties.getCreatedColumn(), this::getSeconds, Integer.class);
-            this.strictInsertFill(metaObject, metaProperties.getUpdatedColumn(), this::getSeconds, Integer.class);
-        } else {
-            this.strictInsertFill(metaObject, metaProperties.getCreatedColumn(), this::getMillis, Long.class);
-            this.strictInsertFill(metaObject, metaProperties.getUpdatedColumn(), this::getMillis, Long.class);
-        }
+        this.autoInsertFill(metaObject, metaProperties.getCreatedColumn());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        if (isSecondTimestamp()) {
-            this.strictInsertFill(metaObject, metaProperties.getUpdatedColumn(), this::getSeconds, Integer.class);
-        } else {
-            this.strictInsertFill(metaObject, metaProperties.getUpdatedColumn(), this::getMillis, Long.class);
-        }
+        this.autoInsertFill(metaObject, metaProperties.getUpdatedColumn());
     }
 
-    private boolean isSecondTimestamp() {
-        return "s".equals(metaProperties.getTimestamp());
+    private void autoInsertFill(MetaObject metaObject, String fieldName) {
+        switch (metaProperties.getTimestamp()) {
+            case "seconds":
+                this.strictInsertFill(metaObject, fieldName, this::getSeconds, Integer.class);
+                break;
+            case "millis":
+                this.strictInsertFill(metaObject, fieldName, this::getMillis, Long.class);
+                break;
+            case "datetime":
+                this.strictInsertFill(metaObject, fieldName, this::getDatetime, String.class);
+                break;
+        }
     }
 
     private Integer getSeconds() {
@@ -44,5 +46,10 @@ public class FillMetaObjectHandler implements MetaObjectHandler {
 
     private Long getMillis() {
         return System.currentTimeMillis();
+    }
+
+    private String getDatetime() {
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        return ft.format(new Date());
     }
 }
