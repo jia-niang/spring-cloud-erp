@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WebLogContent implements Serializable {
+public class WebLog implements Serializable {
 
     /**
      * IP地址

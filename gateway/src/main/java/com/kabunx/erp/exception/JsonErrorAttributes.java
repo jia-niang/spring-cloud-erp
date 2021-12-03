@@ -19,7 +19,7 @@ public class JsonErrorAttributes implements ErrorAttributes {
     @Override
     public Map<String, Object> getErrorAttributes(ServerRequest request, ErrorAttributeOptions options) {
         Map<String, Object> errorAttributes = new LinkedHashMap<>();
-        Integer code = ExceptionEnum.GATEWAY_FAILED.getCode();
+        String code = ExceptionEnum.GATEWAY_FAILED.getCode();
         String message = ExceptionEnum.GATEWAY_FAILED.getMessage();
         Throwable error = getError(request);
         if (error instanceof GatewayException) {

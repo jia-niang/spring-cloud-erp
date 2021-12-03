@@ -5,34 +5,34 @@ package com.kabunx.erp.exception;
  * 建议使用10位统一错误码，成功表示为S200
  * E01001B001
  * E 统一异常标记
- * 01 服务提供商
+ * 01 服务提供商（01网关，02认证，03用户, 99数据库...）
  * 001 功能领域
- * B 错误类型 P 参数错误，B 业务错误
- * 001 配置错误码
+ * B 错误类型 （P 参数错误，B 业务错误, S 系统错误）
+ * 404 配置错误码 http status
  */
 public enum ExceptionEnum {
-    SUCCESS(0, "操作成功"),
-    UNDEFINED(400000, "未定义的异常"),
-    FAILED(400000, "操作失败"),
-    ERROR(404000, "资源不存在"),
-    CONVERSION(400000, "超文本传输格式错误"),
-    DB_FAILED(400100, "数据操作失败"),
-    VALIDATE_FAILED(422000, "参数检验失败"),
-    UNAUTHORIZED(401000, "暂未登录或token已经过期"),
-    FORBIDDEN(403000, "没有相关权限"),
-    FALLBACK(500000, "服务不可用"),
-    GATEWAY_NOT_FOUND(500404, "资源不存在"),
-    GATEWAY_FAILED(500001, "网关不可用");
+    SUCCESS("S200", "操作成功"),
+    UNDEFINED("E00001S001", "未定义的异常"),
+    FAILED("E00002S001", "操作失败"),
+    NOT_FOUND("E00004S404", "资源不存在"),
+    VALIDATE_FAILED("E00001P422", "参数检验失败"),
+    CONVERSION("E00000P400", "超文本传输格式错误"),
+    DB_FAILED("E99001S400", "数据操作失败"),
+    FORBIDDEN("E00000B403", "没有相关权限"),
+    UNAUTHORIZED("E01002P401", "暂未登录或token已经过期"),
+    FALLBACK("E01001S503", "服务不可用"),
+    GATEWAY_NOT_FOUND("E01000S404", "资源不存在"),
+    GATEWAY_FAILED("E01000S503", "网关不可用");
 
-    private final Integer code;
+    private final String code;
     private final String message;
 
-    ExceptionEnum(Integer code, String message) {
+    ExceptionEnum(String code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 

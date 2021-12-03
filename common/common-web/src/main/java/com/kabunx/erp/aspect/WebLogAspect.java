@@ -1,7 +1,7 @@
 package com.kabunx.erp.aspect;
 
 import com.kabunx.erp.converter.Hydrate;
-import com.kabunx.erp.domain.WebLogContent;
+import com.kabunx.erp.domain.WebLog;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,31 +29,31 @@ public class WebLogAspect {
      * 第三处 *(..) 的位置表示类的方法名及参数， * 表示任何方法，(..) 表示任何参数
      */
     @Pointcut("execution(public * com.kabunx.erp.controller.*.*(..)) || execution(public * com.kabunx.erp.*.controller.*.*(..))")
-    public void webLog() {
+    public void webLogPointcut() {
     }
 
-    @Before("webLog()")
+    @Before("webLogPointcut()")
     public void doBefore(JoinPoint joinPoint) {
         // 获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes != null) {
             HttpServletRequest request = attributes.getRequest();
-            WebLogContent logContent = new WebLogContent();
-            logContent.setIp(request.getRemoteAddr());
-            logContent.setMethod(request.getMethod());
-            logContent.setUri(request.getRequestURI());
-            logContent.setArgs(joinPoint.getArgs());
-            logContent.setSignature(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-            log.info("请求信息：{}", Hydrate.map2String(logContent));
+            WebLog log = new WebLog();
+            log.setIp(request.getRemoteAddr());
+            log.setMethod(request.getMethod());
+            log.setUri(request.getRequestURI());
+            log.setArgs(joinPoint.getArgs());
+            log.setSignature(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+            WebLogAspect.log.info("请求信息：{}", Hydrate.map2String(log));
         }
     }
 
-    @AfterReturning(value = "webLog()", returning = "response")
+    @AfterReturning(value = "webLogPointcut()", returning = "response")
     public void doAfterReturning(Object response) {
     }
 
     // 耗时记录
-    @Around("webLog()")
+    @Around("webLogPointcut()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = joinPoint.proceed();

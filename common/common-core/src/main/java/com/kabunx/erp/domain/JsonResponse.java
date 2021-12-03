@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class JsonResponse<T> {
     private boolean success;
-    private Integer code;
+    private String code;
     private String message;
     private T data;
 
-    public JsonResponse(boolean success, Integer code, String message) {
+    public JsonResponse(boolean success, String code, String message) {
         this.success = success;
         this.code = code;
         this.message = message;
@@ -35,7 +35,7 @@ public class JsonResponse<T> {
         return success(null);
     }
 
-    public static <T> JsonResponse<T> failed(Integer code, String message) {
+    public static <T> JsonResponse<T> failed(String code, String message) {
         return new JsonResponse<>(false, code, message);
     }
 
@@ -48,11 +48,11 @@ public class JsonResponse<T> {
     }
 
     public static <T> JsonResponse<T> error(T data) {
-        return new JsonResponse<>(false, ExceptionEnum.ERROR.getCode(), ExceptionEnum.ERROR.getMessage(), data);
+        return new JsonResponse<>(false, ExceptionEnum.NOT_FOUND.getCode(), ExceptionEnum.NOT_FOUND.getMessage(), data);
     }
 
     public static <T> JsonResponse<T> error() {
-        return failed(ExceptionEnum.ERROR);
+        return failed(ExceptionEnum.NOT_FOUND);
     }
 
     /**
