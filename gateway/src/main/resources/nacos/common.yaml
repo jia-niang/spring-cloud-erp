@@ -1,0 +1,8 @@
+erp:
+  jwt:
+    secret: 49UF72vSkj-sA4aHHiYN5eoZ9Nb4w5Vb45PsLF7x_NY
+    expiration-time: 120000
+  secret:
+    # 请确保16位或32位
+    sms-code-key: ZH0iYN6ex0TAsL7Z
+    login-account-key: LH0iYN6ex0TAsL7ZY
