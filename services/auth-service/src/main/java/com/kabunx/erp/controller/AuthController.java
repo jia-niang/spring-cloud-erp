@@ -15,9 +15,9 @@ public class AuthController {
     @Resource
     UserServiceImpl userDetailsService;
 
-    @GetMapping("/info/{id}")
-    public UserVO info(@PathVariable("id") Integer id) {
-        return userDetailsService.loadUserById(id);
+    @GetMapping("/info")
+    public UserVO info() {
+        return userDetailsService.loadUserById(12);
     }
 
     @PostMapping("/logout")

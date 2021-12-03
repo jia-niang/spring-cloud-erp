@@ -2,10 +2,13 @@ package com.kabunx.erp.service.impl;
 
 import com.kabunx.erp.cache.CacheType;
 import com.kabunx.erp.constant.SecurityConstant;
+import com.kabunx.erp.converter.Hydrate;
+import com.kabunx.erp.domain.dto.LoginAccountDTO;
 import com.kabunx.erp.domain.dto.LoginCaptchaDTO;
 import com.kabunx.erp.domain.dto.LoginMiniAppDTO;
 import com.kabunx.erp.domain.dto.LoginSmsCodeDTO;
 import com.kabunx.erp.domain.vo.AuthTokenVO;
+import com.kabunx.erp.entity.UserEntity;
 import com.kabunx.erp.exception.AuthException;
 import com.kabunx.erp.service.CaptchaService;
 import com.kabunx.erp.service.LoginService;
@@ -32,7 +35,10 @@ public class LoginServiceImpl implements LoginService {
     @Resource
     UserService userService;
 
-    private static final String type = "member";
+    @Override
+    public AuthTokenVO loginByAccountWithoutCaptcha(LoginAccountDTO loginAccountDTO) {
+        return null;
+    }
 
     @Override
     public AuthTokenVO loginByCaptcha(LoginCaptchaDTO loginCaptchaDTO) {
@@ -74,7 +80,11 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
-    private AuthTokenVO generateAuthToken(UserVO user) {
+    private AuthTokenVO generateAuthToken(UserVO userVO) {
+        UserEntity user = Hydrate.map(userVO, UserEntity.class);
+        if (user == null) {
+            return null;
+        }
         return AuthTokenVO.builder()
                 .accessToken(jwtUtils.generate(user, SecurityConstant.AUTHORIZATION_ACCESS_TYPE))
                 .refreshToken(jwtUtils.generate(user, SecurityConstant.AUTHORIZATION_REFRESH_TYPE))

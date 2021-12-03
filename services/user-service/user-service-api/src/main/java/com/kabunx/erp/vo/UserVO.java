@@ -11,4 +11,5 @@ public class UserVO extends BaseVO {
     private String account;
     private String name;
     private Integer sex;
+    private String type;
 }

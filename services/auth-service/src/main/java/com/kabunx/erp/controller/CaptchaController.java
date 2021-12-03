@@ -19,7 +19,7 @@ public class CaptchaController {
     @Resource
     CaptchaService captchaService;
 
-    @PostMapping("/generate")
+    @PostMapping()
     public CaptchaVO image(@RequestBody @Valid CaptchaDTO captchaDTO) {
         return captchaService.generate(captchaDTO);
     }

@@ -11,16 +11,20 @@ import java.util.function.Predicate;
 public class RouterValidator {
 
     @Resource
-    RouterProperties routerProperties;
+    RouterProperties routers;
 
     public Predicate<ServerHttpRequest> isFree =
-            request -> routerProperties.getOpenPaths() != null
-                    && routerProperties.getWhitePaths().stream()
-                    .anyMatch(uri -> request.getURI().getPath().contains(uri));
+            request -> routers.getWhitelist() != null && anyMatch(request);
 
     public boolean isProtectedRequest(ServerHttpRequest request) {
-        return routerProperties.getOpenPaths() == null
-                || routerProperties.getOpenPaths().stream()
-                .noneMatch(uri -> request.getURI().getPath().contains(uri));
+        return routers.getOpens() == null || noneMatch(request);
+    }
+
+    private boolean anyMatch(ServerHttpRequest request) {
+        return routers.getWhitelist().stream().anyMatch(uri -> request.getURI().getPath().contains(uri));
+    }
+
+    private boolean noneMatch(ServerHttpRequest request) {
+        return routers.getOpens().stream().noneMatch(uri -> request.getURI().getPath().contains(uri));
     }
 }

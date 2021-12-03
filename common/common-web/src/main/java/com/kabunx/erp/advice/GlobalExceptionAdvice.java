@@ -2,7 +2,9 @@ package com.kabunx.erp.advice;
 
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.BizException;
+import com.kabunx.erp.exception.ExceptionEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -30,6 +32,12 @@ public class GlobalExceptionAdvice {
         return JsonResponse.failed(e.getMessage());
     }
 
+    @ExceptionHandler(value = HttpMessageConversionException.class)
+    public JsonResponse<Object> handleValidException(HttpMessageConversionException e) {
+        log.error(e.getMessage());
+        return JsonResponse.failed(ExceptionEnum.CONVERSION);
+    }
+
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public JsonResponse<Object> handleValidException(MethodArgumentNotValidException e) {
         log.error(e.getMessage());
@@ -42,6 +50,11 @@ public class GlobalExceptionAdvice {
         return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
+    @ExceptionHandler(value = Exception.class)
+    public JsonResponse<Object> handleException(Exception e) {
+        log.error(e.getMessage());
+        return JsonResponse.failed(ExceptionEnum.UNDEFINED);
+    }
 
     /**
      * 错误信息收集

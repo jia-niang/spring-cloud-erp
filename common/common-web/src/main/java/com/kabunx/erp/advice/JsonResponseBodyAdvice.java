@@ -6,6 +6,7 @@ import com.kabunx.erp.annotation.IgnoreJsonResponseBodyAdvice;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.ExceptionEnum;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -25,7 +26,15 @@ public class JsonResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     }
 
     @Override
-    public Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(
+            @Nullable Object body,
+            MethodParameter returnType,
+            MediaType selectedContentType,
+            Class<? extends HttpMessageConverter<?>> selectedConverterType,
+            ServerHttpRequest request,
+            ServerHttpResponse response
+    ) {
+        response.setStatusCode(HttpStatus.OK);
         if (body == null) {
             return JsonResponse.success();
         } else if (body instanceof String) {

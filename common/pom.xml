@@ -19,6 +19,7 @@
         <module>common-redis</module>
         <module>common-sms</module>
         <module>common-web</module>
+      <module>common-jwt</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

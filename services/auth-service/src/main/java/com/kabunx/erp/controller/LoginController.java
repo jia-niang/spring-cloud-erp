@@ -1,5 +1,6 @@
 package com.kabunx.erp.controller;
 
+import com.kabunx.erp.domain.dto.LoginAccountDTO;
 import com.kabunx.erp.domain.dto.LoginCaptchaDTO;
 import com.kabunx.erp.domain.dto.LoginSmsCodeDTO;
 import com.kabunx.erp.domain.dto.LoginMiniAppDTO;
@@ -19,6 +20,11 @@ public class LoginController {
 
     @Resource
     LoginService loginService;
+
+    @PostMapping("")
+    public AuthTokenVO loginByAccountWithoutCaptcha(@RequestBody @Valid LoginAccountDTO loginAccountDTO) {
+        return loginService.loginByAccountWithoutCaptcha(loginAccountDTO);
+    }
 
     @PostMapping("/captcha")
     public AuthTokenVO loginByAccount(@RequestBody @Valid LoginCaptchaDTO loginCaptchaDTO) {

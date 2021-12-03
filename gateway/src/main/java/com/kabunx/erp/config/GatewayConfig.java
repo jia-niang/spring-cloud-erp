@@ -2,6 +2,7 @@ package com.kabunx.erp.config;
 
 import com.kabunx.erp.exception.JsonErrorAttributes;
 import com.kabunx.erp.exception.JsonErrorWebExceptionHandler;
+import com.kabunx.erp.exception.UnifyWebExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.WebProperties;
@@ -10,8 +11,10 @@ import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
+import org.springframework.web.server.WebExceptionHandler;
 
 import java.util.stream.Collectors;
 
@@ -21,6 +24,12 @@ import java.util.stream.Collectors;
  */
 @Configuration
 public class GatewayConfig {
+
+    @Bean
+    @Order(-16)
+    public WebExceptionHandler unifyWebExceptionHandler() {
+        return new UnifyWebExceptionHandler();
+    }
 
     @Bean
     public ErrorWebExceptionHandler errorWebExceptionHandler(

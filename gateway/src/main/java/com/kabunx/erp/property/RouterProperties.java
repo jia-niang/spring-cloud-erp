@@ -11,8 +11,8 @@ import java.util.List;
 @ConfigurationProperties(prefix = "erp.gateway.router")
 public class RouterProperties {
     // 白名单，直接跳过认证
-    List<String> whitePaths;
+    List<String> whitelist;
 
     // 开放路由，会先认证，但认证失败也不会中断请求
-    List<String> openPaths;
+    List<String> opens;
 }

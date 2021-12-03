@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class RouteLocatorConfig {
 
     @Bean
-    public RouteLocator routes(RouteLocatorBuilder builder) {
+    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         RouteLocatorBuilder.Builder routes = builder.routes();
         return routes
                 .route(r -> r.path("/auth/**")

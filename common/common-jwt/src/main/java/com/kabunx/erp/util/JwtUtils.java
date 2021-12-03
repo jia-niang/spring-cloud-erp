@@ -1,8 +1,8 @@
 package com.kabunx.erp.util;
 
-import com.kabunx.erp.property.JwtProperties;
 import com.kabunx.erp.constant.SecurityConstant;
-import com.kabunx.erp.vo.UserVO;
+import com.kabunx.erp.entity.UserEntity;
+import com.kabunx.erp.property.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -50,10 +50,11 @@ public class JwtUtils {
         return expiration.before(new Date());
     }
 
-    public String generate(UserVO userVo, String type) {
+    public String generate(UserEntity user, String type) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", userVo.getId());
-        return generateToken(claims, userVo.getAccount(), type);
+        claims.put("id", user.getId());
+        claims.put("type", user.getType());
+        return generateToken(claims, user.getAccount(), type);
     }
 
     private String generateToken(Map<String, Object> claims, String subject, String type) {

@@ -47,6 +47,14 @@ public class JsonResponse<T> {
         return failed(exceptionEnum.getCode(), exceptionEnum.getMessage());
     }
 
+    public static <T> JsonResponse<T> error(T data) {
+        return new JsonResponse<>(false, ExceptionEnum.ERROR.getCode(), ExceptionEnum.ERROR.getMessage(), data);
+    }
+
+    public static <T> JsonResponse<T> error() {
+        return failed(ExceptionEnum.ERROR);
+    }
+
     /**
      * 参数验证失败返回结果
      */

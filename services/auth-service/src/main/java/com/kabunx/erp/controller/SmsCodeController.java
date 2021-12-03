@@ -14,7 +14,7 @@ public class SmsCodeController {
     @Resource
     SmsCodeService smsCodeService;
 
-    @PostMapping("/generate")
+    @PostMapping()
     public String generate(@RequestBody @Valid SmsCodeDTO smsCodeDTO) {
         return smsCodeService.generateAndSend(smsCodeDTO);
     }

@@ -1,5 +1,9 @@
 erp:
   gateway:
     router:
-      white-paths:
-        - /user/**
+      whitelist:
+        - /auth/register
+        - /auth/login
+      opens:
+        - /auth/captcha
+        - /product/products
