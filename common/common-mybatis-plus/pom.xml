@@ -14,7 +14,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <common-core.version>1.0-SNAPSHOT</common-core.version>
+        <common-web.version>1.0-SNAPSHOT</common-web.version>
     </properties>
     <dependencies>
         <dependency>
@@ -39,8 +39,8 @@
         </dependency>
         <dependency>
             <groupId>com.kabunx.erp</groupId>
-            <artifactId>common-core</artifactId>
-            <version>${common-core.version}</version>
+            <artifactId>common-web</artifactId>
+            <version>${common-web.version}</version>
         </dependency>
     </dependencies>
     <profiles>

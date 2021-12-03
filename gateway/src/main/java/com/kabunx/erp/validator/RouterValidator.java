@@ -13,6 +13,10 @@ public class RouterValidator {
     @Resource
     RouterProperties routerProperties;
 
+    public Predicate<ServerHttpRequest> isFree =
+            request -> routerProperties.getWhitePaths().stream()
+                    .anyMatch(uri -> request.getURI().getPath().contains(uri));
+
     public Predicate<ServerHttpRequest> isProtected =
             request -> routerProperties.getOpenPaths().stream()
                     .noneMatch(uri -> request.getURI().getPath().contains(uri));

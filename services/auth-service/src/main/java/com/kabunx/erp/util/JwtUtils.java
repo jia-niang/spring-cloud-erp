@@ -15,6 +15,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * iss (issuer)：签发人
+ * exp (expiration time)：过期时间
+ * sub (subject)：主题
+ * aud (audience)：受众
+ * nbf (Not Before)：生效时间
+ * iat (Issued At)：签发时间
+ * jti (JWT ID)：编号
+ */
 @Component
 public class JwtUtils {
 
@@ -56,7 +65,6 @@ public class JwtUtils {
         }
         final Date createdDate = new Date();
         final Date expirationDate = new Date(createdDate.getTime() + expirationTimeLong);
-
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)

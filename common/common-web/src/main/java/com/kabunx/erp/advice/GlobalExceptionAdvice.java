@@ -42,6 +42,7 @@ public class GlobalExceptionAdvice {
         return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
     }
 
+
     /**
      * 错误信息收集
      *

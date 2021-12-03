@@ -2,6 +2,7 @@ package com.kabunx.erp.filter;
 
 import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.entity.User;
+import com.kabunx.erp.exception.GatewayException;
 import com.kabunx.erp.service.AuthenticationService;
 import com.kabunx.erp.validator.RouterValidator;
 import org.apache.logging.log4j.util.Strings;
@@ -32,6 +33,9 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
+        if (routerValidator.isFree.test(request)) {
+            return chain.filter(exchange);
+        }
         boolean authorized = false;
         if (!this.isAuthorizationMissing(request)) {
             Optional<String> token = getAuthorizationToken(request);
@@ -45,18 +49,9 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         }
         // 受保护的接口且没有认证
         if (routerValidator.isProtected.test(request) && !authorized) {
-            return onAuthenticationError(exchange);
+            throw new GatewayException("xxx");
         }
         return chain.filter(exchange);
-    }
-
-    private Mono<Void> onAuthenticationError(ServerWebExchange exchange) {
-        ServerHttpResponse response = exchange.getResponse();
-        DataBuffer dataBuffer = response.bufferFactory()
-                .wrap(SecurityConstant.AUTHORIZATION_ERROR_MESSAGE.getBytes(StandardCharsets.UTF_8));
-        response.writeWith(Mono.just(dataBuffer));
-        response.setStatusCode(HttpStatus.UNAUTHORIZED);
-        return response.setComplete();
     }
 
     private Optional<String> getAuthorizationToken(ServerHttpRequest request) {

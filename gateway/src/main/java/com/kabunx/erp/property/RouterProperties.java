@@ -8,11 +8,11 @@ import java.util.List;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "router")
+@ConfigurationProperties(prefix = "erp.gateway.router")
 public class RouterProperties {
-    // 开发路由，直接跳过鉴权
-    List<String> openPaths;
-
-    // 白名单，直接清除
+    // 白名单，直接跳过认证
     List<String> whitePaths;
+
+    // 开放路由，会先认证，但认证失败也不会中断请求
+    List<String> openPaths;
 }
