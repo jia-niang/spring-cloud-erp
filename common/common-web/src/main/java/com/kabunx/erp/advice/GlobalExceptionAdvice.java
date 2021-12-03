@@ -24,8 +24,8 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler(value = BizException.class)
     public JsonResponse<Object> handle(BizException e) {
         log.error(e.getMessage());
-        if (e.getErrorCode() != null) {
-            return JsonResponse.failed(e.getErrorCode());
+        if (e.getExceptionEnum() != null) {
+            return JsonResponse.failed(e.getExceptionEnum());
         }
         return JsonResponse.failed(e.getMessage());
     }

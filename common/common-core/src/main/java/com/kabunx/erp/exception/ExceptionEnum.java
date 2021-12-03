@@ -10,7 +10,8 @@ public enum ExceptionEnum {
     VALIDATE_FAILED(422000, "参数检验失败"),
     UNAUTHORIZED(401000, "暂未登录或token已经过期"),
     FORBIDDEN(403000, "没有相关权限"),
-    FALLBACK(500000, "服务不可用");
+    FALLBACK(500000, "服务不可用"),
+    GATEWAY_FAILED(500001, "网关不可用"),;
 
     private final Integer code;
     private final String message;

@@ -2,6 +2,7 @@ package com.kabunx.erp.filter;
 
 import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.entity.User;
+import com.kabunx.erp.exception.ExceptionEnum;
 import com.kabunx.erp.exception.GatewayException;
 import com.kabunx.erp.service.AuthenticationService;
 import com.kabunx.erp.validator.RouterValidator;
@@ -9,16 +10,12 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
-import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Component
@@ -48,8 +45,8 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             }
         }
         // 受保护的接口且没有认证
-        if (routerValidator.isProtected.test(request) && !authorized) {
-            throw new GatewayException("xxx");
+        if (routerValidator.isProtectedRequest(request) && !authorized) {
+            throw new GatewayException(ExceptionEnum.UNAUTHORIZED);
         }
         return chain.filter(exchange);
     }
@@ -71,7 +68,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         return !request.getHeaders().containsKey(SecurityConstant.AUTHORIZATION_HEADER);
     }
 
-    // 将解析的用户填充到header中并返回是否验证通过
+    // 将解析的用户填充到Header中
     private void fillRequestHeaders(ServerWebExchange exchange, User user) {
         exchange.getRequest()
                 .mutate()

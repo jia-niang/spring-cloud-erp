@@ -23,7 +23,7 @@ public class BizException extends RuntimeException {
         super(message, cause);
     }
 
-    public ExceptionEnum getErrorCode() {
+    public ExceptionEnum getExceptionEnum() {
         return exceptionEnum;
     }
 }
