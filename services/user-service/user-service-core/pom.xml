@@ -23,16 +23,16 @@
         </dependency>
         <dependency>
             <groupId>com.kabunx.erp</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>${user-service-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kabunx.erp</groupId>
             <artifactId>common-mybatis-plus</artifactId>
         </dependency>
         <dependency>
             <groupId>com.kabunx.erp</groupId>
             <artifactId>common-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.kabunx.erp</groupId>
-            <artifactId>user-service-api</artifactId>
-            <version>${user-service-api.version}</version>
         </dependency>
     </dependencies>
 

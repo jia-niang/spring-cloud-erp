@@ -7,5 +7,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserQueryDTO<T> extends QueryDTO<T> {
-    private String name;
+    String name;
 }

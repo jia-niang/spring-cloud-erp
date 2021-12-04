@@ -14,4 +14,8 @@ public interface AuthConstant {
     public static final String ACCOUNT_EXPIRED = "该账号已过期，请联系管理员!";
 
     public static final String PERMISSION_DENIED = "没有访问权限，请联系管理员!";
+
+    public static final String CAPTCHA_ERROR = "图形验证码错误!";
+
+    public static final String SMS_CODE_ERROR = "短信验证码错误!";
 }

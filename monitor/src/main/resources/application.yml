@@ -1,0 +1,8 @@
+server:
+  port: 8079
+
+spring:
+  application:
+    name: erp-monitor
+  profiles:
+    active: dev

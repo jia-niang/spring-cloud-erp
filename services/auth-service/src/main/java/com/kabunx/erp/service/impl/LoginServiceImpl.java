@@ -1,6 +1,7 @@
 package com.kabunx.erp.service.impl;
 
 import com.kabunx.erp.cache.CacheType;
+import com.kabunx.erp.constant.AuthConstant;
 import com.kabunx.erp.constant.SecurityConstant;
 import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.domain.dto.LoginAccountDTO;
@@ -37,7 +38,14 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public AuthTokenVO loginByAccountWithoutCaptcha(LoginAccountDTO loginAccountDTO) {
-        return null;
+        // 查找用户
+        UserVO user = userService.loadByAccount(loginAccountDTO.getAccount());
+        if (user == null) {
+            throw new AuthException(AuthConstant.USERNAME_PASSWORD_ERROR);
+        }
+        // 验证密码
+        // 生成token
+        return generateAuthToken(user);
     }
 
     @Override
@@ -49,10 +57,10 @@ public class LoginServiceImpl implements LoginService {
                 CacheType.CAPTCHA
         );
         if (!isRight) {
-            throw new AuthException("");
+            throw new AuthException(AuthConstant.CAPTCHA_ERROR);
         }
         // 2、服务调用，查找账号
-        UserVO user = userService.loadByUsername(loginCaptchaDTO.getAccount());
+        UserVO user = userService.loadByAccount(loginCaptchaDTO.getAccount());
         // 3、密码校验
         // 4、生成token
         return generateAuthToken(user);
@@ -67,7 +75,7 @@ public class LoginServiceImpl implements LoginService {
                 CacheType.SMS_CODE
         );
         if (!isRight) {
-            throw new AuthException("");
+            throw new AuthException(AuthConstant.SMS_CODE_ERROR);
         }
         // 2、服务调用，通过手机号查找用户
         UserVO user = userService.loadByPhone(loginSmsCodeDTO.getPhone());
@@ -79,6 +87,7 @@ public class LoginServiceImpl implements LoginService {
     public AuthTokenVO loginByMiniApp(LoginMiniAppDTO loginMiniAppDTO) {
         return null;
     }
+
 
     private AuthTokenVO generateAuthToken(UserVO userVO) {
         UserEntity user = Hydrate.map(userVO, UserEntity.class);

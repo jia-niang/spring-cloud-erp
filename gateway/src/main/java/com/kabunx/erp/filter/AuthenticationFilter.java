@@ -11,21 +11,24 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
-@Component
+/**
+ * 认证过滤器
+ */
 public class AuthenticationFilter implements GlobalFilter, Ordered {
     // custom route validator
-    @Resource
-    RouterValidator routerValidator;
+    private final RouterValidator routerValidator;
 
-    @Resource
-    AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
+
+    public AuthenticationFilter(RouterValidator routerValidator, AuthenticationService authenticationService) {
+        this.routerValidator = routerValidator;
+        this.authenticationService = authenticationService;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -79,6 +82,6 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return 0;
+        return Ordered.HIGHEST_PRECEDENCE + 1;
     }
 }

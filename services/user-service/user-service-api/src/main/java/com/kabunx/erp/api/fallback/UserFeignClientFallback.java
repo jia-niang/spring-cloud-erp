@@ -21,12 +21,17 @@ public class UserFeignClientFallback implements UserFeignClient {
     }
 
     @Override
+    public JsonResponse<UserVO> account(String account) {
+        return withFallbackError("账号检索");
+    }
+
+    @Override
     public JsonResponse<UserVO> create(UserFromDTO userFromDTO) {
         return withFallbackError("创建用户");
     }
 
     private JsonResponse<UserVO> withFallbackError(String name) {
-        log.error("Openfeign远程调用用户服务[{}]异常的降级方法", name);
+        log.error("远程调用用户服务【{}】异常降级", name);
         return JsonResponse.withFallbackError();
     }
 }

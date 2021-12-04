@@ -14,8 +14,12 @@ public class UserServiceImpl implements UserService {
     @Resource
     UserFeignClient userFeignClient;
 
-    public UserVO loadByUsername(String username) {
-        return null;
+    public UserVO loadByAccount(String account) {
+        JsonResponse<UserVO> response = userFeignClient.account(account);
+        if (response.unavailable()) {
+            return null;
+        }
+        return response.getData();
     }
 
     @Override

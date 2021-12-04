@@ -3,11 +3,16 @@ package com.kabunx.erp.config;
 import com.kabunx.erp.exception.JsonErrorAttributes;
 import com.kabunx.erp.exception.JsonErrorWebExceptionHandler;
 import com.kabunx.erp.exception.UnifyWebExceptionHandler;
+import com.kabunx.erp.filter.AuthenticationFilter;
+import com.kabunx.erp.filter.HeaderFilter;
+import com.kabunx.erp.service.AuthenticationService;
+import com.kabunx.erp.validator.RouterValidator;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
+import org.springframework.cloud.gateway.config.conditional.ConditionalOnEnabledGlobalFilter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,12 +30,40 @@ import java.util.stream.Collectors;
 @Configuration
 public class GatewayConfig {
 
+    /**
+     * 全局请求头过滤器
+     */
+    @Bean
+    @ConditionalOnEnabledGlobalFilter
+    public HeaderFilter headerFilter() {
+        return new HeaderFilter();
+    }
+
+    /**
+     * 全局认证过滤器
+     */
+    @Bean
+    @ConditionalOnEnabledGlobalFilter
+    public AuthenticationFilter authenticationFilter(
+            RouterValidator routerValidator,
+            AuthenticationService authenticationService
+    ) {
+        return new AuthenticationFilter(routerValidator, authenticationService);
+    }
+
+    /**
+     * 优先级更高的异常处理，主要是统一404,503的响应
+     * 官方的绑定了对状态的处理优先级为"0"
+     */
     @Bean
     @Order(-16)
     public WebExceptionHandler unifyWebExceptionHandler() {
         return new UnifyWebExceptionHandler();
     }
 
+    /**
+     * 自定义异常处理
+     */
     @Bean
     public ErrorWebExceptionHandler errorWebExceptionHandler(
             ErrorAttributes errorAttributes,
@@ -53,6 +86,9 @@ public class GatewayConfig {
         return exceptionHandler;
     }
 
+    /**
+     * 自定义异常数据格式
+     */
     @Bean
     public ErrorAttributes errorAttributes() {
         return new JsonErrorAttributes();

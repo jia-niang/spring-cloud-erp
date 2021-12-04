@@ -9,6 +9,8 @@ import com.kabunx.erp.vo.UserVO;
 
 public interface UserService {
 
+    UserVO findByAccount(String account);
+
     UserVO findByPhone(String phone);
 
     UserVO create(UserFromDTO userFromDto);

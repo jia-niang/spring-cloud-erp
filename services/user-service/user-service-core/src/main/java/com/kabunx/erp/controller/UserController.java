@@ -31,18 +31,18 @@ public class UserController implements UserFeignClient {
     }
 
     @Override
+    public JsonResponse<UserVO> account(String account) {
+        return JsonResponse.success(userService.findByAccount(account));
+    }
+
+    @Override
     public JsonResponse<UserVO> create(@RequestBody @Valid UserFromDTO userFromDTO) {
         return JsonResponse.success(userService.create(userFromDTO));
     }
 
     @GetMapping("/users")
-    public IPage<UserDO> paginate(@RequestBody UserQueryDTO<UserDO> queryDTO) {
+    public IPage<UserDO> paginate(@RequestParam UserQueryDTO<UserDO> queryDTO) {
         return userService.paginate(queryDTO);
-    }
-
-    @DeleteMapping("/users/{id}")
-    public JsonResponse<Integer> create(@PathVariable("id") Long id) {
-        return JsonResponse.success(userService.destroy(id));
     }
 
     /**
@@ -57,5 +57,10 @@ public class UserController implements UserFeignClient {
     @GetMapping("/users/xml")
     public IPage<UserVO> xmlPaginate(UserDTO userDTO) {
         return userService.xmlPaginate(userDTO);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public JsonResponse<Integer> create(@PathVariable("id") Long id) {
+        return JsonResponse.success(userService.destroy(id));
     }
 }
