@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: erp-user-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml

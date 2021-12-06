@@ -16,17 +16,13 @@ public class UnifyWebExceptionHandler implements WebExceptionHandler {
         if (ex instanceof GatewayException) {
             return Mono.error(ex);
         }
-        ExceptionEnum exceptionEnum;
+        ExceptionEnum exceptionEnum = ExceptionEnum.GATEWAY_FAILED;
         // 404 特殊处理
         if (ex instanceof ResponseStatusException) {
             HttpStatus httpStatus = ((ResponseStatusException) ex).getStatus();
             if (httpStatus == HttpStatus.NOT_FOUND) {
                 exceptionEnum = ExceptionEnum.GATEWAY_NOT_FOUND;
-            } else {
-                exceptionEnum = ExceptionEnum.GATEWAY_FAILED;
             }
-        } else {
-            exceptionEnum = ExceptionEnum.GATEWAY_FAILED;
         }
         return Mono.error(new GatewayException(exceptionEnum));
     }

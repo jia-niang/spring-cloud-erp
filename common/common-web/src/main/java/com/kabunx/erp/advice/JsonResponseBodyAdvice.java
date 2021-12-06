@@ -2,7 +2,7 @@ package com.kabunx.erp.advice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kabunx.erp.annotation.IgnoreJsonResponseBodyAdvice;
+import com.kabunx.erp.constraints.IgnoreJsonResponseBodyAdvice;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.ExceptionEnum;
 import org.springframework.core.MethodParameter;

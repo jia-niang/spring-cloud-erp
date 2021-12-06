@@ -8,7 +8,6 @@ spring:
         server-addr: http://localhost:8848
       config:
         server-addr: http://localhost:8848
-        file-extension: yaml
     sentinel:
       transport:
         dashboard: localhost:8849

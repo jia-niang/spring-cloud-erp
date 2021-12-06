@@ -1,4 +1,4 @@
-package com.kabunx.erp.annotation;
+package com.kabunx.erp.constraints;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
