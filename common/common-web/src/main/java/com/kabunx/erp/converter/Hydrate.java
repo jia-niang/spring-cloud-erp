@@ -10,6 +10,17 @@ import java.util.Optional;
  * 简单的转化工具
  */
 public class Hydrate {
+
+    public static <T> T map(String content, Class<T> target) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            return objectMapper.readValue(content, target);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
+
     public static <T> T map(Object source, Class<T> target) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

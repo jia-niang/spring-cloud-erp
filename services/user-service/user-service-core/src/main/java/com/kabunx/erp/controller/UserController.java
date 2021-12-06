@@ -41,8 +41,8 @@ public class UserController implements UserFeignClient {
     }
 
     @GetMapping("/users")
-    public IPage<UserDO> paginate(@RequestParam UserQueryDTO<UserDO> queryDTO) {
-        return userService.paginate(queryDTO);
+    public IPage<UserDO> paginate(@RequestParam(required = false) UserQueryDTO<UserDO> userQueryDTO) {
+        return userService.paginate(userQueryDTO);
     }
 
     /**

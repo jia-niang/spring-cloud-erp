@@ -1,7 +1,9 @@
 package com.kabunx.erp.service;
 
-import com.kabunx.erp.vo.MemberVO;
+import reactor.core.publisher.Mono;
 
 public interface UserService {
-    MemberVO findAndValidateMember(String authToken);
+    public Mono<String> findMember(String token);
+
+    public boolean validateToken(String plainToken, String token);
 }

@@ -9,7 +9,7 @@ spring:
       discovery:
         locator:
           enabled: true
-          lower-case-service-id: true # 使用小写service-id
+          lower-case-service-id: true
     nacos:
       discovery:
         server-addr: http://localhost:8848
@@ -23,15 +23,7 @@ spring:
   sleuth:
     sampler:
       probability: 1
-feign:
-  sentinel:
-    enabled: true
-  client:
-    config:
-      default:
-        connect-timeout: 5000
-        read-timeout: 5000
-        logger-level: basic
+
 management:
   endpoints:
     web:

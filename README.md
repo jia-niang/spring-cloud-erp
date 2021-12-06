@@ -48,3 +48,6 @@ mvn dockerfile:build
 ```shell
 mvn dockerfile:push
 ```
+
+
+## 遇到的坑

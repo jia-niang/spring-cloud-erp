@@ -24,8 +24,9 @@ import org.springframework.web.server.WebExceptionHandler;
 import java.util.stream.Collectors;
 
 /**
- * 自定义异常信息处理
- * 具体请参考 ErrorWebFluxAutoConfiguration
+ * 过滤器&&自定义异常信息处理
+ * 过滤器请参考
+ * 异常请参考 ErrorWebFluxAutoConfiguration
  */
 @Configuration
 public class GatewayConfig {

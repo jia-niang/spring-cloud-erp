@@ -7,7 +7,12 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(value = "erp-user-service", contextId = "adminFeignClient", fallback = AdminFeignClientFallback.class)
+@FeignClient(
+        value = "erp-user-service",
+        contextId = "admin",
+        fallback = AdminFeignClientFallback.class,
+        path = "/user"
+)
 public interface AdminFeignClient {
 
     @GetMapping("/admins/{id}")

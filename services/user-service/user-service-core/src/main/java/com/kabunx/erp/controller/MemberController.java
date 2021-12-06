@@ -16,6 +16,6 @@ public class MemberController implements MemberFeignClient {
 
     @Override
     public JsonResponse<MemberVO> findByUserId(Long id) {
-        return JsonResponse.success(memberService.findByIdWithUser(id));
+        return JsonResponse.success();
     }
 }
