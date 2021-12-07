@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         return response.getData();
     }
 
-    public UserVO loadUserById(Integer id) {
+    public UserVO loadUserById(Long id) {
         JsonResponse<UserVO> response = userFeignClient.show(id);
         if (response.unavailable()) {
             return null;

@@ -17,7 +17,7 @@ public class AuthController {
 
     @GetMapping("/info")
     public UserVO info() {
-        return userDetailsService.loadUserById(12);
+        return userDetailsService.loadUserById(1L);
     }
 
     @PostMapping("/logout")

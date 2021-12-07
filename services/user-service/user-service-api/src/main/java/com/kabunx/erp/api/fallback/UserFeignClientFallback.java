@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFeignClientFallback implements UserFeignClient {
     @Override
-    public JsonResponse<UserVO> show(Integer id) {
+    public JsonResponse<UserVO> show(Long id) {
         return withFallbackError("ID检索");
     }
 

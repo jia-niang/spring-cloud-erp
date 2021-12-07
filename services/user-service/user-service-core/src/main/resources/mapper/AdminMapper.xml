@@ -15,16 +15,16 @@
            inner join user
                       on user_admin.user_id = user.id
     where user_admin.user_id = #{userId}
-      and user_admin.deleted_at is null
-      and user.deleted_at is null
+      and user_admin.deleted_time = 0
+      and user.deleted_time = 0
   </select>
   <select id="selectWithUser" resultMap="AdminWithUserResultMap">
     select user_id, access_token, active_time, id, account, name, sex
     from user_admin
            inner join user
                       on user_admin.user_id = user.id
-    where user_admin.deleted_at is null
-      and user.deleted_at is null
+    where user_admin.deleted_time = 0
+      and user.deleted_time = 0
   </select>
 
 </mapper>

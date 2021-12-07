@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public interface UserFeignClient {
 
     @GetMapping("/users/{id}")
-    JsonResponse<UserVO> show(@PathVariable("id") Integer id);
+    JsonResponse<UserVO> show(@PathVariable("id") Long id);
 
     @GetMapping("/users/phone/{phone}")
     JsonResponse<UserVO> phone(@PathVariable("phone") String phone);

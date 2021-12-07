@@ -31,6 +31,14 @@ public class Hydrate {
         }
     }
 
+    public static <T> Optional<T> map2Optional(String content, Class<T> target) {
+        T result = map(content, target);
+        if (result == null) {
+            return Optional.empty();
+        }
+        return Optional.of(result);
+    }
+
     public static <T> Optional<T> map2Optional(Object source, Class<T> target) {
         T result = map(source, target);
         if (result == null) {

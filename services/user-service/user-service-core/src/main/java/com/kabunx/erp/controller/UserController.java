@@ -20,9 +20,14 @@ public class UserController implements UserFeignClient {
     @Resource
     UserService userService;
 
+    @GetMapping("/users")
+    public IPage<UserDO> paginate(UserQueryDTO<UserDO> userQueryDTO) {
+        return userService.paginate(userQueryDTO);
+    }
+
     @Override
-    public JsonResponse<UserVO> show(@PathVariable("id") Integer id) {
-        return null;
+    public JsonResponse<UserVO> show(@PathVariable("id") Long id) {
+        return JsonResponse.success(userService.findById(id));
     }
 
     @Override
@@ -38,11 +43,6 @@ public class UserController implements UserFeignClient {
     @Override
     public JsonResponse<UserVO> create(@RequestBody @Valid UserFromDTO userFromDTO) {
         return JsonResponse.success(userService.create(userFromDTO));
-    }
-
-    @GetMapping("/users")
-    public IPage<UserDO> paginate(@RequestParam(required = false) UserQueryDTO<UserDO> userQueryDTO) {
-        return userService.paginate(userQueryDTO);
     }
 
     /**

@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
+    public UserVO findById(Long id) {
+        return userMapper.findById(id);
+    }
+
+    @Override
     public UserVO findByAccount(String account) {
         UserWrapper<UserDO> wrapper = new UserWrapper<>();
         wrapper.eqAccount(account);

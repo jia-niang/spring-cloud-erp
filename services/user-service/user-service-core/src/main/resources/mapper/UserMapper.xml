@@ -8,7 +8,7 @@
     select *
     from user
     <where>
-      deleted_at is null
+      deleted_time = 0
       <if test="ps.name != null and ps.name != ''">
         and (name like #{ps.name} or account like #{ps.name})
       </if>
@@ -23,6 +23,6 @@
     select id, account, name, sex
     from user
     where id = #{id}
-      and deleted_at is null
+      and deleted_time = 0
   </select>
 </mapper>
