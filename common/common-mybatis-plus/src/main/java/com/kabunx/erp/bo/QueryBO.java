@@ -2,7 +2,7 @@ package com.kabunx.erp.bo;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kabunx.erp.pojo.BaseDTO;
+import com.kabunx.erp.pojo.BaseBO;
 import com.kabunx.erp.util.StringUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import java.lang.reflect.Modifier;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
-public class QueryBO<T> extends BaseDTO {
+public class QueryBO<T> extends BaseBO {
     private long page = 1L;
     private long pageSize = 10L;
 
