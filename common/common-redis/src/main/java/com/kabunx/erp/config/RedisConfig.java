@@ -22,7 +22,7 @@ import java.time.Duration;
  * 基础redis设置
  */
 @Configuration
-public class CommonRedisConfig {
+public class RedisConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisSerializer<Object> serializer = redisSerializer();

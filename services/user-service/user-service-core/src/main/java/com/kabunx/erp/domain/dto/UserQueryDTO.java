@@ -1,11 +1,11 @@
 package com.kabunx.erp.domain.dto;
 
-import com.kabunx.erp.dto.QueryDTO;
+import com.kabunx.erp.pojo.BaseDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserQueryDTO<T> extends QueryDTO<T> {
+public class UserQueryDTO extends BaseDTO {
     String name;
 }

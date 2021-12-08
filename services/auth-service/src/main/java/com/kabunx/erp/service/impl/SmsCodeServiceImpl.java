@@ -1,7 +1,7 @@
 package com.kabunx.erp.service.impl;
 
 import com.kabunx.erp.cache.CacheType;
-import com.kabunx.erp.cache.RedisStringCache;
+import com.kabunx.erp.cache.StringRedisCache;
 import com.kabunx.erp.domain.dto.SmsCodeDTO;
 import com.kabunx.erp.exception.AuthException;
 import com.kabunx.erp.service.SmsCodeService;
@@ -27,18 +27,18 @@ public class SmsCodeServiceImpl implements SmsCodeService {
         }
         // 3、加入缓存
         String key = UUID.randomUUID().toString();
-        RedisStringCache.set(key, code, CacheType.SMS_CODE);
+        StringRedisCache.set(key, code, CacheType.SMS_CODE);
         log.info("phone {}, key {}, code {}", smsCodeDTO.getPhone(), key, code);
         return key;
     }
 
     @Override
     public boolean validate(String key, String value, CacheType cacheType) {
-        String code = RedisStringCache.get(key, cacheType);
+        String code = StringRedisCache.get(key, cacheType);
         boolean result = value.equals(code);
         // 验证成功需要清楚缓存
         if (result) {
-//            RedisStringCache.del(key, cacheType);
+            StringRedisCache.del(key, cacheType);
         }
         return result;
     }

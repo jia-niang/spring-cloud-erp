@@ -1,8 +1,10 @@
 package com.kabunx.erp.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kabunx.erp.domain.JsonResponse;
 
 import java.util.Optional;
 
@@ -53,6 +55,37 @@ public class Hydrate {
             return objectMapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             return null;
+        }
+    }
+
+
+    public static <T> T mapByTypeReference(Object source, TypeReference<T> typeReference) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            return objectMapper.readValue(objectMapper.writeValueAsString(source), typeReference);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
+
+    public static <T> JsonResponse<T> map2JsonResponse(String content, TypeReference<JsonResponse<T>> typeReference) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            return objectMapper.readValue(content, typeReference);
+        } catch (JsonProcessingException e) {
+            return JsonResponse.error();
+        }
+    }
+
+    public static <T> JsonResponse<T> map2JsonResponse(Object source, TypeReference<JsonResponse<T>> typeReference) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        try {
+            return objectMapper.readValue(objectMapper.writeValueAsString(source), typeReference);
+        } catch (JsonProcessingException e) {
+            return JsonResponse.error();
         }
     }
 }

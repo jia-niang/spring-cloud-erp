@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit;
 
 @Data
 @Component
-public class RedisStringCache {
+public class StringRedisCache {
     // 静态成员变量
-    private static RedisStringCache redisStringCache;
+    private static StringRedisCache redisStringCache;
 
     // 不能使用new来实例化
-    private RedisStringCache() {
+    private StringRedisCache() {
     }
 
     @Resource
@@ -23,7 +23,7 @@ public class RedisStringCache {
 
     @PostConstruct
     private void init() {
-        redisStringCache = new RedisStringCache();
+        redisStringCache = new StringRedisCache();
         redisStringCache.setTemplate(template);
     }
 

@@ -1,7 +1,5 @@
 package com.kabunx.erp.service.impl;
 
-import com.kabunx.erp.constant.SecurityConstant;
-import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.entity.Member;
 import com.kabunx.erp.entity.User;
 import com.kabunx.erp.service.AuthenticationService;
@@ -9,7 +7,6 @@ import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.util.JwtUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
@@ -25,8 +22,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Resource
     JwtUtils jwtUtils;
 
-    public Mono<String> checkByCustomToken(String token) {
-        return userService.findMember(token);
+    public Mono<String> findUserById(Long id) {
+        return userService.findById(id);
+    }
+
+    @Override
+    public Optional<User> validateToken2User(Member member, String token) {
+        if (!userService.validateToken(member.getAccessToken(), token)) {
+            return Optional.empty();
+        }
+        return toUserOptional(member);
     }
 
     public Optional<User> parseJwt2User(String token) {
@@ -34,13 +39,24 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (claims.isEmpty() || isTokenExpired(claims.getExpiration())) {
             return Optional.empty();
         }
-        return Optional.of(User.builder()
-                .id((String) claims.get("id"))
-                .type((String) claims.get("type"))
-                .build());
+        return toUserOptional(claims);
     }
 
     private boolean isTokenExpired(Date date) {
         return date.before(new Date());
+    }
+
+    private Optional<User> toUserOptional(Member member) {
+        return Optional.of(User.builder()
+                .id(member.getUserId().toString())
+                .type("member")
+                .build());
+    }
+
+    private Optional<User> toUserOptional(Claims claims) {
+        return Optional.of(User.builder()
+                .id((String) claims.get("id"))
+                .type((String) claims.get("type"))
+                .build());
     }
 }

@@ -1,17 +1,15 @@
 package com.kabunx.erp.filter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kabunx.erp.constant.GlobalConstant;
 import com.kabunx.erp.constant.SecurityConstant;
+import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.entity.Member;
 import com.kabunx.erp.entity.User;
 import com.kabunx.erp.exception.ExceptionEnum;
 import com.kabunx.erp.exception.GatewayException;
 import com.kabunx.erp.service.AuthenticationService;
-import com.kabunx.erp.util.HashUtils;
 import com.kabunx.erp.validator.RouterValidator;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -21,13 +19,15 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 认证过滤器
  */
 public class AuthenticationFilter implements GlobalFilter, Ordered {
+    private static final JsonResponseTypeReference RESPONSE_TYPE = new JsonResponseTypeReference();
+
     // custom route validator
     private final RouterValidator routerValidator;
 
@@ -45,39 +45,48 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
         Optional<String> token = getAuthorizationToken(request);
+        AtomicBoolean authenticated = new AtomicBoolean(false);
         if (token.isPresent()) {
             // 自定义或jwt
             if (isCustomToken(token.get())) {
-                // 异步验证
-                Mono<String> response = authenticationService.checkByCustomToken(token.get());
-                if (response == null) {
-                    return filterByAuth(exchange, chain, false);
-                } else {
-                    return response.flatMap(s -> {
-                        JsonResponse<Member> jsonResponse = map2JsonResponse(s);
-                        if (jsonResponse.unavailable()) {
-                            return Mono.error(
-                                    new GatewayException(ExceptionEnum.UNAUTHORIZED)
-                            );
-                        }
-                        return chain.filter(exchange);
-                    });
+                // 解析并异步验证
+                String[] elements = parseCustomToken(token.get());
+                if (elements != null) {
+                    Mono<String> response = authenticationService.findUserById(Long.parseLong(elements[0]));
+                    if (response != null) {
+                        return response.flatMap(s -> {
+                            JsonResponse<Member> jsonResponse = Hydrate.map2JsonResponse(s, RESPONSE_TYPE);
+                            if (jsonResponse.available()) {
+                                Optional<User> user = authenticationService.validateToken2User(jsonResponse.getData(), elements[1]);
+                                user.ifPresent(value -> {
+                                    authenticated.set(true);
+                                    fillRequestHeaders(exchange, value);
+                                });
+                            }
+                            if (!authenticated.get() && routerValidator.isProtectedRequest(request)) {
+                                return Mono.error(new GatewayException(ExceptionEnum.UNAUTHORIZED));
+                            }
+                            return chain.filter(exchange);
+                        });
+                    }
                 }
             } else {
                 Optional<User> user = authenticationService.parseJwt2User(token.get());
-                user.ifPresent(value -> fillRequestHeaders(exchange, value));
-                return filterByAuth(exchange, chain, true);
+                user.ifPresent(value -> {
+                    authenticated.set(true);
+                    fillRequestHeaders(exchange, value);
+                });
             }
-        } else {
-            return filterByAuth(exchange, chain, false);
         }
-    }
-
-    private Mono<Void> filterByAuth(ServerWebExchange exchange, GatewayFilterChain chain, Boolean authenticated) {
-        if (!authenticated && routerValidator.isProtectedRequest(exchange.getRequest())) {
+        if (!authenticated.get() && routerValidator.isProtectedRequest(request)) {
             throw new GatewayException(ExceptionEnum.UNAUTHORIZED);
         }
         return chain.filter(exchange);
+    }
+
+    @Override
+    public int getOrder() {
+        return Ordered.HIGHEST_PRECEDENCE + 1;
     }
 
     private Optional<String> getAuthorizationToken(ServerHttpRequest request) {
@@ -101,12 +110,12 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         return token.contains(SecurityConstant.AUTHORIZATION_TOKEN_SPLIT);
     }
 
-    private boolean validateCustomToken(String plainToken, String token) {
-        try {
-            return token.equals(HashUtils.encryptSha256(plainToken));
-        } catch (NoSuchAlgorithmException e) {
-            return false;
+    private String[] parseCustomToken(String token) {
+        String[] elements = token.split(GlobalConstant.BASE_STRING_REGEX, 2);
+        if (elements.length != 2) {
+            return null;
         }
+        return elements;
     }
 
     // 将解析的用户填充到Header中
@@ -118,19 +127,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                 .build();
     }
 
-    public JsonResponse<Member> map2JsonResponse(String content) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        try {
-            return objectMapper.readValue(content, new TypeReference<JsonResponse<Member>>() {
-            });
-        } catch (JsonProcessingException e) {
-            return JsonResponse.error();
-        }
-    }
+    private static class JsonResponseTypeReference extends TypeReference<JsonResponse<Member>> {
 
-    @Override
-    public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE + 1;
     }
 }

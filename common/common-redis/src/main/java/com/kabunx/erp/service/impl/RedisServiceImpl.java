@@ -66,6 +66,7 @@ public class RedisServiceImpl implements RedisService {
         return redisTemplate.opsForValue().increment(key, -delta);
     }
 
+    // hash 操作
     @Override
     public Object hGet(String key, String hashKey) {
         return redisTemplate.opsForHash().get(key, hashKey);
@@ -118,6 +119,7 @@ public class RedisServiceImpl implements RedisService {
         return redisTemplate.opsForHash().increment(key, hashKey, -delta);
     }
 
+    // set 操作
     @Override
     public Set<Object> sMembers(String key) {
         return redisTemplate.opsForSet().members(key);
@@ -150,6 +152,7 @@ public class RedisServiceImpl implements RedisService {
         return redisTemplate.opsForSet().remove(key, values);
     }
 
+    // List操作
     @Override
     public List<Object> lRange(String key, long start, long end) {
         return redisTemplate.opsForList().range(key, start, end);

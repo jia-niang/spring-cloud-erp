@@ -2,7 +2,7 @@ package com.kabunx.erp.service.impl;
 
 import com.google.code.kaptcha.Producer;
 import com.kabunx.erp.cache.CacheType;
-import com.kabunx.erp.cache.RedisStringCache;
+import com.kabunx.erp.cache.StringRedisCache;
 import com.kabunx.erp.domain.dto.CaptchaDTO;
 import com.kabunx.erp.domain.vo.CaptchaVO;
 import com.kabunx.erp.service.CaptchaService;
@@ -53,7 +53,7 @@ public class CaptchaServiceImpl implements CaptchaService {
             output.close();
             // 将text存入redis缓存<id, text>
             String key = UUID.randomUUID().toString();
-            RedisStringCache.set(key, code, CacheType.CAPTCHA);
+            StringRedisCache.set(key, code, CacheType.CAPTCHA);
             return CaptchaVO.builder().key(key).image(imagePrefix + imageString).build();
         } catch (IOException e) {
             return null;
@@ -62,11 +62,11 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     @Override
     public boolean validate(String key, String value, CacheType cacheType) {
-        String code = RedisStringCache.get(key, cacheType);
+        String code = StringRedisCache.get(key, cacheType);
         boolean result = value.equals(code);
         // 验证成功需要清楚缓存
         if (result) {
-            RedisStringCache.del(key, cacheType);
+            StringRedisCache.del(key, cacheType);
         }
         return result;
     }
