@@ -14,8 +14,7 @@ import java.util.Optional;
 public class Hydrate {
 
     public static <T> T map(String content, Class<T> target) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(content, target);
         } catch (JsonProcessingException e) {
@@ -24,8 +23,7 @@ public class Hydrate {
     }
 
     public static <T> T map(Object source, Class<T> target) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(objectMapper.writeValueAsString(source), target);
         } catch (JsonProcessingException e) {
@@ -60,8 +58,7 @@ public class Hydrate {
 
 
     public static <T> T mapByTypeReference(Object source, TypeReference<T> typeReference) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(objectMapper.writeValueAsString(source), typeReference);
         } catch (JsonProcessingException e) {
@@ -70,8 +67,7 @@ public class Hydrate {
     }
 
     public static <T> JsonResponse<T> map2JsonResponse(String content, TypeReference<JsonResponse<T>> typeReference) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(content, typeReference);
         } catch (JsonProcessingException e) {
@@ -80,12 +76,17 @@ public class Hydrate {
     }
 
     public static <T> JsonResponse<T> map2JsonResponse(Object source, TypeReference<JsonResponse<T>> typeReference) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(objectMapper.writeValueAsString(source), typeReference);
         } catch (JsonProcessingException e) {
             return JsonResponse.error();
         }
+    }
+
+    private static ObjectMapper makeObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return objectMapper;
     }
 }
