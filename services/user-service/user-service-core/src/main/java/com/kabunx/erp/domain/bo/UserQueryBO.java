@@ -8,8 +8,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class UserQueryBO<T> extends QueryBO<T> {
     String name;
+    Integer sex = 1;
 
-    private void whereName(String name) {
-        getWrapper().eq("name", name);
+    private void whereName(String value) {
+        getQueryWrapper().eq("name", value);
+    }
+
+    private void whereSex(Integer value) {
+        getQueryWrapper().eq("sex", value);
     }
 }

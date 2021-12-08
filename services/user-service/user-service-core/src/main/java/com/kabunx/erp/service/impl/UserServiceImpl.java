@@ -75,7 +75,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public IPage<UserDO> paginate(UserQueryDTO userQueryDTO) {
-        // 将dto转为bo
         UserQueryBO<UserDO> queryBO = toUserQueryBO(userQueryDTO);
         return userMapper.selectPage(queryBO.getPage(), queryBO.getWrapper());
     }
