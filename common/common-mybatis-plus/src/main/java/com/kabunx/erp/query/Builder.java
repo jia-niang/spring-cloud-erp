@@ -5,12 +5,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kabunx.erp.exception.DBException;
 import com.kabunx.erp.exception.DBExceptionEnum;
 import com.kabunx.erp.extension.mapper.PlusMapper;
+import com.kabunx.erp.relation.HasMany;
+import com.kabunx.erp.relation.HasOne;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Builder<T> {
 
@@ -19,7 +19,9 @@ public class Builder<T> {
     private final QueryWrapper<T> queryWrapper;
 
     // 关系
-    private final HashMap<String, List<BaseMapper<?>>> relations = new HashMap<>();
+    private final ArrayList<HasOne> oneRelations = new ArrayList<>();
+
+    private final ArrayList<HasMany> manyRelations = new ArrayList<>();
 
     public Builder(PlusMapper<T> plusMapper) {
         this.plusMapper = plusMapper;
@@ -52,7 +54,9 @@ public class Builder<T> {
     }
 
     public List<T> get() {
-        return plusMapper.selectList(queryWrapper);
+        List<T> records = plusMapper.selectList(queryWrapper);
+        eagerLoadRelationsData(records);
+        return records;
     }
 
     public List<T> get(String... columns) {
@@ -108,34 +112,28 @@ public class Builder<T> {
     }
 
     public Builder<T> withOne(BaseMapper<?> mapper, String foreignKey, String localKey) {
-        List<BaseMapper<?>> mappers = relations.get("one");
-        if (mappers.isEmpty()) {
-            mappers = new ArrayList<>();
-        }
-        mappers.add(mapper);
-        relations.put("one", mappers);
+        oneRelations.add(
+                new HasOne(mapper, plusMapper, foreignKey, localKey)
+        );
         return this;
     }
 
-    public Builder<T> withMany(BaseMapper<?> mapper) {
+    public Builder<T> withMany(BaseMapper<?> mapper, String foreignKey, String localKey) {
+        manyRelations.add(
+                new HasMany(mapper, plusMapper, foreignKey, localKey)
+        );
         return this;
     }
 
-    private void eagerLoadRelations(List<T> records) {
+    private void eagerLoadRelationsData(List<T> records) {
         if (records.size() > 0) {
-            for (String key : relations.keySet()) {
-                List<BaseMapper<?>> mappers = relations.get(key);
-                for (BaseMapper<?> mapper : mappers) {
-                    this.eagerLoadRelation(records, mapper);
-                }
-
+            for (HasOne relation : oneRelations) {
+                relation.initRelation(records);
+            }
+            for (HasMany relation : manyRelations) {
+                relation.initRelation(records);
             }
         }
     }
-
-    private void eagerLoadRelation(List<T> records, BaseMapper<?> mapper) {
-
-    }
-
 
 }

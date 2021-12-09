@@ -1,12 +1,29 @@
 package com.kabunx.erp.relation;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kabunx.erp.query.Builder;
+import lombok.Getter;
 
-abstract class Relation<T> {
-    private final BaseMapper<T> mapper;
+import java.util.Collection;
+import java.util.List;
 
-    protected Relation(BaseMapper<T> mapper) {
+abstract class Relation<T, E> {
+
+    @Getter
+    private final BaseMapper<E> mapper;
+
+    @Getter
+    private final BaseMapper<T> parent;
+
+    public Relation(BaseMapper<E> mapper, BaseMapper<T> parent) {
         this.mapper = mapper;
+        this.parent = parent;
     }
+
+    abstract public void initRelation(List<T> records);
+
+    protected Collection<?> getCollectionByKey(List<T> records, String key) {
+        return null;
+    }
+
+
 }
