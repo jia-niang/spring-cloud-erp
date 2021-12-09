@@ -6,22 +6,22 @@ import lombok.Getter;
 import java.util.Collection;
 import java.util.List;
 
-abstract class Relation<T, E> {
+abstract class Relation<TC, TP> {
 
     @Getter
-    private final BaseMapper<E> mapper;
+    private final BaseMapper<TC> mapper;
 
     @Getter
-    private final BaseMapper<T> parent;
+    private final BaseMapper<TP> parent;
 
-    public Relation(BaseMapper<E> mapper, BaseMapper<T> parent) {
+    public Relation(BaseMapper<TC> mapper, BaseMapper<TP> parent) {
         this.mapper = mapper;
         this.parent = parent;
     }
 
-    abstract public void initRelation(List<T> records);
+    abstract public void initRelation(List<TP> records);
 
-    protected Collection<?> getCollectionByKey(List<T> records, String key) {
+    protected Collection<?> getCollectionByKey(List<TP> records, String key) {
         return null;
     }
 
