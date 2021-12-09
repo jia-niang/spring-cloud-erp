@@ -11,4 +11,8 @@ public class DBException extends BizException {
     public DBException(String message) {
         super(message);
     }
+
+    public DBExceptionEnum getDbExceptionEnum() {
+        return dbExceptionEnum;
+    }
 }

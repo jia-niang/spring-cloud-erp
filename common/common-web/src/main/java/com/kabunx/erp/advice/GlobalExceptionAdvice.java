@@ -4,6 +4,8 @@ import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.exception.BizException;
 import com.kabunx.erp.exception.ExceptionEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -21,6 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @RestControllerAdvice
+@Order(0)
 public class GlobalExceptionAdvice {
 
     @ExceptionHandler(value = BizException.class)
@@ -48,12 +51,6 @@ public class GlobalExceptionAdvice {
     public JsonResponse<Object> handleValidException(BindException e) {
         log.error(e.getMessage());
         return JsonResponse.validateFailed(collectFieldErrors(e.getBindingResult()));
-    }
-
-    @ExceptionHandler(value = Exception.class)
-    public JsonResponse<Object> handleException(Exception e) {
-        log.error(e.getMessage());
-        return JsonResponse.failed(ExceptionEnum.UNDEFINED);
     }
 
     /**
