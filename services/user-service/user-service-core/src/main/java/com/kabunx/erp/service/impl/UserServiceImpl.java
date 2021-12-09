@@ -1,16 +1,17 @@
 package com.kabunx.erp.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kabunx.erp.builder.QueryBuilder;
+import com.kabunx.erp.mapper.MemberMapper;
+import com.kabunx.erp.query.AutoBuilder;
 import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
-import com.kabunx.erp.exception.ExceptionEnum;
-import com.kabunx.erp.exception.UserException;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
+import com.kabunx.erp.query.Builder;
 import com.kabunx.erp.resource.PaginatedResource;
 import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
@@ -35,6 +36,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     UserMapper userMapper;
 
+    @Resource
+    MemberMapper memberMapper;
+
     @Override
     public UserVO findById(Long id) {
         UserQueryWrapper<UserDO> wrapper = new UserQueryWrapper<>();
@@ -45,13 +49,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByAccount(String account) {
-        UserQueryWrapper<UserDO> wrapper = new UserQueryWrapper<>();
-        wrapper.eqAccount(account);
-        UserDO user = userMapper.selectOne(wrapper);
-        if (user == null) {
-            throw new UserException(ExceptionEnum.NOT_FOUND);
-        }
-        return Hydrate.map(user, UserVO.class);
+        Builder<UserDO> builder = new Builder<>(userMapper);
+        builder.withOne(memberMapper, "user_id", "id");
+        UserDO user1 = builder.where("account", account).firstOrFail();
+
+        QueryWrapper<UserDO> wrapper = new QueryWrapper<>();
+        wrapper.eq("account", account);
+        UserDO user2 = userMapper.firstOrFail(wrapper);
+        return Hydrate.map(user2, UserVO.class);
     }
 
     @Override
@@ -77,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PaginatedResource<UserVO> paginate(UserQueryDTO userQueryDTO) {
-        QueryBuilder<UserDO> builder = new QueryBuilder<>(userQueryDTO, new UserQueryWrapper<>());
+        AutoBuilder<UserDO> builder = new AutoBuilder<>(userQueryDTO, new UserQueryWrapper<>());
         IPage<UserDO> page = userMapper.selectPage(builder.getQueryPage(), builder.getQueryWrapper());
         return PaginatedResource.toResource(page, UserVO.class);
     }

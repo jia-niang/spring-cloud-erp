@@ -1,4 +1,4 @@
-package com.kabunx.erp.builder;
+package com.kabunx.erp.query;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -15,14 +15,14 @@ import java.util.List;
  * 构造器，将前端参数自定映射到自定义wrapper查询
  */
 @Slf4j
-public class QueryBuilder<T> {
+public class AutoBuilder<T> {
     private static final List<String> ignoreParams = Arrays.asList("page", "pageSize");
 
     private final QueryDTO query;
 
     private final QueryWrapper<T> queryWrapper;
 
-    public QueryBuilder(
+    public AutoBuilder(
             QueryDTO query,
             QueryWrapper<T> queryWrapper
     ) {
