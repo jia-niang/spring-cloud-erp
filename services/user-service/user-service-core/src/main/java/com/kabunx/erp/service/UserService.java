@@ -2,7 +2,6 @@ package com.kabunx.erp.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kabunx.erp.domain.dto.UserDTO;
-import com.kabunx.erp.domain.bo.UserQueryBO;
 import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.model.UserDO;

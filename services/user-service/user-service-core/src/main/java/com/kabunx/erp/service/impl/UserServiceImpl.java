@@ -2,10 +2,9 @@ package com.kabunx.erp.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.kabunx.erp.builder.QueryBuilder;
 import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.domain.dto.UserDTO;
-import com.kabunx.erp.domain.bo.UserQueryBO;
 import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.exception.ExceptionEnum;
@@ -16,7 +15,7 @@ import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
-import com.kabunx.erp.wrapper.UserWrapper;
+import com.kabunx.erp.wrapper.UserQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByAccount(String account) {
-        UserWrapper<UserDO> wrapper = new UserWrapper<>();
+        UserQueryWrapper<UserDO> wrapper = new UserQueryWrapper<>();
         wrapper.eqAccount(account);
         UserDO user = userMapper.selectOne(wrapper);
         if (user == null) {
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByPhone(String phone) {
-        UserWrapper<UserDO> wrapper = new UserWrapper<>();
+        UserQueryWrapper<UserDO> wrapper = new UserQueryWrapper<>();
         wrapper.eqPhone(phone);
         UserDO user = userMapper.selectOne(wrapper);
         return Hydrate.map(user, UserVO.class);
@@ -75,8 +74,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public IPage<UserDO> paginate(UserQueryDTO userQueryDTO) {
-        UserQueryBO<UserDO> queryBO = toUserQueryBO(userQueryDTO);
-        return userMapper.selectPage(queryBO.getPage(), queryBO.getWrapper());
+        QueryBuilder<UserDO> builder = new QueryBuilder<>(userQueryDTO, new UserQueryWrapper<>());
+        return userMapper.selectPage(builder.getQueryPage(), builder.getQueryWrapper());
     }
 
     @Override
@@ -88,17 +87,5 @@ public class UserServiceImpl implements UserService {
     public IPage<UserVO> xmlPaginate(UserDTO userDTO) {
         Page<UserVO> page = new Page<>(1, 10);
         return userMapper.xmlSelectPage(page, userDTO);
-    }
-
-    /**
-     * 参数转化为BO
-     */
-    private UserQueryBO<UserDO> toUserQueryBO(UserQueryDTO userQueryDTO) {
-        UserQueryBO<UserDO> queryBO = Hydrate.mapByTypeReference(userQueryDTO, new UserQueryTypeReference());
-        return queryBO == null ? new UserQueryBO<>() : queryBO;
-    }
-
-    private static class UserQueryTypeReference extends TypeReference<UserQueryBO<UserDO>> {
-
     }
 }
