@@ -5,3 +5,6 @@ spring:
     nacos:
       config:
         file-extension: yaml
+        shared-configs[0]:
+          data-id: common.yaml
+          refresh: true

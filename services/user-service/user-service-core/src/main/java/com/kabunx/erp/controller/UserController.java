@@ -6,7 +6,7 @@ import com.kabunx.erp.domain.JsonResponse;
 import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
-import com.kabunx.erp.model.UserDO;
+import com.kabunx.erp.resource.PaginatedResource;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class UserController implements UserFeignClient {
     UserService userService;
 
     @GetMapping("/users")
-    public IPage<UserDO> paginate(UserQueryDTO userQueryDTO) {
+    public PaginatedResource<UserVO> paginate(@Valid UserQueryDTO userQueryDTO) {
         return userService.paginate(userQueryDTO);
     }
 

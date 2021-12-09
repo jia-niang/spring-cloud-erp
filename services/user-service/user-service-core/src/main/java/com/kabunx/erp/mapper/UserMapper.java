@@ -1,6 +1,5 @@
 package com.kabunx.erp.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.model.UserDO;
@@ -10,7 +9,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface UserMapper extends BaseMapper<UserDO> {
+public interface UserMapper extends PlusMapper<UserDO> {
+
     UserVO findById(Long id);
 
     /**

@@ -11,6 +11,7 @@ import com.kabunx.erp.exception.ExceptionEnum;
 import com.kabunx.erp.exception.UserException;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
+import com.kabunx.erp.resource.PaginatedResource;
 import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
@@ -60,7 +61,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO create(UserFromDTO userFromDTO) {
-        // 前端 dto 转为数据层 do
         UserDO user = Hydrate.map(userFromDTO, UserDO.class);
         int count = userMapper.insert(user);
         log.info("{}", count);
@@ -73,9 +73,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public IPage<UserDO> paginate(UserQueryDTO userQueryDTO) {
+    public PaginatedResource<UserVO> paginate(UserQueryDTO userQueryDTO) {
         QueryBuilder<UserDO> builder = new QueryBuilder<>(userQueryDTO, new UserQueryWrapper<>());
-        return userMapper.selectPage(builder.getQueryPage(), builder.getQueryWrapper());
+        IPage<UserDO> page = userMapper.selectPage(builder.getQueryPage(), builder.getQueryWrapper());
+        return PaginatedResource.toResource(page, UserVO.class);
     }
 
     @Override

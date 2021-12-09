@@ -1,15 +1,21 @@
 package com.kabunx.erp.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kabunx.erp.pojo.BaseVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserVO extends BaseVO {
-    private Long id;
-    private String account;
-    private String name;
-    private Integer sex;
-    private String type;
+    Long id;
+    String account;
+    String name;
+    Integer sex;
+    String type;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    Date createdAt;
 }

@@ -87,7 +87,7 @@ public class JsonResponse<T> {
         return ExceptionEnum.FALLBACK.getCode().equals(code);
     }
 
-    public boolean isNotSuccess() {
+    public boolean notSuccess() {
         return !isSuccess();
     }
 
@@ -104,6 +104,6 @@ public class JsonResponse<T> {
     }
 
     public boolean unavailable() {
-        return isNotSuccess() || dataIsNull();
+        return notSuccess() || dataIsNull();
     }
 }

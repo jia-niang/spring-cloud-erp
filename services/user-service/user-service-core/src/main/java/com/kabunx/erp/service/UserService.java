@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kabunx.erp.domain.dto.UserDTO;
 import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
-import com.kabunx.erp.model.UserDO;
+import com.kabunx.erp.resource.PaginatedResource;
 import com.kabunx.erp.vo.UserVO;
 
 public interface UserService {
@@ -19,7 +19,7 @@ public interface UserService {
 
     Integer destroy(Long id);
 
-    IPage<UserDO> paginate(UserQueryDTO userQueryDTO);
+    PaginatedResource<UserVO> paginate(UserQueryDTO userQueryDTO);
 
     IPage<UserVO> simplePaginate(UserDTO userDTO);
 

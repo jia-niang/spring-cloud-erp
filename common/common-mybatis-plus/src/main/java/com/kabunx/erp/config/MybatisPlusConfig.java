@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
+import com.kabunx.erp.injector.PlusSqlInjector;
 import com.kabunx.erp.property.TenantProperties;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.StringValue;
@@ -60,5 +61,14 @@ public class MybatisPlusConfig {
             // 全局注册自定义TypeHandler
             TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
         };
+    }
+
+    /**
+     * 自定义 SqlInjector
+     * 自定义的全局方法
+     */
+    @Bean
+    public PlusSqlInjector plusSqlInjector() {
+        return new PlusSqlInjector();
     }
 }

@@ -56,7 +56,6 @@ public class Hydrate {
         }
     }
 
-
     public static <T> T mapByTypeReference(Object source, TypeReference<T> typeReference) {
         ObjectMapper objectMapper = makeObjectMapper();
         try {
