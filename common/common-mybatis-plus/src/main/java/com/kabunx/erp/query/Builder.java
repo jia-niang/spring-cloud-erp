@@ -8,6 +8,7 @@ import com.kabunx.erp.extension.mapper.PlusMapper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class Builder<T> {
     private final QueryWrapper<T> queryWrapper;
 
     // 关系
-    private List<Map<String, Object>> relations = new ArrayList<>();
+    private final HashMap<String, List<BaseMapper<?>>> relations = new HashMap<>();
 
     public Builder(PlusMapper<T> plusMapper) {
         this.plusMapper = plusMapper;
@@ -107,6 +108,12 @@ public class Builder<T> {
     }
 
     public Builder<T> withOne(BaseMapper<?> mapper, String foreignKey, String localKey) {
+        List<BaseMapper<?>> mappers = relations.get("one");
+        if (mappers.isEmpty()) {
+            mappers = new ArrayList<>();
+        }
+        mappers.add(mapper);
+        relations.put("one", mappers);
         return this;
     }
 
@@ -114,16 +121,19 @@ public class Builder<T> {
         return this;
     }
 
-
     private void eagerLoadRelations(List<T> records) {
         if (records.size() > 0) {
-            for (Map<String, Object> relation : relations) {
+            for (String key : relations.keySet()) {
+                List<BaseMapper<?>> mappers = relations.get(key);
+                for (BaseMapper<?> mapper : mappers) {
+                    this.eagerLoadRelation(records, mapper);
+                }
 
             }
         }
     }
 
-    private void eagerLoadRelation() {
+    private void eagerLoadRelation(List<T> records, BaseMapper<?> mapper) {
 
     }
 
