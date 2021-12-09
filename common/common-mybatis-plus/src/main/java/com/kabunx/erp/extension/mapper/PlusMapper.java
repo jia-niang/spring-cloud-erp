@@ -1,4 +1,4 @@
-package com.kabunx.erp.mapper;
+package com.kabunx.erp.extension.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

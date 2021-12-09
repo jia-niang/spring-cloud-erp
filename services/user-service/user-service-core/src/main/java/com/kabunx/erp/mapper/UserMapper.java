@@ -2,6 +2,7 @@ package com.kabunx.erp.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kabunx.erp.domain.dto.UserDTO;
+import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;

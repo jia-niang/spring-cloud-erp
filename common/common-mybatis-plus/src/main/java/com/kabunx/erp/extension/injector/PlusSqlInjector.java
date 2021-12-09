@@ -1,9 +1,9 @@
-package com.kabunx.erp.injector;
+package com.kabunx.erp.extension.injector;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
-import com.kabunx.erp.injector.method.SoleMethod;
+import com.kabunx.erp.extension.injector.method.SoleMethod;
 
 import java.util.List;
 

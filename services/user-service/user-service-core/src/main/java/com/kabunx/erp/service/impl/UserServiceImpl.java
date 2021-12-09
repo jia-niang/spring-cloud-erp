@@ -37,6 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findById(Long id) {
+        UserQueryWrapper<UserDO> wrapper = new UserQueryWrapper<>();
+        wrapper.eq("sex", 1);
+        UserDO user = userMapper.firstOrFail(wrapper);
         return userMapper.findById(id);
     }
 
