@@ -1,5 +1,6 @@
 package com.kabunx.erp.relation;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -15,8 +16,10 @@ public class HasMany<TC, TP> extends Relation<TC, TP> {
         this.localKey = localKey;
     }
 
-    public void initRelation() {
-
+    public List<TC> getEagerData(List<TP> records) {
+        QueryWrapper<TC> wrapper = new QueryWrapper<>();
+        wrapper.in(foreignKey, getCollectionByKey(records, localKey));
+        return getMapper().selectList(wrapper);
     }
 
     @Override

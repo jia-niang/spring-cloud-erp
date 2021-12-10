@@ -25,5 +25,4 @@ public class PaginatedResource<T> extends Resource {
         paginatedResource.setCurrent(page.getCurrent());
         return paginatedResource;
     }
-
 }

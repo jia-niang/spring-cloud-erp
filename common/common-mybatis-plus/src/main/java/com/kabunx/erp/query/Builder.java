@@ -7,11 +7,13 @@ import com.kabunx.erp.exception.DBExceptionEnum;
 import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.relation.HasMany;
 import com.kabunx.erp.relation.HasOne;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class Builder<T> {
 
     private final PlusMapper<T> plusMapper;
@@ -19,9 +21,9 @@ public class Builder<T> {
     private final QueryWrapper<T> queryWrapper;
 
     // 关系
-    private final ArrayList<HasOne> oneRelations = new ArrayList<>();
+    private final ArrayList<HasOne<?, T>> oneRelations = new ArrayList<>();
 
-    private final ArrayList<HasMany> manyRelations = new ArrayList<>();
+    private final ArrayList<HasMany<?, T>> manyRelations = new ArrayList<>();
 
     public Builder(PlusMapper<T> plusMapper) {
         this.plusMapper = plusMapper;
@@ -112,6 +114,7 @@ public class Builder<T> {
     }
 
     public Builder<T> withOne(BaseMapper<?> mapper, String foreignKey, String localKey) {
+        Class<?> mapperClass = mapper.getClass();
         oneRelations.add(
                 new HasOne(mapper, plusMapper, foreignKey, localKey)
         );
