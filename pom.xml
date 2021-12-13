@@ -17,11 +17,11 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spirng-boot.version>2.6.1</spirng-boot.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
-        <spring-boot-admin-server.version>2.5.3</spring-boot-admin-server.version>
+        <spirng-boot.version>2.5.7</spirng-boot.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
         <alibaba-cloud.version>2021.1</alibaba-cloud.version>
         <alibaba-sentinel-transport.version>1.8.2</alibaba-sentinel-transport.version>
+        <spring-boot-admin-server.version>2.5.4</spring-boot-admin-server.version>
         <druid.version>1.2.8</druid.version>
         <mysql-connector.version>8.0.27</mysql-connector.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>

@@ -1,17 +1,21 @@
 package com.kabunx.erp.query;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kabunx.erp.exception.DBException;
 import com.kabunx.erp.exception.DBExceptionEnum;
 import com.kabunx.erp.extension.mapper.PlusMapper;
+import com.kabunx.erp.extension.query.PlusWrapper;
+import com.kabunx.erp.pagination.LengthPaginator;
+import com.kabunx.erp.pagination.Paginator;
 import com.kabunx.erp.relation.HasMany;
 import com.kabunx.erp.relation.HasOne;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Slf4j
 public class Builder<T> {
@@ -22,7 +26,7 @@ public class Builder<T> {
 
     private final PlusMapper<T> plusMapper;
 
-    private final QueryWrapper<T> queryWrapper;
+    private final PlusWrapper<T> wrapper;
 
     // 关系
     private final ArrayList<HasOne<?, T>> oneRelations = new ArrayList<>();
@@ -31,23 +35,138 @@ public class Builder<T> {
 
     public Builder(PlusMapper<T> plusMapper) {
         this.plusMapper = plusMapper;
-        this.queryWrapper = new QueryWrapper<>();
+        this.wrapper = new PlusWrapper<>();
+    }
+
+    public Builder<T> wrapper(Consumer<PlusWrapper<T>> consumer) {
+        consumer.accept(wrapper);
+        return this;
+    }
+
+    public Builder<T> select(String... columns) {
+        wrapper.select(columns);
+        return this;
+    }
+
+    public Builder<T> where(Consumer<PlusWrapper<T>> consumer) {
+        wrapper.and(consumer);
+        return this;
+    }
+
+    public Builder<T> orWhere(Consumer<PlusWrapper<T>> consumer) {
+        wrapper.or(consumer);
+        return this;
     }
 
     public Builder<T> where(String column, Object value) {
         return where(column, "eq", value);
     }
 
+    public Builder<T> whereIn(String column, Collection<?> values) {
+        wrapper.in(column, values);
+        return this;
+    }
+
+    public Builder<T> whereIn(String column, Object... values) {
+        wrapper.in(column, values);
+        return this;
+    }
+
+    public Builder<T> whereNotIn(String column, Collection<?> values) {
+        wrapper.notIn(column, values);
+        return this;
+    }
+
+    public Builder<T> whereNotIn(String column, Object... values) {
+        wrapper.notIn(column, values);
+        return this;
+    }
+
+    public Builder<T> whereNull(List<String> columns) {
+        for (String column : columns) {
+            wrapper.isNull(column);
+        }
+        return this;
+    }
+
+    public Builder<T> whereNull(String... columns) {
+        for (String column : columns) {
+            wrapper.isNull(column);
+        }
+        return this;
+    }
+
+    public Builder<T> whereNull(String column) {
+        wrapper.isNull(column);
+        return this;
+    }
+
+    public Builder<T> whereNotNull(String column) {
+        wrapper.isNotNull(column);
+        return this;
+    }
+
+    public Builder<T> whereBetween(String column, Object val1, Object val2) {
+        wrapper.between(column, val1, val2);
+        return this;
+    }
+
+    public Builder<T> whereBetween(String column, List<Object> values) {
+        if (values.size() == 2) {
+            wrapper.between(column, values.get(0), values.get(1));
+        }
+        return this;
+    }
+
+    public Builder<T> orWhereBetween(String column, Object val1, Object val2) {
+        wrapper.or(wrapper -> wrapper.between(column, val1, val2));
+        return this;
+    }
+
+    public Builder<T> whereNotBetween(String column, Object val1, Object val2) {
+        wrapper.notBetween(column, val1, val2);
+        return this;
+    }
+
+    public Builder<T> orWhereNotBetween(String column, Object val1, Object val2) {
+        wrapper.or(wrapper -> wrapper.notBetween(column, val1, val2));
+        return this;
+    }
+
     public Builder<T> where(String column, String operator, Object value) {
         switch (operator) {
             case "eq":
-                queryWrapper.eq(column, value);
+                wrapper.eq(column, value);
                 break;
             case "like":
-                queryWrapper.like(column, value);
+                wrapper.like(column, value);
+                break;
+            case "leftLike":
+                wrapper.likeLeft(column, value);
+                break;
+            case "rightLike":
+                wrapper.likeRight(column, value);
                 break;
         }
         return this;
+    }
+
+    public Builder<T> orderByAsc(List<String> columns) {
+        wrapper.orderByAsc(columns);
+        return this;
+    }
+
+    public Builder<T> orderByAsc(String... columns) {
+        return orderByAsc(Arrays.asList(columns));
+    }
+
+    public Builder<T> orderByDesc(List<String> columns) {
+        wrapper.orderByDesc(columns);
+        return this;
+    }
+
+    public Builder<T> orderByDesc(String... columns) {
+        return orderByDesc(Arrays.asList(columns));
     }
 
     public Builder<T> offset(int value) {
@@ -55,11 +174,22 @@ public class Builder<T> {
         return this;
     }
 
+    public Builder<T> skip(int value) {
+        return offset(value);
+    }
+
     public Builder<T> limit(int value) {
         limitNum = value;
         return this;
     }
 
+    public Builder<T> forPage(int page, int perPage) {
+        return offset((page - 1) * perPage).limit(perPage);
+    }
+
+    /**
+     * TODO 预加载数据
+     */
     public List<T> get() {
         String lastLimit = "";
         if (limitNum != null) {
@@ -70,16 +200,20 @@ public class Builder<T> {
             }
         }
         if (!lastLimit.isEmpty()) {
-            queryWrapper.last(lastLimit);
+            wrapper.last(lastLimit);
         }
-        List<T> records = plusMapper.selectList(queryWrapper);
+        List<T> records = plusMapper.selectList(wrapper);
+        // 加载被定义的关系数据
         eagerLoadRelationsData(records);
         return records;
     }
 
     public List<T> get(String... columns) {
-        queryWrapper.select(columns);
-        return get();
+        return select(columns).get();
+    }
+
+    public Long count() {
+        return plusMapper.selectCount(wrapper);
     }
 
     public T find(Serializable id) {
@@ -111,10 +245,12 @@ public class Builder<T> {
     }
 
     public T latest(String $column) {
-        queryWrapper.orderByDesc($column);
-        return first();
+        return orderByDesc($column).first();
     }
 
+    /**
+     * 获取唯一数据
+     */
     public T sole() {
         List<T> records = limit(2).get();
         if (records.isEmpty()) {
@@ -126,7 +262,31 @@ public class Builder<T> {
         return records.get(0);
     }
 
-    public void paginate() {
+    /**
+     * 包含简单分页参数的分页信息
+     */
+    public LengthPaginator<T> paginate(int page, int perPage) {
+        // 1、获取总数
+        Long count = count();
+        // 2、查询结果集
+        List<T> result = new ArrayList<>();
+        if (count > 0) {
+            result = forPage(page, perPage).get();
+        }
+        // 3、构造分页
+        return new LengthPaginator<>(result, count, page);
+    }
+
+    /**
+     * 简单的分页
+     * 推荐在“加载更多中”使用
+     */
+    public Paginator<T> simplePaginate(int page, int perPage) {
+        // 向下多查询一条
+        List<T> result = forPage(page, perPage + 1).get();
+        // 获取真正查询的条数
+        List<T> records = result.subList(0, perPage);
+        return new Paginator<>(records, result.size() > perPage);
     }
 
     public Builder<T> withOne(PlusMapper<?> mapper, String foreignKey, String localKey) {
@@ -137,7 +297,7 @@ public class Builder<T> {
         return this;
     }
 
-    public Builder<T> withMany(BaseMapper<?> mapper, String foreignKey, String localKey) {
+    public Builder<T> withMany(PlusMapper<?> mapper, String foreignKey, String localKey) {
         manyRelations.add(
                 new HasMany(mapper, plusMapper, foreignKey, localKey)
         );

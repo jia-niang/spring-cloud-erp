@@ -50,8 +50,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByAccount(String account) {
         Builder<UserDO> builder = new Builder<>(userMapper);
-        builder.withOne(memberMapper, "user_id", "id");
-        UserDO user1 = builder.where("account", account).firstOrFail();
+        Object sql = builder.where("sex", 1)
+                .orWhere(w -> w.eq("name", "ss")
+                        .eq("name", "xx")
+                )
+                .where("account", account);
+        System.out.println(sql.toString());
+//        builder.withOne(memberMapper, "user_id", "id");
 
         QueryWrapper<UserDO> wrapper = new QueryWrapper<>();
         wrapper.eq("account", account);
