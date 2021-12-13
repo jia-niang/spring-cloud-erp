@@ -1,13 +1,11 @@
 package com.kabunx.erp.relation;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kabunx.erp.extension.mapper.PlusMapper;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -19,22 +17,22 @@ abstract class Relation<TC, TP> {
     @Getter
     private final PlusMapper<TP> parent;
 
-    private List<TC> eagerData = new ArrayList<>();
+    private HashMap<Object, List<TC>> eagerData = new HashMap<>();
 
     public Relation(PlusMapper<TC> mapper, PlusMapper<TP> parent) {
         this.mapper = mapper;
         this.parent = parent;
     }
 
-    abstract public void initRelation(List<TP> records);
-
-    public List<TC> getEagerData() {
+    public HashMap<Object, List<TC>> getEagerData() {
         return eagerData;
     }
 
-    public void setEagerData(List<TC> eagerData) {
-        this.eagerData = eagerData;
+    public void setEagerData(HashMap<Object, List<TC>> data) {
+        eagerData = data;
     }
+
+    abstract public void initRelation(List<TP> records);
 
     /**
      * 反射机制获取属性值

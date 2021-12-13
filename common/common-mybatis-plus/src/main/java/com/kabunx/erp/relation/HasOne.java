@@ -5,6 +5,7 @@ import com.kabunx.erp.extension.mapper.PlusMapper;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class HasOne<TC, TP> extends Relation<TC, TP> {
 
@@ -12,17 +13,16 @@ public class HasOne<TC, TP> extends Relation<TC, TP> {
 
     private final String localKey;
 
+    private BiConsumer<TP, TC> backFill;
+
     public HasOne(PlusMapper<TC> mapper, PlusMapper<TP> parent, String foreignKey, String localKey) {
         super(mapper, parent);
         this.foreignKey = foreignKey;
         this.localKey = localKey;
     }
 
-    public void initEagerData(List<TP> records) {
-        QueryWrapper<TC> wrapper = new QueryWrapper<>();
-        Collection<?> collection = getCollectionByKey(records, localKey);
-        wrapper.in(foreignKey, collection);
-        this.setEagerData(getMapper().selectList(wrapper));
+    public void setBackFill(BiConsumer<TP, TC> backFill) {
+        this.backFill = backFill;
     }
 
     @Override
@@ -30,8 +30,15 @@ public class HasOne<TC, TP> extends Relation<TC, TP> {
         initEagerData(records);
         for (TP record : records) {
             // 从EagerData获取record对应关系数据
-            Object child = getValueByName(record, localKey);
-            setValueByName(record, "xxx", child);
         }
+    }
+
+    public void initEagerData(List<TP> records) {
+        QueryWrapper<TC> wrapper = new QueryWrapper<>();
+        Collection<?> collection = getCollectionByKey(records, localKey);
+        wrapper.in(foreignKey, collection);
+        List<TC> result = getMapper().selectList(wrapper);
+        // 分组
+        this.setEagerData(null);
     }
 }

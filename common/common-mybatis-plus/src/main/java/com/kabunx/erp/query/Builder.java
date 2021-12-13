@@ -290,26 +290,25 @@ public class Builder<T> {
     }
 
     public Builder<T> withOne(PlusMapper<?> mapper, String foreignKey, String localKey) {
-        Class<?> mapperClass = mapper.getClass();
         oneRelations.add(
-                new HasOne(mapper, plusMapper, foreignKey, localKey)
+                new HasOne<>(mapper, plusMapper, foreignKey, localKey)
         );
         return this;
     }
 
     public Builder<T> withMany(PlusMapper<?> mapper, String foreignKey, String localKey) {
         manyRelations.add(
-                new HasMany(mapper, plusMapper, foreignKey, localKey)
+                new HasMany<>(mapper, plusMapper, foreignKey, localKey)
         );
         return this;
     }
 
     private void eagerLoadRelationsData(List<T> records) {
         if (records.size() > 0) {
-            for (HasOne relation : oneRelations) {
+            for (HasOne<?, T> relation : oneRelations) {
                 relation.initRelation(records);
             }
-            for (HasMany relation : manyRelations) {
+            for (HasMany<?, T> relation : manyRelations) {
                 relation.initRelation(records);
             }
         }
