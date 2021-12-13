@@ -1,6 +1,7 @@
 package com.kabunx.erp.relation;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kabunx.erp.extension.mapper.PlusMapper;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,14 +14,14 @@ import java.util.stream.Collectors;
 abstract class Relation<TC, TP> {
 
     @Getter
-    private final BaseMapper<TC> mapper;
+    private final PlusMapper<TC> mapper;
 
     @Getter
-    private final BaseMapper<TP> parent;
+    private final PlusMapper<TP> parent;
 
     private List<TC> eagerData = new ArrayList<>();
 
-    public Relation(BaseMapper<TC> mapper, BaseMapper<TP> parent) {
+    public Relation(PlusMapper<TC> mapper, PlusMapper<TP> parent) {
         this.mapper = mapper;
         this.parent = parent;
     }

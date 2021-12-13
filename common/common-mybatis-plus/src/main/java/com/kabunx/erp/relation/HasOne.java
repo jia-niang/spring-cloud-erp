@@ -1,7 +1,7 @@
 package com.kabunx.erp.relation;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kabunx.erp.extension.mapper.PlusMapper;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +12,7 @@ public class HasOne<TC, TP> extends Relation<TC, TP> {
 
     private final String localKey;
 
-    public HasOne(BaseMapper<TC> mapper, BaseMapper<TP> parent, String foreignKey, String localKey) {
+    public HasOne(PlusMapper<TC> mapper, PlusMapper<TP> parent, String foreignKey, String localKey) {
         super(mapper, parent);
         this.foreignKey = foreignKey;
         this.localKey = localKey;

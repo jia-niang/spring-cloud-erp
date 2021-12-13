@@ -17,8 +17,8 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spirng-boot.version>2.5.6</spirng-boot.version>
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <spirng-boot.version>2.6.1</spirng-boot.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>
         <spring-boot-admin-server.version>2.5.3</spring-boot-admin-server.version>
         <alibaba-cloud.version>2021.1</alibaba-cloud.version>
         <alibaba-sentinel-transport.version>1.8.2</alibaba-sentinel-transport.version>

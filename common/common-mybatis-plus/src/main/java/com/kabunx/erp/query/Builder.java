@@ -16,6 +16,10 @@ import java.util.List;
 @Slf4j
 public class Builder<T> {
 
+    private Integer offsetNum;
+
+    private Integer limitNum;
+
     private final PlusMapper<T> plusMapper;
 
     private final QueryWrapper<T> queryWrapper;
@@ -47,15 +51,27 @@ public class Builder<T> {
     }
 
     public Builder<T> offset(int value) {
+        offsetNum = value;
         return this;
     }
 
     public Builder<T> limit(int value) {
-        queryWrapper.last("limit " + value);
+        limitNum = value;
         return this;
     }
 
     public List<T> get() {
+        String lastLimit = "";
+        if (limitNum != null) {
+            if (offsetNum != null) {
+                lastLimit = "LIMIT " + offsetNum + "," + limitNum;
+            } else {
+                lastLimit = "LIMIT " + limitNum;
+            }
+        }
+        if (!lastLimit.isEmpty()) {
+            queryWrapper.last(lastLimit);
+        }
         List<T> records = plusMapper.selectList(queryWrapper);
         eagerLoadRelationsData(records);
         return records;
@@ -100,7 +116,7 @@ public class Builder<T> {
     }
 
     public T sole() {
-        List<T> records = this.limit(2).get();
+        List<T> records = limit(2).get();
         if (records.isEmpty()) {
             throw new DBException(DBExceptionEnum.NOT_FOUND);
         }
@@ -113,7 +129,7 @@ public class Builder<T> {
     public void paginate() {
     }
 
-    public Builder<T> withOne(BaseMapper<?> mapper, String foreignKey, String localKey) {
+    public Builder<T> withOne(PlusMapper<?> mapper, String foreignKey, String localKey) {
         Class<?> mapperClass = mapper.getClass();
         oneRelations.add(
                 new HasOne(mapper, plusMapper, foreignKey, localKey)
@@ -138,5 +154,4 @@ public class Builder<T> {
             }
         }
     }
-
 }
