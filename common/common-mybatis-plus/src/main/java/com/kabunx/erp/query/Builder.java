@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @Slf4j
@@ -188,7 +189,7 @@ public class Builder<T> {
     }
 
     /**
-     * TODO 预加载数据
+     * 获取结果集
      */
     public List<T> get() {
         String lastLimit = "";
@@ -289,20 +290,31 @@ public class Builder<T> {
         return new Paginator<>(records, result.size() > perPage);
     }
 
-    public Builder<T> withOne(PlusMapper<?> mapper, String foreignKey, String localKey) {
-        oneRelations.add(
-                new HasOne<>(mapper, plusMapper, foreignKey, localKey)
-        );
+    public <TC> Builder<T> withOne(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, TC> callback) {
+        return withOne(mapper, foreignKey, "id", callback);
+    }
+
+    public <TC> Builder<T> withOne(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, TC> callback) {
+        HasOne<TC, T> hasOne = new HasOne<>(mapper, plusMapper, foreignKey, localKey);
+        hasOne.setCallback(callback);
+        oneRelations.add(hasOne);
         return this;
     }
 
-    public Builder<T> withMany(PlusMapper<?> mapper, String foreignKey, String localKey) {
-        manyRelations.add(
-                new HasMany<>(mapper, plusMapper, foreignKey, localKey)
-        );
+    public <TC> Builder<T> withMany(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
+        return withMany(mapper, foreignKey, "id", callback);
+    }
+
+    public <TC> Builder<T> withMany(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, List<TC>> callback) {
+        HasMany<TC, T> hasMany = new HasMany<>(mapper, plusMapper, foreignKey, localKey);
+        hasMany.setCallback(callback);
+        manyRelations.add(hasMany);
         return this;
     }
 
+    /**
+     * 加载关联数据
+     */
     private void eagerLoadRelationsData(List<T> records) {
         if (records.size() > 0) {
             for (HasOne<?, T> relation : oneRelations) {

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kabunx.erp.mapper.MemberMapper;
+import com.kabunx.erp.model.MemberDO;
 import com.kabunx.erp.query.AutoBuilder;
 import com.kabunx.erp.converter.Hydrate;
 import com.kabunx.erp.domain.dto.UserDTO;
@@ -12,6 +13,7 @@ import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.query.Builder;
+import com.kabunx.erp.relation.HasOne;
 import com.kabunx.erp.resource.PaginatedResource;
 import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
@@ -19,9 +21,11 @@ import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
 import com.kabunx.erp.wrapper.UserQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -50,18 +54,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByAccount(String account) {
         Builder<UserDO> builder = new Builder<>(userMapper);
-        Object sql = builder.where("sex", 1)
-                .orWhere(w -> w.eq("name", "ss")
-                        .eq("name", "xx")
-                )
-                .where("account", account);
-        System.out.println(sql.toString());
-//        builder.withOne(memberMapper, "user_id", "id");
-
-        QueryWrapper<UserDO> wrapper = new QueryWrapper<>();
-        wrapper.eq("account", account);
-        UserDO user2 = userMapper.firstOrFail(wrapper);
-        return Hydrate.map(user2, UserVO.class);
+        List<UserDO> users = builder.wrapper(w-> {
+                    w.eq("account", account);
+                })
+                .withOne(memberMapper, "user_id", UserDO::setMember)
+        .get();
+        return Hydrate.map(users, UserVO.class);
     }
 
     @Override

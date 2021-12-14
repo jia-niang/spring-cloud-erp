@@ -27,6 +27,7 @@ public class Hydrate {
         try {
             return objectMapper.readValue(objectMapper.writeValueAsString(source), target);
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
             return null;
         }
     }

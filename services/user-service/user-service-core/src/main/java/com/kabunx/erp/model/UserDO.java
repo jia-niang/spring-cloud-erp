@@ -1,7 +1,6 @@
 package com.kabunx.erp.model;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kabunx.erp.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,4 +33,7 @@ public class UserDO extends BaseDO {
 
     @TableLogic
     Integer deletedTime;
+
+    @TableField(exist = false)
+    MemberDO member;
 }

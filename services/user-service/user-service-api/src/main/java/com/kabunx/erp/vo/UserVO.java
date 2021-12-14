@@ -18,4 +18,6 @@ public class UserVO extends BaseVO {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date createdAt;
+
+    MemberVO member;
 }
