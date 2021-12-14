@@ -1,7 +1,7 @@
 package com.kabunx.erp.query;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
-import com.kabunx.erp.extension.query.PlusWrapper;
+import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.pagination.LengthPaginator;
 import com.kabunx.erp.pagination.SimplePaginator;
 import lombok.extern.slf4j.Slf4j;

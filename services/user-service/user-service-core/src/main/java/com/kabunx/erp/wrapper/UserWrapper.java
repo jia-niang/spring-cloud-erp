@@ -1,7 +1,7 @@
 package com.kabunx.erp.wrapper;
 
 import com.kabunx.erp.domain.dto.UserQueryDTO;
-import com.kabunx.erp.extension.query.PlusWrapper;
+import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.model.UserDO;
 import lombok.NoArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.kabunx.erp.extension.query;
+package com.kabunx.erp.extension.wrapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.dto.QueryDTO;

@@ -3,18 +3,17 @@ package com.kabunx.erp.query;
 import com.kabunx.erp.exception.PlusException;
 import com.kabunx.erp.exception.PlusExceptionEnum;
 import com.kabunx.erp.extension.mapper.PlusMapper;
-import com.kabunx.erp.extension.query.PlusWrapper;
+import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.pagination.LengthPaginator;
 import com.kabunx.erp.pagination.SimplePaginator;
 import com.kabunx.erp.relation.HasMany;
 import com.kabunx.erp.relation.HasOne;
+import com.kabunx.erp.relation.Relation;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -32,6 +31,16 @@ public class Builder<T> {
     @Setter
     protected Integer limitNum;
 
+    /**
+     * 所有被定义的关系
+     */
+    protected HashMap<String, Relation<?, T>> relations = new HashMap<>();
+
+    /**
+     * 需要被加载的关系数据
+     */
+    protected ArrayList<String> loadRelations = new ArrayList<>();
+
     @Setter
     protected ArrayList<HasOne<?, T>> oneRelations = new ArrayList<>();
 
@@ -43,13 +52,6 @@ public class Builder<T> {
         this.wrapper = new PlusWrapper<>();
     }
 
-    public Builder(PlusMapper<T> mapper, Boolean autoWrapper) {
-        this.mapper = mapper;
-        if (autoWrapper) {
-            this.wrapper = new PlusWrapper<>();
-        }
-    }
-
     public Builder(PlusMapper<T> mapper, PlusWrapper<T> wrapper) {
         this.mapper = mapper;
         this.wrapper = wrapper;
@@ -58,6 +60,10 @@ public class Builder<T> {
     public Builder<T> select(String... columns) {
         wrapper.select(columns);
         return this;
+    }
+
+    public Builder<T> filter(Consumer<PlusWrapper<T>> consumer) {
+        return wrapper(consumer);
     }
 
     public Builder<T> wrapper(Consumer<PlusWrapper<T>> consumer) {
@@ -99,6 +105,14 @@ public class Builder<T> {
 
     public Builder<T> forPage(int page, int perPage) {
         return offset((page - 1) * perPage).limit(perPage);
+    }
+
+    /**
+     * 被定义后才会加载关系数据
+     */
+    public Builder<T> with(String... relations) {
+        this.loadRelations.addAll(Arrays.asList(relations));
+        return this;
     }
 
     /**
@@ -203,25 +217,46 @@ public class Builder<T> {
         return new SimplePaginator<>(records, result.size() > perPage);
     }
 
-    public <TC> Builder<T> withOne(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, TC> callback) {
-        return withOne(mapper, foreignKey, "id", callback);
+    // 为了向关系中添加其他添加
+    public <TC> PlusWrapper<TC> setRelation(String name, Relation<TC, T> relation) {
+        // 直接被替换，还是抛出异常
+        relations.put(name, relation);
+        return relation.wrapper();
     }
 
-    public <TC> Builder<T> withOne(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, TC> callback) {
+    public <TC> Builder<T> setRelation(String name, Relation<TC, T> relation, Consumer<PlusWrapper<TC>> callback) {
+        relations.put(name, relation);
+        callback.accept(relation.wrapper());
+        return this;
+    }
+
+    public <TC> Builder<T> hasOne(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, TC> callback) {
+        return hasOne(mapper, foreignKey, "id", callback);
+    }
+
+    public <TC> Builder<T> hasOne(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, TC> callback) {
         HasOne<TC, T> hasOne = new HasOne<>(mapper, this.mapper, foreignKey, localKey);
         hasOne.setCallback(callback);
         oneRelations.add(hasOne);
         return this;
     }
 
-    public <TC> Builder<T> withMany(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
-        return withMany(mapper, foreignKey, "id", callback);
+    public <TC> Builder<T> hasMany(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
+        return hasMany(mapper, foreignKey, "id", callback);
     }
 
-    public <TC> Builder<T> withMany(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, List<TC>> callback) {
+    public <TC> Builder<T> hasMany(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, List<TC>> callback) {
         HasMany<TC, T> hasMany = new HasMany<>(mapper, this.mapper, foreignKey, localKey);
         hasMany.setCallback(callback);
         manyRelations.add(hasMany);
+        return this;
+    }
+
+    public <TC> Builder<T> belongTo(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
+        return this;
+    }
+
+    public <TC> Builder<T> belongToMany(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
         return this;
     }
 
@@ -229,11 +264,9 @@ public class Builder<T> {
      * 加载关联数据
      */
     private void eagerLoadRelationsData(List<T> records) {
-        if (records.size() > 0) {
-            for (HasOne<?, T> relation : oneRelations) {
-                relation.initRelation(records);
-            }
-            for (HasMany<?, T> relation : manyRelations) {
+        for (String with: loadRelations) {
+            if (relations.containsKey(with)) {
+                Relation<?, T> relation = relations.get(with);
                 relation.initRelation(records);
             }
         }

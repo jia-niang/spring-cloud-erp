@@ -14,13 +14,18 @@ public class HasOne<TC, TP> extends Relation<TC, TP> {
 
     private final String localKey;
 
-    @Setter
     private BiConsumer<TP, TC> callback;
 
     public HasOne(PlusMapper<TC> mapper, PlusMapper<TP> parent, String foreignKey, String localKey) {
         super(mapper, parent);
         this.foreignKey = foreignKey;
         this.localKey = localKey;
+        this.name = "hasOne";
+    }
+
+    public HasOne<TC, TP> setCallback(BiConsumer<TP, TC> callback) {
+        this.callback = callback;
+        return this;
     }
 
     @Override

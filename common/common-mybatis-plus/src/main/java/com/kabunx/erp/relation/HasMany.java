@@ -19,6 +19,7 @@ public class HasMany<TC, TP> extends Relation<TC, TP> {
         super(mapper, parent);
         this.foreignKey = foreignKey;
         this.localKey = localKey;
+        this.name = "hasMany";
     }
 
     @Override

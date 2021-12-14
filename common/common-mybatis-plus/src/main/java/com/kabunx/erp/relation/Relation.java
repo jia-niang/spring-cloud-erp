@@ -1,36 +1,59 @@
 package com.kabunx.erp.relation;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
+import com.kabunx.erp.extension.wrapper.PlusWrapper;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.CaseUtils;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Slf4j
-abstract class Relation<TC, TP> {
+public abstract class Relation<TC, TP> {
 
     protected final PlusMapper<TC> mapper;
 
     protected final PlusMapper<TP> parent;
+
+    protected final PlusWrapper<TC> wrapper;
+
+    @Getter
+    protected String name;
 
     protected Map<Object, List<TC>> eagerData = new HashMap<>();
 
     public Relation(PlusMapper<TC> mapper, PlusMapper<TP> parent) {
         this.mapper = mapper;
         this.parent = parent;
+        this.wrapper = new PlusWrapper<>();
     }
 
     public abstract void initRelation(List<TP> records);
 
+    public PlusWrapper<TC> wrapper() {
+        return wrapper;
+    }
+
     /**
-     * 获取主键集合数据
+     * 添加额外过滤
+     */
+    public Relation<TC, TP> wrapper(Consumer<PlusWrapper<TC>> callback) {
+        callback.accept(wrapper);
+        return this;
+    }
+
+    /**
+     * 获取有效键集合数据
      */
     public List<Object> getCollectionByKey(List<TP> records, String key) {
         return records.stream()
                 .map(record -> getDeclaredFieldValue(record, key))
                 .filter(Objects::nonNull)
+                .distinct()
                 .collect(Collectors.toList());
     }
 

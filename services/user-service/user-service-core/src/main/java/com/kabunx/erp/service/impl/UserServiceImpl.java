@@ -13,6 +13,7 @@ import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.query.Builder;
+import com.kabunx.erp.relation.HasOne;
 import com.kabunx.erp.service.AdminService;
 import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
@@ -48,10 +49,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByAccount(String account) {
         Builder<UserDO> builder = new Builder<>(userMapper);
-        List<UserDO> users = builder.wrapper(w -> {
+        builder.setRelation("member",
+                new HasOne<>(memberMapper, userMapper,"user_id", "id").setCallback(UserDO::setMember)
+        );
+        List<UserDO> users = builder.filter(w -> {
                     w.eq("account", account);
                 })
-                .withOne(memberMapper, "user_id", UserDO::setMember)
+                .with("member")
                 .get();
         return Hydrate.map2Target(users, UserVO.class);
     }
