@@ -6,9 +6,7 @@ import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.pagination.LengthPaginator;
 import com.kabunx.erp.pagination.SimplePaginator;
-import com.kabunx.erp.relation.HasMany;
-import com.kabunx.erp.relation.HasOne;
-import com.kabunx.erp.relation.Relation;
+import com.kabunx.erp.relation.*;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -217,46 +215,37 @@ public class Builder<T> {
         return new SimplePaginator<>(records, result.size() > perPage);
     }
 
-    // 为了向关系中添加其他添加
-    public <TC> PlusWrapper<TC> setRelation(String name, Relation<TC, T> relation) {
+    /**
+     * 预定义向关系中添加其他添加
+     */
+    public <TC> void setRelation(String name, Relation<TC, T> relation) {
         // 直接被替换，还是抛出异常
         relations.put(name, relation);
-        return relation.wrapper();
     }
 
-    public <TC> Builder<T> setRelation(String name, Relation<TC, T> relation, Consumer<PlusWrapper<TC>> callback) {
-        relations.put(name, relation);
-        callback.accept(relation.wrapper());
+    public <TC> Builder<T> hasOne(String name, Consumer<HasOne<TC, T>> callback) {
+        HasOne<TC, T> oneRelation = new HasOne<>(mapper);
+        setRelation(name, oneRelation);
+        callback.accept(oneRelation);
         return this;
     }
 
-    public <TC> Builder<T> hasOne(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, TC> callback) {
-        return hasOne(mapper, foreignKey, "id", callback);
-    }
-
-    public <TC> Builder<T> hasOne(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, TC> callback) {
-        HasOne<TC, T> hasOne = new HasOne<>(mapper, this.mapper, foreignKey, localKey);
-        hasOne.setCallback(callback);
-        oneRelations.add(hasOne);
+    public <TC> Builder<T> hasMany(String name, Consumer<HasMany<TC, T>> callback) {
+        HasMany<TC, T> manyRelation = new HasMany<>(mapper);
+        setRelation(name, manyRelation);
+        callback.accept(manyRelation);
         return this;
     }
 
-    public <TC> Builder<T> hasMany(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
-        return hasMany(mapper, foreignKey, "id", callback);
-    }
-
-    public <TC> Builder<T> hasMany(PlusMapper<TC> mapper, String foreignKey, String localKey, BiConsumer<T, List<TC>> callback) {
-        HasMany<TC, T> hasMany = new HasMany<>(mapper, this.mapper, foreignKey, localKey);
-        hasMany.setCallback(callback);
-        manyRelations.add(hasMany);
+    public <TC> Builder<T> belongsTo(String name, Consumer<BelongsTo<TC, T>> callback) {
+        BelongsTo<TC, T> belongsToRelation = new BelongsTo<>(mapper);
+        callback.accept(belongsToRelation);
         return this;
     }
 
-    public <TC> Builder<T> belongTo(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
-        return this;
-    }
-
-    public <TC> Builder<T> belongToMany(PlusMapper<TC> mapper, String foreignKey, BiConsumer<T, List<TC>> callback) {
+    public <TC> Builder<T> belongsToMany(String name, Consumer<BelongsToMany<TC, T>> callback) {
+        BelongsToMany<TC, T> belongsToManyRelation = new BelongsToMany<>(mapper);
+        callback.accept(belongsToManyRelation);
         return this;
     }
 
@@ -264,7 +253,7 @@ public class Builder<T> {
      * 加载关联数据
      */
     private void eagerLoadRelationsData(List<T> records) {
-        for (String with: loadRelations) {
+        for (String with : loadRelations) {
             if (relations.containsKey(with)) {
                 Relation<?, T> relation = relations.get(with);
                 relation.initRelation(records);

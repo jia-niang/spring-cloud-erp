@@ -3,6 +3,7 @@ package com.kabunx.erp.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kabunx.erp.mapper.MemberMapper;
+import com.kabunx.erp.model.MemberDO;
 import com.kabunx.erp.pagination.LengthPaginator;
 import com.kabunx.erp.pagination.SimplePaginator;
 import com.kabunx.erp.query.AutoBuilder;
@@ -49,10 +50,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByAccount(String account) {
         Builder<UserDO> builder = new Builder<>(userMapper);
-        builder.setRelation("member",
-                new HasOne<>(memberMapper, userMapper,"user_id", "id").setCallback(UserDO::setMember)
-        );
-        List<UserDO> users = builder.filter(w -> {
+        List<UserDO> users = builder.hasOne("member", (HasOne<MemberDO, UserDO> relation) -> {
+                    relation.setRelated(memberMapper, "user_id");
+                    relation.setFullback(UserDO::setMember);
+                })
+                .filter(w -> {
                     w.eq("account", account);
                 })
                 .with("member")

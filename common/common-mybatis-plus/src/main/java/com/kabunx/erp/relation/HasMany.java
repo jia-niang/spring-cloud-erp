@@ -2,24 +2,31 @@ package com.kabunx.erp.relation;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.extension.mapper.PlusMapper;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.function.BiConsumer;
 
+@Slf4j
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class HasMany<TC, TP> extends Relation<TC, TP> {
-    private final String foreignKey;
+    private final static String name = "hasMany";
 
-    private final String localKey;
+    private String foreignKey;
 
-    @Setter
-    private BiConsumer<TP, List<TC>> callback;
+    private String localKey;
 
-    public HasMany(PlusMapper<TC> mapper, PlusMapper<TP> parent, String foreignKey, String localKey) {
-        super(mapper, parent);
-        this.foreignKey = foreignKey;
-        this.localKey = localKey;
-        this.name = "hasMany";
+    private BiConsumer<TP, List<TC>> fullback;
+
+    public HasMany() {
+        super();
+    }
+
+    public HasMany(PlusMapper<TP> parent) {
+        super(parent);
     }
 
     @Override
@@ -28,8 +35,8 @@ public class HasMany<TC, TP> extends Relation<TC, TP> {
         for (TP record : records) {
             // 从EagerData获取record对应关系数据
             List<TC> data = getRelationValue(getDeclaredFieldValue(record, localKey));
-            if (callback != null) {
-                callback.accept(record, data);
+            if (fullback != null) {
+                fullback.accept(record, data);
             }
         }
     }
@@ -37,7 +44,7 @@ public class HasMany<TC, TP> extends Relation<TC, TP> {
     private void initEagerData(List<TP> records) {
         QueryWrapper<TC> wrapper = new QueryWrapper<>();
         wrapper.in(foreignKey, getCollectionByKey(records, localKey));
-        List<TC> results = mapper.selectList(wrapper);
+        List<TC> results = relatedMapper.selectList(wrapper);
         eagerData = buildEagerData(results, foreignKey);
     }
 

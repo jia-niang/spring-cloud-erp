@@ -19,7 +19,8 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
 
     protected QueryDTO queryDTO;
 
-    public PlusWrapper() {}
+    public PlusWrapper() {
+    }
 
     public PlusWrapper(QueryDTO queryDTO) {
         this.queryDTO = queryDTO;
@@ -57,7 +58,7 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
         }
     }
 
-    private void buildWrapper (Field field, Object value) {
+    private void buildWrapper(Field field, Object value) {
         String methodName = "where" + StringUtils.capitalize(field.getName());
         Class<?> wrapperClass = this.getClass();
         try {

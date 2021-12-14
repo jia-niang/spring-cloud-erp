@@ -2,39 +2,43 @@ package com.kabunx.erp.relation;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.extension.mapper.PlusMapper;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+@Slf4j
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class HasOne<TC, TP> extends Relation<TC, TP> {
 
-    private final String foreignKey;
+    private final static String name = "hasOne";
 
-    private final String localKey;
+    private BiConsumer<TP, TC> fullback;
 
-    private BiConsumer<TP, TC> callback;
-
-    public HasOne(PlusMapper<TC> mapper, PlusMapper<TP> parent, String foreignKey, String localKey) {
-        super(mapper, parent);
-        this.foreignKey = foreignKey;
-        this.localKey = localKey;
-        this.name = "hasOne";
+    public HasOne() {
+        super();
     }
 
-    public HasOne<TC, TP> setCallback(BiConsumer<TP, TC> callback) {
-        this.callback = callback;
-        return this;
+    public HasOne(PlusMapper<TP> parent) {
+        super(parent);
+    }
+
+    public void setRelated(PlusMapper<TC> relatedMapper, String foreignKey) {
+        this.relatedMapper = relatedMapper;
+        this.foreignKey = foreignKey;
     }
 
     @Override
     public void initRelation(List<TP> records) {
         initEagerData(records);
-        for (TP record: records) {
+        for (TP record : records) {
             TC relationValue = getRelationValue(getDeclaredFieldValue(record, localKey));
-            if (callback != null) {
-                callback.accept(record, relationValue);
+            if (fullback != null) {
+                fullback.accept(record, relationValue);
             }
         }
     }
@@ -45,9 +49,9 @@ public class HasOne<TC, TP> extends Relation<TC, TP> {
     public void initEagerData(List<TP> records) {
         QueryWrapper<TC> wrapper = new QueryWrapper<>();
         Collection<?> collection = getCollectionByKey(records, localKey);
-        if(!collection.isEmpty()) {
+        if (!collection.isEmpty()) {
             wrapper.in(foreignKey, collection);
-            List<TC> results = mapper.selectList(wrapper);
+            List<TC> results = relatedMapper.selectList(wrapper);
             eagerData = buildEagerData(results, foreignKey);
         }
     }
