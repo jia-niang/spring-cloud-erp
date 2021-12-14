@@ -1,96 +1,77 @@
 package com.kabunx.erp.extension.query;
 
-import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
-import com.baomidou.mybatisplus.core.conditions.SharedString;
-import com.baomidou.mybatisplus.core.conditions.query.Query;
-import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
-import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
-import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
-import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.kabunx.erp.dto.QueryDTO;
+import com.kabunx.erp.exception.PlusException;
+import com.kabunx.erp.exception.PlusExceptionEnum;
+import com.kabunx.erp.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
-public class PlusWrapper<T> extends AbstractWrapper<T, String, PlusWrapper<T>>
-        implements Query<PlusWrapper<T>, T, String> {
+@Slf4j
+public class PlusWrapper<T> extends QueryWrapper<T> {
 
-    private final SharedString sqlSelect = new SharedString();
+    private static final List<String> ignores = Arrays.asList("page", "pageSize");
 
-    public PlusWrapper() {
-        this(null);
+    protected QueryDTO queryDTO;
+
+    public PlusWrapper() {}
+
+    public PlusWrapper(QueryDTO queryDTO) {
+        this.queryDTO = queryDTO;
     }
 
-    public PlusWrapper(T entity) {
-        super.setEntity(entity);
-        super.initNeed();
+    public Integer getPage() {
+        requireNonNull();
+        return queryDTO.getPage();
     }
 
-    public PlusWrapper(T entity, String... columns) {
-        super.setEntity(entity);
-        super.initNeed();
-        this.select(columns);
+    public Integer getPageSize() {
+        requireNonNull();
+        return queryDTO.getPageSize();
     }
 
-    public PlusWrapper(
-            T entity,
-            Class<T> entityClass,
-            AtomicInteger paramNameSeq,
-            Map<String, Object> paramNameValuePairs,
-            MergeSegments mergeSegments,
-            SharedString paramAlias,
-            SharedString lastSql,
-            SharedString sqlComment,
-            SharedString sqlFirst
-    ) {
-        super.setEntity(entity);
-        super.setEntityClass(entityClass);
-        this.paramNameSeq = paramNameSeq;
-        this.paramNameValuePairs = paramNameValuePairs;
-        this.expression = mergeSegments;
-        this.paramAlias = paramAlias;
-        this.lastSql = lastSql;
-        this.sqlComment = sqlComment;
-        this.sqlFirst = sqlFirst;
-    }
-
-    @Override
-    protected PlusWrapper<T> instance() {
-        return new PlusWrapper<>(
-                getEntity(),
-                getEntityClass(),
-                paramNameSeq,
-                paramNameValuePairs,
-                new MergeSegments(),
-                paramAlias,
-                SharedString.emptyString(),
-                SharedString.emptyString(),
-                SharedString.emptyString()
-        );
-    }
-
-    @Override
-    public PlusWrapper<T> select(String... columns) {
-        if (ArrayUtils.isNotEmpty(columns)) {
-            this.sqlSelect.setStringValue(String.join(StringPool.COMMA, columns));
+    public void build() {
+        requireNonNull();
+        Class<?> dtoClass = queryDTO.getClass();
+        // 获取当前类定义的属性（不包括父类）
+        Field[] fields = dtoClass.getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                if (ignores.contains(field.getName())) {
+                    continue;
+                }
+                field.setAccessible(true);
+                Object value = field.get(queryDTO);
+                if (value == null) {
+                    continue;
+                }
+                buildWrapper(field, value);
+            } catch (Exception ignored) {
+                log.warn("反射异常，无法获取【{}】的值", field.getName());
+            }
         }
-        return typedThis;
     }
 
-    @Override
-    public PlusWrapper<T> select(Class<T> entityClass, Predicate<TableFieldInfo> predicate) {
-        super.setEntityClass(entityClass);
-        this.sqlSelect.setStringValue(TableInfoHelper.getTableInfo(getEntityClass()).chooseSelect(predicate));
-        return typedThis;
+    private void buildWrapper (Field field, Object value) {
+        String methodName = "where" + StringUtils.capitalize(field.getName());
+        Class<?> wrapperClass = this.getClass();
+        try {
+            Method whereMethod = wrapperClass.getDeclaredMethod(methodName, field.getType());
+            whereMethod.setAccessible(true);
+            whereMethod.invoke(this, value);
+        } catch (Exception ignored) {
+            log.warn("反射异常，没有定义方法【{}】", methodName);
+        }
     }
 
-    public PlusWrapper<T> where(Consumer<PlusWrapper<T>> consumer) {
-        return and(consumer);
-    }
-
-    public PlusWrapper<T> orWhere(Consumer<PlusWrapper<T>> consumer) {
-        return or(consumer);
+    private void requireNonNull() {
+        if (queryDTO == null) {
+            throw new PlusException(PlusExceptionEnum.NOT_INIT_DTO);
+        }
     }
 }

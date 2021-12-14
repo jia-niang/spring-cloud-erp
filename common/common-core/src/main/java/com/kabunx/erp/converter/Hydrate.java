@@ -13,7 +13,7 @@ import java.util.Optional;
  */
 public class Hydrate {
 
-    public static <T> T map(String content, Class<T> target) {
+    public static <T> T map2Target(String content, Class<T> target) {
         ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(content, target);
@@ -22,7 +22,7 @@ public class Hydrate {
         }
     }
 
-    public static <T> T map(Object source, Class<T> target) {
+    public static <T> T map2Target(Object source, Class<T> target) {
         ObjectMapper objectMapper = makeObjectMapper();
         try {
             return objectMapper.readValue(objectMapper.writeValueAsString(source), target);
@@ -33,7 +33,7 @@ public class Hydrate {
     }
 
     public static <T> Optional<T> map2Optional(String content, Class<T> target) {
-        T result = map(content, target);
+        T result = map2Target(content, target);
         if (result == null) {
             return Optional.empty();
         }
@@ -41,7 +41,7 @@ public class Hydrate {
     }
 
     public static <T> Optional<T> map2Optional(Object source, Class<T> target) {
-        T result = map(source, target);
+        T result = map2Target(source, target);
         if (result == null) {
             return Optional.empty();
         }

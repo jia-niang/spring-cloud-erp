@@ -1,7 +1,7 @@
 package com.kabunx.erp.advice;
 
 import com.kabunx.erp.domain.JsonResponse;
-import com.kabunx.erp.exception.DBException;
+import com.kabunx.erp.exception.PlusException;
 import com.kabunx.erp.exception.ExceptionEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
@@ -30,12 +30,12 @@ public class DBExceptionAdvice {
         return JsonResponse.failed(ExceptionEnum.DB_FAILED);
     }
 
-    @ExceptionHandler(value = DBException.class)
-    public JsonResponse<Object> handleValidException(DBException e) {
-        if (e.getDbExceptionEnum() != null) {
+    @ExceptionHandler(value = PlusException.class)
+    public JsonResponse<Object> handleValidException(PlusException e) {
+        if (e.getPlusExceptionEnum() != null) {
             return JsonResponse.failed(
-                    e.getDbExceptionEnum().getCode(),
-                    e.getDbExceptionEnum().getMessage()
+                    e.getPlusExceptionEnum().getCode(),
+                    e.getPlusExceptionEnum().getMessage()
             );
         }
         if (e.getExceptionEnum() != null) {

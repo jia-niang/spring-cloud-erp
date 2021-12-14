@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paginator<T> implements Serializable {
+public class SimplePaginator<T> implements Serializable {
     private List<T> list;
     private Boolean hasMore;
 }

@@ -90,7 +90,7 @@ public class LoginServiceImpl implements LoginService {
 
 
     private AuthTokenVO generateAuthToken(UserVO userVO) {
-        UserEntity user = Hydrate.map(userVO, UserEntity.class);
+        UserEntity user = Hydrate.map2Target(userVO, UserEntity.class);
         if (user == null) {
             return null;
         }

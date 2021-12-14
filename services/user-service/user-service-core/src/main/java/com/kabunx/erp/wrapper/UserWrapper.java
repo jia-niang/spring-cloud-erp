@@ -1,8 +1,16 @@
 package com.kabunx.erp.wrapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.kabunx.erp.domain.dto.UserQueryDTO;
+import com.kabunx.erp.extension.query.PlusWrapper;
+import com.kabunx.erp.model.UserDO;
+import lombok.NoArgsConstructor;
 
-public class UserQueryWrapper<T> extends QueryWrapper<T> {
+@NoArgsConstructor
+public class UserWrapper extends PlusWrapper<UserDO> {
+
+    public UserWrapper(UserQueryDTO userQueryDTO) {
+        super(userQueryDTO);
+    }
 
     /**
      * 该函数可以被指定到query-name的参数查询构造上
@@ -15,7 +23,7 @@ public class UserQueryWrapper<T> extends QueryWrapper<T> {
         this.eq("sex", value);
     }
 
-    public void eqAccount(String account) {
+    public void whereAccount(String account) {
         this.eq("account", account);
     }
 

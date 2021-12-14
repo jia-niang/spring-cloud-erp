@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberVO findById(Integer id) {
         MemberDO memberDO = memberMapper.selectById(id);
-        return Hydrate.map(memberDO, MemberVO.class);
+        return Hydrate.map2Target(memberDO, MemberVO.class);
     }
 
     @Override

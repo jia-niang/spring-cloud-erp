@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserQueryDTO extends QueryDTO {
+
+    String account;
+
     String name;
 
     Integer sex;
