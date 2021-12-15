@@ -9,9 +9,9 @@ public class JoinPivotMethod extends AbstractMethod {
 
     @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
-        SqlTemplate belongsToMany = SqlTemplate.JOIN_PIVOT;
+        SqlTemplate joinPivot = SqlTemplate.JOIN_PIVOT;
         String sql = String.format(
-                belongsToMany.getSql(),
+                joinPivot.getSql(),
                 sqlFirst(),
                 sqlSelectColumns(tableInfo, true),
                 tableInfo.getTableName(),
@@ -20,6 +20,6 @@ public class JoinPivotMethod extends AbstractMethod {
                 sqlComment()
         );
         SqlSource sqlSource = languageDriver.createSqlSource(configuration, sql, modelClass);
-        return this.addSelectMappedStatementForTable(mapperClass, belongsToMany.getMethod(), sqlSource, tableInfo);
+        return this.addSelectMappedStatementForTable(mapperClass, joinPivot.getMethod(), sqlSource, tableInfo);
     }
 }
