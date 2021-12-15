@@ -8,6 +8,8 @@ spring:
     name: erp-user-service
   profiles:
     active: dev
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
 mybatis-plus:
   global-config:

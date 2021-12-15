@@ -27,17 +27,17 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
     }
 
     public Integer getPage() {
-        requireNonNull();
+        requireNotNull();
         return queryDTO.getPage();
     }
 
     public Integer getPageSize() {
-        requireNonNull();
+        requireNotNull();
         return queryDTO.getPageSize();
     }
 
     public void build() {
-        requireNonNull();
+        requireNotNull();
         Class<?> dtoClass = queryDTO.getClass();
         // 获取当前类定义的属性（不包括父类）
         Field[] fields = dtoClass.getDeclaredFields();
@@ -70,7 +70,7 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
         }
     }
 
-    private void requireNonNull() {
+    private void requireNotNull() {
         if (queryDTO == null) {
             throw new PlusException(PlusExceptionEnum.NOT_INIT_DTO);
         }

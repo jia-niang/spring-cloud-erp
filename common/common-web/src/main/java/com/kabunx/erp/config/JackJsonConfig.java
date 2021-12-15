@@ -11,13 +11,10 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 public class JackJsonConfig {
 
     @Bean
-    public MappingJackson2HttpMessageConverter jacksonConverter() {
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        ObjectMapper objectMapper = new ObjectMapper();
+    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
         // 添加此配置
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        converter.setObjectMapper(objectMapper);
-        return converter;
+        return new MappingJackson2HttpMessageConverter(objectMapper);
     }
 }

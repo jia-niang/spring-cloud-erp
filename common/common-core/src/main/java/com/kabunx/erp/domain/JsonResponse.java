@@ -9,19 +9,28 @@ import lombok.NoArgsConstructor;
  * 统一的响应结构
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class JsonResponse<T> {
     private boolean success;
     private String code;
     private String message;
     private T data;
 
+    public JsonResponse() {
+    }
+
     public JsonResponse(boolean success, String code, String message) {
         this.success = success;
         this.code = code;
         this.message = message;
     }
+
+    public JsonResponse(boolean success, String code, String message, T data) {
+        this.success = success;
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
 
     public static <T> JsonResponse<T> withFallbackError() {
         return new JsonResponse<>(false, ExceptionEnum.FALLBACK.getCode(), ExceptionEnum.FALLBACK.getMessage());
