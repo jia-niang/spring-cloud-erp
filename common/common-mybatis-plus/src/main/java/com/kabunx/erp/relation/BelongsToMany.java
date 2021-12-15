@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 /**
  * 多对多关系存在连接表
@@ -43,6 +44,11 @@ public class BelongsToMany<TC, TP> extends Relation<TC, TP> {
      */
     protected String relatedKey = "id";
 
+    /**
+     * 关联数据回填到主属性的回调
+     */
+    private BiConsumer<TP, List<TC>> integrate;
+
     public BelongsToMany() {
         super();
     }
@@ -53,6 +59,13 @@ public class BelongsToMany<TC, TP> extends Relation<TC, TP> {
 
     @Override
     public void initRelation(List<TP> records) {
+        if (!requiredConditions()) {
+            return;
+        }
+        initRelatedData(records);
+    }
 
+    private Boolean requiredConditions() {
+        return requiredRelatedArgs() && integrate != null;
     }
 }

@@ -16,7 +16,8 @@ import java.util.List;
 public class AutoBuilder<T> extends Builder<T> {
 
     public AutoBuilder(PlusMapper<T> mapper, PlusWrapper<T> wrapper) {
-        super(mapper, wrapper);
+        super(mapper);
+        this.wrapper = wrapper;
     }
 
     public LengthPaginator<T> paginate() {

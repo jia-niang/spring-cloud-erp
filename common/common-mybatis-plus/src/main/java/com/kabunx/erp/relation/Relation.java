@@ -9,6 +9,7 @@ import org.apache.commons.text.CaseUtils;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -28,32 +29,50 @@ public abstract class Relation<TC, TP> {
     /**
      * 父表中想要作为关联关系的字段的名称，一般设置为主键
      */
-    protected String localKey = "id";
+    protected String localKey;
 
-    protected Map<Object, List<TC>> eagerData = new HashMap<>();
+    /**
+     * 用户自定义当前模型数据合集，关联查询使用
+     */
+    protected Function<TP, Object> localCollect;
+
+    /**
+     * 关联数据
+     */
+    protected Map<Object, List<TC>> relatedData = new HashMap<>();
+
+    /**
+     * 用户自定义关联模型数据分组
+     */
+    protected Function<TC, Object> relatedGroupingBy;
 
     public Relation() {
-        initPlusWrapper();
+        super();
     }
 
     public Relation(PlusMapper<TP> parent) {
         this.parentMapper = parent;
-        initPlusWrapper();
+        this.relatedWrapper = initPlusWrapper();
     }
 
     public Relation(PlusMapper<TC> related, PlusMapper<TP> parent) {
         this.relatedMapper = related;
         this.parentMapper = parent;
-        initPlusWrapper();
+        this.relatedWrapper = initPlusWrapper();
     }
 
-    public void initPlusWrapper() {
-        this.relatedWrapper = new PlusWrapper<>();
+    public PlusWrapper<TC> initPlusWrapper() {
+        return new PlusWrapper<>();
     }
 
-    public void setRelated(PlusMapper<TC> relatedMapper, String foreignKey) {
+    public void setRelatedArgs(PlusMapper<TC> relatedMapper, String foreignKey) {
+        setRelatedArgs(relatedMapper, foreignKey, "id");
+    }
+
+    public void setRelatedArgs(PlusMapper<TC> relatedMapper, String foreignKey, String localKey) {
         this.relatedMapper = relatedMapper;
         this.foreignKey = foreignKey;
+        this.localKey = localKey;
     }
 
     public abstract void initRelation(List<TP> records);
@@ -81,26 +100,54 @@ public abstract class Relation<TC, TP> {
      * 获取有效键集合数据
      */
     public List<Object> getCollectionByKey(List<TP> records, String key) {
-        return records.stream()
-                .map(record -> getDeclaredFieldValue(record, key))
-                .filter(Objects::nonNull)
-                .distinct()
-                .collect(Collectors.toList());
+        return records.stream().map(r -> {
+            if (localCollect != null) {
+                return localCollect.apply(r);
+            }
+            return getDeclaredFieldValue(r, key);
+        }).filter(Objects::nonNull).distinct().collect(Collectors.toList());
+    }
+
+    /**
+     * 初始化关系数据
+     */
+    protected void initRelatedData(List<TP> records) {
+        Collection<?> collection = getCollectionByKey(records, localKey);
+        if (!collection.isEmpty()) {
+            PlusWrapper<TC> wrapper = newRelatedWrapper();
+            wrapper.in(foreignKey, collection);
+            List<TC> results = relatedMapper.selectList(wrapper);
+            relatedData = buildRelatedData(results, foreignKey);
+        }
     }
 
     /**
      * 构建分组数据
      */
-    public Map<Object, List<TC>> buildEagerData(List<TC> results, String foreignKey) {
-        return results.stream().collect(
-                Collectors.groupingBy(r -> getDeclaredFieldValue(r, foreignKey))
-        );
+    protected Map<Object, List<TC>> buildRelatedData(List<TC> results, String foreignKey) {
+        return results.stream().collect(Collectors.groupingBy(r -> {
+            if (relatedGroupingBy != null) {
+                return relatedGroupingBy.apply(r);
+            }
+            return getDeclaredFieldValue(r, foreignKey);
+        }));
+    }
+
+    protected PlusWrapper<TC> newRelatedWrapper() {
+        if (relatedWrapper == null) {
+            relatedWrapper = new PlusWrapper<>();
+        }
+        return relatedWrapper;
+    }
+
+    protected Boolean requiredRelatedArgs() {
+        return relatedWrapper != null && foreignKey != null;
     }
 
     /**
      * 反射机制获取属性值
      */
-    public Object getDeclaredFieldValue(Object object, String fieldName) {
+    protected Object getDeclaredFieldValue(Object object, String fieldName) {
         // 将被转化为驼峰
         fieldName = CaseUtils.toCamelCase(fieldName, false, '_');
         try {
@@ -118,7 +165,7 @@ public abstract class Relation<TC, TP> {
      * 暂时用不到，
      * 目前可通过回调处理关系数据的绑
      */
-    public void setDeclaredFieldValue(Object object, String fieldName, Object value) {
+    protected void setDeclaredFieldValue(Object object, String fieldName, Object value) {
         try {
             Field field = object.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);

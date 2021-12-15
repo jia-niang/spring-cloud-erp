@@ -2,8 +2,8 @@ package com.kabunx.erp.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kabunx.erp.builder.UserBuilder;
 import com.kabunx.erp.mapper.MemberMapper;
-import com.kabunx.erp.model.MemberDO;
 import com.kabunx.erp.pagination.LengthPaginator;
 import com.kabunx.erp.pagination.SimplePaginator;
 import com.kabunx.erp.query.AutoBuilder;
@@ -14,9 +14,6 @@ import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.query.Builder;
-import com.kabunx.erp.relation.HasOne;
-import com.kabunx.erp.service.AdminService;
-import com.kabunx.erp.service.MemberService;
 import com.kabunx.erp.service.UserService;
 import com.kabunx.erp.vo.UserVO;
 import com.kabunx.erp.wrapper.UserWrapper;
@@ -24,17 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Resource
-    AdminService adminService;
-
-    @Resource
-    MemberService memberService;
 
     @Resource
     UserMapper userMapper;
@@ -49,17 +39,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByAccount(String account) {
-        Builder<UserDO> builder = new Builder<>(userMapper);
-        List<UserDO> users = builder.hasOne("member", (HasOne<MemberDO, UserDO> relation) -> {
-                    relation.setRelated(memberMapper, "user_id");
-                    relation.setFullback(UserDO::setMember);
-                })
+        UserDO user = new UserBuilder(userMapper)
+                .loadMember(memberMapper)
                 .filter(w -> {
                     w.eq("account", account);
                 })
-                .with("member")
-                .get();
-        return Hydrate.map2Target(users, UserVO.class);
+                .firstOrFail();
+        return Hydrate.map2Target(user, UserVO.class);
     }
 
     @Override

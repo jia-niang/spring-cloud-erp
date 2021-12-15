@@ -1,7 +1,7 @@
 package com.kabunx.erp.relation;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.extension.mapper.PlusMapper;
+import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +15,7 @@ import java.util.function.BiConsumer;
 public class HasMany<TC, TP> extends Relation<TC, TP> {
     private final static String name = "hasMany";
 
-    private String foreignKey;
-
-    private String localKey;
-
-    private BiConsumer<TP, List<TC>> fullback;
+    private BiConsumer<TP, List<TC>> integrate;
 
     public HasMany() {
         super();
@@ -31,27 +27,35 @@ public class HasMany<TC, TP> extends Relation<TC, TP> {
 
     @Override
     public void initRelation(List<TP> records) {
-        initEagerData(records);
+        if (!requiredConditions()) {
+            return;
+        }
+        initRelatedData(records);
         for (TP record : records) {
             // 从EagerData获取record对应关系数据
             List<TC> data = getRelationValue(getDeclaredFieldValue(record, localKey));
-            if (fullback != null) {
-                fullback.accept(record, data);
+            if (integrate != null) {
+                integrate.accept(record, data);
             }
         }
     }
 
-    private void initEagerData(List<TP> records) {
-        QueryWrapper<TC> wrapper = new QueryWrapper<>();
+    @Override
+    protected void initRelatedData(List<TP> records) {
+        PlusWrapper<TC> wrapper = newRelatedWrapper();
         wrapper.in(foreignKey, getCollectionByKey(records, localKey));
         List<TC> results = relatedMapper.selectList(wrapper);
-        eagerData = buildEagerData(results, foreignKey);
+        relatedData = buildRelatedData(results, foreignKey);
     }
 
     private List<TC> getRelationValue(Object key) {
-        if (!eagerData.containsKey(key)) {
+        if (!relatedData.containsKey(key)) {
             return null;
         }
-        return eagerData.get(key);
+        return relatedData.get(key);
+    }
+
+    private Boolean requiredConditions() {
+        return requiredRelatedArgs() && integrate != null;
     }
 }

@@ -9,10 +9,10 @@ import com.kabunx.erp.pagination.SimplePaginator;
 import com.kabunx.erp.relation.*;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Lookup;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @Slf4j
@@ -20,6 +20,9 @@ public class Builder<T> {
 
     protected final PlusMapper<T> mapper;
 
+    /**
+     * 构造器必须是一个原型bean，通过@Lookup注解实现
+     */
     @Setter
     protected PlusWrapper<T> wrapper;
 
@@ -39,20 +42,14 @@ public class Builder<T> {
      */
     protected ArrayList<String> loadRelations = new ArrayList<>();
 
-    @Setter
-    protected ArrayList<HasOne<?, T>> oneRelations = new ArrayList<>();
-
-    @Setter
-    protected ArrayList<HasMany<?, T>> manyRelations = new ArrayList<>();
-
     public Builder(PlusMapper<T> mapper) {
         this.mapper = mapper;
-        this.wrapper = new PlusWrapper<>();
+        this.wrapper = this.initWrapper();
     }
 
-    public Builder(PlusMapper<T> mapper, PlusWrapper<T> wrapper) {
-        this.mapper = mapper;
-        this.wrapper = wrapper;
+    @Lookup
+    public PlusWrapper<T> initWrapper() {
+        return new PlusWrapper<>();
     }
 
     public Builder<T> select(String... columns) {
@@ -131,6 +128,7 @@ public class Builder<T> {
         List<T> records = mapper.selectList(wrapper);
         // 加载被定义的关系数据
         eagerLoadRelationsData(records);
+        clear();
         return records;
     }
 
@@ -204,6 +202,15 @@ public class Builder<T> {
     }
 
     /**
+     * 单例情况，需要清理过程数据
+     */
+    public void clear() {
+        offsetNum = null;
+        limitNum = null;
+        loadRelations.clear();
+    }
+
+    /**
      * 简单的分页
      * 推荐在“加载更多中”使用
      */
@@ -220,7 +227,9 @@ public class Builder<T> {
      */
     public <TC> void setRelation(String name, Relation<TC, T> relation) {
         // 直接被替换，还是抛出异常
-        relations.put(name, relation);
+        if (!relations.containsKey(name)) {
+            relations.put(name, relation);
+        }
     }
 
     public <TC> Builder<T> hasOne(String name, Consumer<HasOne<TC, T>> callback) {
@@ -253,9 +262,9 @@ public class Builder<T> {
      * 加载关联数据
      */
     private void eagerLoadRelationsData(List<T> records) {
-        for (String with : loadRelations) {
-            if (relations.containsKey(with)) {
-                Relation<?, T> relation = relations.get(with);
+        for (String key : loadRelations) {
+            if (relations.containsKey(key)) {
+                Relation<?, T> relation = relations.get(key);
                 relation.initRelation(records);
             }
         }

@@ -4,7 +4,9 @@ import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.model.UserDO;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @NoArgsConstructor
 public class UserWrapper extends PlusWrapper<UserDO> {
 
@@ -16,18 +18,18 @@ public class UserWrapper extends PlusWrapper<UserDO> {
      * 该函数可以被指定到query-name的参数查询构造上
      */
     public void whereName(String value) {
-        this.eq("name", value);
+        eq("name", value);
     }
 
     public void whereSex(Integer value) {
-        this.eq("sex", value);
+        eq("sex", value);
     }
 
     public void whereAccount(String account) {
-        this.eq("account", account);
+        eq("account", account);
     }
 
     public void eqPhone(String phone) {
-        this.eq("phone", phone);
+        eq("phone", phone);
     }
 }
