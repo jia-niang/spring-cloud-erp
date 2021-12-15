@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
+/**
+ * 请注意WebAuthConfig，将导致该配置不再生效
+ */
 @Configuration
 public class JackJsonConfig {
 

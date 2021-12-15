@@ -14,6 +14,4 @@ public class AdminVO extends BaseVO {
     private String accessToken;
 
     Date activeTime;
-
-    private UserVO user;
 }

@@ -16,8 +16,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
+ * 自定义后，将不再自动配置，请注意 WebMvcAutoConfiguration 上存在的注解
  * 这个将导致JackJsonConfig配置失效
- * 自定义后，将不再自动配置
  */
 @Configuration
 public class WebAuthConfig extends WebMvcConfigurationSupport {
