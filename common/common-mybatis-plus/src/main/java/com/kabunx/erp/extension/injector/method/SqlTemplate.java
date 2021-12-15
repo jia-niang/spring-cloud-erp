@@ -1,7 +1,7 @@
 package com.kabunx.erp.extension.injector.method;
 
 public enum SqlTemplate {
-    SOLE("sole", "确定且唯一", "<script>%s SELECT %s FROM %s %s %s\n</script>");
+    JOIN_PIVOT("joinPivot", "关联中间表的联合查询", "<script>SELECT %s FROM #{%s} %s %s\n</script>");
 
     private final String method;
     private final String description;

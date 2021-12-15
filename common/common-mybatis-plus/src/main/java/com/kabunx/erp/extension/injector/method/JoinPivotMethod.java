@@ -5,13 +5,13 @@ import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
 
-public class SoleMethod extends AbstractMethod {
+public class JoinPivotMethod extends AbstractMethod {
 
     @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
-        SqlTemplate sole = SqlTemplate.SOLE;
+        SqlTemplate belongsToMany = SqlTemplate.JOIN_PIVOT;
         String sql = String.format(
-                sole.getSql(),
+                belongsToMany.getSql(),
                 sqlFirst(),
                 sqlSelectColumns(tableInfo, true),
                 tableInfo.getTableName(),
@@ -20,6 +20,6 @@ public class SoleMethod extends AbstractMethod {
                 sqlComment()
         );
         SqlSource sqlSource = languageDriver.createSqlSource(configuration, sql, modelClass);
-        return this.addSelectMappedStatementForTable(mapperClass, sole.getMethod(), sqlSource, tableInfo);
+        return this.addSelectMappedStatementForTable(mapperClass, belongsToMany.getMethod(), sqlSource, tableInfo);
     }
 }

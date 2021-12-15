@@ -49,10 +49,6 @@ public class BelongsToMany<TC, TP> extends Relation<TC, TP> {
      */
     private BiConsumer<TP, List<TC>> integrate;
 
-    public BelongsToMany() {
-        super();
-    }
-
     public BelongsToMany(PlusMapper<TP> parent) {
         super(parent);
     }

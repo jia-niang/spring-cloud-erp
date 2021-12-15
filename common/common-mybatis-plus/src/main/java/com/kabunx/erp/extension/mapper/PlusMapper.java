@@ -10,6 +10,14 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface PlusMapper<T> extends BaseMapper<T> {
+    /**
+     * 如果要自动填充，@{@code Param}(xx) xx参数名必须是 list/collection/array 3个的其中之一
+     */
+    List<T> joinPivot(
+            @Param("pivot_table") String table,
+            @Param("pivot_key") String foreignKey,
+            @Param("pivot_key") String relatedKey
+    );
 
     default T sole(@Param(Constants.WRAPPER) QueryWrapper<T> queryWrapper) {
         queryWrapper.last("limit 2");

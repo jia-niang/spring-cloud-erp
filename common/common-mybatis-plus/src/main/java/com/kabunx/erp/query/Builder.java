@@ -9,7 +9,6 @@ import com.kabunx.erp.pagination.SimplePaginator;
 import com.kabunx.erp.relation.*;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Lookup;
 
 import java.io.Serializable;
 import java.util.*;
@@ -44,11 +43,10 @@ public class Builder<T> {
 
     public Builder(PlusMapper<T> mapper) {
         this.mapper = mapper;
-        this.wrapper = this.initWrapper();
+        this.wrapper = newWrapper();
     }
 
-    @Lookup
-    public PlusWrapper<T> initWrapper() {
+    public PlusWrapper<T> newWrapper() {
         return new PlusWrapper<>();
     }
 
@@ -128,7 +126,6 @@ public class Builder<T> {
         List<T> records = mapper.selectList(wrapper);
         // 加载被定义的关系数据
         eagerLoadRelationsData(records);
-        clear();
         return records;
     }
 
@@ -199,15 +196,6 @@ public class Builder<T> {
         }
         // 3、构造分页
         return new LengthPaginator<>(result, count, page);
-    }
-
-    /**
-     * 单例情况，需要清理过程数据
-     */
-    public void clear() {
-        offsetNum = null;
-        limitNum = null;
-        loadRelations.clear();
     }
 
     /**
