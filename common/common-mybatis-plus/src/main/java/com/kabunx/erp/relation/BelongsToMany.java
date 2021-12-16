@@ -1,13 +1,10 @@
 package com.kabunx.erp.relation;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
-import javafx.beans.property.ObjectProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.function.BiConsumer;
 

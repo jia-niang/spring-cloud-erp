@@ -35,21 +35,9 @@ public class HasOne<TC, TP> extends Relation<TC, TP, HasOne<TC, TP>> {
         }
         initRelatedData(records);
         for (TP record : records) {
-            TC relationValue = getRelationValue(getDeclaredFieldValue(record, localKey));
-            if (integrate != null) {
-                integrate.accept(record, relationValue);
-            }
+            TC relationValue = getOneRelatedValue(record, localKey);
+            integrate.accept(record, relationValue);
         }
-    }
-
-    /**
-     * 获取关联数据
-     */
-    private TC getRelationValue(Object key) {
-        if (!relatedData.containsKey(key)) {
-            return null;
-        }
-        return relatedData.get(key).get(0);
     }
 
     private Boolean requiredConditions() {

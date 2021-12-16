@@ -36,26 +36,9 @@ public class HasMany<TC, TP> extends Relation<TC, TP, HasMany<TC, TP>> {
         initRelatedData(records);
         for (TP record : records) {
             // 从EagerData获取record对应关系数据
-            List<TC> data = getRelationValue(getDeclaredFieldValue(record, localKey));
-            if (integrate != null) {
-                integrate.accept(record, data);
-            }
+            List<TC> values = getManyRelatedValues(record, localKey);
+            integrate.accept(record, values);
         }
-    }
-
-    @Override
-    protected void initRelatedData(List<TP> records) {
-        PlusWrapper<TC> wrapper = newRelatedWrapper();
-        wrapper.in(foreignKey, pluckByKey(records, localKey));
-        List<TC> results = relatedMapper.selectList(wrapper);
-        relatedData = groupRelatedData(results, foreignKey);
-    }
-
-    private List<TC> getRelationValue(Object key) {
-        if (!relatedData.containsKey(key)) {
-            return null;
-        }
-        return relatedData.get(key);
     }
 
     private Boolean requiredConditions() {

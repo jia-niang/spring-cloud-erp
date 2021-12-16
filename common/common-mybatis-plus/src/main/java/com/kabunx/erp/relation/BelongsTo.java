@@ -17,7 +17,7 @@ public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
     /**
      * 自定义回调，关联数据回填到主属性中
      */
-    private BiConsumer<TP, List<TC>> integrate;
+    private BiConsumer<TP, TC> integrate;
 
     public BelongsTo() {
         super();
@@ -32,7 +32,12 @@ public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
         if (!requiredConditions()) {
             return;
         }
-        initRelatedData(records);
+        initRelatedData(records, foreignKey, localKey);
+        for (TP record : records) {
+            // 从EagerData获取record对应关系数据
+            TC relatedValue = getOneRelatedValue(record, foreignKey);
+            integrate.accept(record, relatedValue);
+        }
     }
 
     private Boolean requiredConditions() {

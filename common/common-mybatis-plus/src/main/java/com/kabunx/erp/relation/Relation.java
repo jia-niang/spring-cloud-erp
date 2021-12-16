@@ -117,13 +117,33 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
      * 初始化关系数据
      */
     protected void initRelatedData(List<TP> records) {
-        List<Object> collection = pluckByKey(records, localKey);
+        initRelatedData(records, localKey, foreignKey);
+    }
+
+    protected void initRelatedData(List<TP> records, String ownerKey, String relatedKey) {
+        List<Object> collection = pluckByKey(records, ownerKey);
         if (!collection.isEmpty()) {
             PlusWrapper<TC> wrapper = newRelatedWrapper();
-            wrapper.in(foreignKey, collection);
+            wrapper.in(relatedKey, collection);
             List<TC> results = relatedMapper.selectList(wrapper);
-            relatedData = groupRelatedData(results, foreignKey);
+            relatedData = groupRelatedData(results, relatedKey);
         }
+    }
+
+    /**
+     * 获取关联数据
+     */
+    protected TC getOneRelatedValue(TP record, String ownerKey) {
+        List<TC> values = getManyRelatedValues(record, ownerKey);
+        return values == null ? null : values.get(0);
+    }
+
+    protected List<TC> getManyRelatedValues(TP record, String ownerKey) {
+        Object key = getDeclaredFieldValue(record, ownerKey);
+        if (!relatedData.containsKey(key)) {
+            return null;
+        }
+        return relatedData.get(key);
     }
 
     /**
