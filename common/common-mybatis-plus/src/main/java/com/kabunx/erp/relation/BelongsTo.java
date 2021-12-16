@@ -11,9 +11,12 @@ import java.util.function.BiConsumer;
 @Slf4j
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class BelongsTo<TC, TP> extends Relation<TC, TP> {
+public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
     private final static String name = "belongTo";
 
+    /**
+     * 自定义回调，关联数据回填到主属性中
+     */
     private BiConsumer<TP, List<TC>> integrate;
 
     public BelongsTo() {

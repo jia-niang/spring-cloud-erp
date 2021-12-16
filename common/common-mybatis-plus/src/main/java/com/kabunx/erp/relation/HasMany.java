@@ -12,9 +12,12 @@ import java.util.function.BiConsumer;
 @Slf4j
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class HasMany<TC, TP> extends Relation<TC, TP> {
+public class HasMany<TC, TP> extends Relation<TC, TP, HasMany<TC, TP>> {
     private final static String name = "hasMany";
 
+    /**
+     * 自定义回调，关联数据回填到主属性的回调
+     */
     private BiConsumer<TP, List<TC>> integrate;
 
     public HasMany() {
@@ -43,9 +46,9 @@ public class HasMany<TC, TP> extends Relation<TC, TP> {
     @Override
     protected void initRelatedData(List<TP> records) {
         PlusWrapper<TC> wrapper = newRelatedWrapper();
-        wrapper.in(foreignKey, getCollectionByKey(records, localKey));
+        wrapper.in(foreignKey, pluckByKey(records, localKey));
         List<TC> results = relatedMapper.selectList(wrapper);
-        relatedData = buildRelatedData(results, foreignKey);
+        relatedData = groupRelatedData(results, foreignKey);
     }
 
     private List<TC> getRelationValue(Object key) {

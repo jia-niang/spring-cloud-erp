@@ -1,10 +1,13 @@
 package com.kabunx.erp.relation;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
+import javafx.beans.property.ObjectProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.function.BiConsumer;
 
@@ -16,10 +19,10 @@ import java.util.function.BiConsumer;
 @Slf4j
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class BelongsToMany<TC, TP> extends Relation<TC, TP> {
+public class BelongsToMany<TC, TP> extends Relation<TC, TP, BelongsToMany<TC, TP>> {
     private final static String name = "belongToMany";
 
-    /**
+    /*
      * 连接表， 类比为"user_role"
      */
     protected String table;
@@ -45,7 +48,7 @@ public class BelongsToMany<TC, TP> extends Relation<TC, TP> {
     protected String relatedKey = "id";
 
     /**
-     * 关联数据回填到主属性的回调
+     * 自定义回调，关联数据回填到主属性中
      */
     private BiConsumer<TP, List<TC>> integrate;
 

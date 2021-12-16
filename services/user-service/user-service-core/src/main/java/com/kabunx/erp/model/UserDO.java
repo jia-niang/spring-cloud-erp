@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.DateTypeHandler;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -36,4 +37,7 @@ public class UserDO extends BaseDO {
 
     @TableField(exist = false)
     MemberDO member;
+
+    @TableField(exist = false)
+    List<MemberDO> members;
 }

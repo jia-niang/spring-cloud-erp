@@ -1,5 +1,6 @@
 package com.kabunx.erp.relation;
 
+import com.kabunx.erp.domain.Collection;
 import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import lombok.Data;
@@ -10,11 +11,15 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Data
-public abstract class Relation<TC, TP> {
+public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Children>> {
+    /**
+     * 占位符
+     */
+    protected final Children children = (Children) this;
+
     protected PlusMapper<TP> parentMapper;
 
     protected PlusMapper<TC> relatedMapper;
@@ -91,46 +96,46 @@ public abstract class Relation<TC, TP> {
     /**
      * 添加额外过滤
      */
-    public Relation<TC, TP> wrapper(Consumer<PlusWrapper<TC>> callback) {
+    public Children wrapper(Consumer<PlusWrapper<TC>> callback) {
         callback.accept(relatedWrapper);
-        return this;
+        return children;
     }
 
     /**
      * 获取有效键集合数据
      */
-    public List<Object> getCollectionByKey(List<TP> records, String key) {
-        return records.stream().map(r -> {
+    public List<Object> pluckByKey(List<TP> records, String key) {
+        return new Collection<>(records).pluck(r -> {
             if (localCollect != null) {
                 return localCollect.apply(r);
             }
             return getDeclaredFieldValue(r, key);
-        }).filter(Objects::nonNull).distinct().collect(Collectors.toList());
+        });
     }
 
     /**
      * 初始化关系数据
      */
     protected void initRelatedData(List<TP> records) {
-        Collection<?> collection = getCollectionByKey(records, localKey);
+        List<Object> collection = pluckByKey(records, localKey);
         if (!collection.isEmpty()) {
             PlusWrapper<TC> wrapper = newRelatedWrapper();
             wrapper.in(foreignKey, collection);
             List<TC> results = relatedMapper.selectList(wrapper);
-            relatedData = buildRelatedData(results, foreignKey);
+            relatedData = groupRelatedData(results, foreignKey);
         }
     }
 
     /**
      * 构建分组数据
      */
-    protected Map<Object, List<TC>> buildRelatedData(List<TC> results, String foreignKey) {
-        return results.stream().collect(Collectors.groupingBy(r -> {
+    protected Map<Object, List<TC>> groupRelatedData(List<TC> results, String foreignKey) {
+        return new Collection<>(results).groupBy(r -> {
             if (relatedGroupingBy != null) {
                 return relatedGroupingBy.apply(r);
             }
             return getDeclaredFieldValue(r, foreignKey);
-        }));
+        });
     }
 
     protected PlusWrapper<TC> newRelatedWrapper() {
@@ -148,7 +153,7 @@ public abstract class Relation<TC, TP> {
      * 反射机制获取属性值
      */
     protected Object getDeclaredFieldValue(Object object, String fieldName) {
-        // 将被转化为驼峰
+        // 我们约定bean的属性为驼峰模式
         fieldName = CaseUtils.toCamelCase(fieldName, false, '_');
         try {
             Field field = object.getClass().getDeclaredField(fieldName);

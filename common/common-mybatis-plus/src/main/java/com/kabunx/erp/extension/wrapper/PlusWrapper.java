@@ -2,8 +2,6 @@ package com.kabunx.erp.extension.wrapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.dto.QueryDTO;
-import com.kabunx.erp.exception.PlusException;
-import com.kabunx.erp.exception.PlusExceptionEnum;
 import com.kabunx.erp.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,27 +15,18 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
 
     private static final List<String> ignores = Arrays.asList("page", "pageSize");
 
-    protected QueryDTO queryDTO;
-
     public PlusWrapper() {
     }
 
-    public PlusWrapper(QueryDTO queryDTO) {
-        this.queryDTO = queryDTO;
+    public <TL> PlusWrapper<T> leftJoin() {
+        return this;
     }
 
-    public Integer getPage() {
-        requireNotNull();
-        return queryDTO.getPage();
+    public <TL> PlusWrapper<T> join() {
+        return this;
     }
 
-    public Integer getPageSize() {
-        requireNotNull();
-        return queryDTO.getPageSize();
-    }
-
-    public void build() {
-        requireNotNull();
+    public void autoBuild(QueryDTO queryDTO) {
         Class<?> dtoClass = queryDTO.getClass();
         // 获取当前类定义的属性（不包括父类）
         Field[] fields = dtoClass.getDeclaredFields();
@@ -58,6 +47,11 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
         }
     }
 
+    @Override
+    public void clear() {
+        super.clear();
+    }
+
     private void buildWrapper(Field field, Object value) {
         String methodName = "where" + StringUtils.capitalize(field.getName());
         Class<?> wrapperClass = this.getClass();
@@ -67,12 +61,6 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
             whereMethod.invoke(this, value);
         } catch (Exception ignored) {
             log.warn("反射异常，没有定义方法【{}】", methodName);
-        }
-    }
-
-    private void requireNotNull() {
-        if (queryDTO == null) {
-            throw new PlusException(PlusExceptionEnum.NOT_INIT_DTO);
         }
     }
 }

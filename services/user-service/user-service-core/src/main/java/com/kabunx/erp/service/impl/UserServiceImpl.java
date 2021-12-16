@@ -13,8 +13,8 @@ import com.kabunx.erp.domain.dto.UserQueryDTO;
 import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
-import com.kabunx.erp.query.Builder;
 import com.kabunx.erp.service.UserService;
+import com.kabunx.erp.util.SpringUtils;
 import com.kabunx.erp.vo.UserVO;
 import com.kabunx.erp.wrapper.UserWrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -39,8 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByAccount(String account) {
-        UserDO user = new UserBuilder(userMapper)
+        UserBuilder userBuilder = SpringUtils.getBean(UserBuilder.class);
+        UserDO user = userBuilder
                 .loadMember(memberMapper)
+                .loadMembers(memberMapper)
                 .filter(w -> {
                     w.eq("account", account);
                 })
@@ -72,7 +74,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public LengthPaginator<UserDO> paginate(UserQueryDTO userQueryDTO) {
         AutoBuilder<UserDO> builder = new AutoBuilder<>(
-                userMapper, new UserWrapper(userQueryDTO)
+                userMapper, new UserWrapper(), userQueryDTO
         );
         return builder.paginate();
     }
@@ -80,7 +82,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public SimplePaginator<UserDO> simplePaginate(UserQueryDTO userQueryDTO) {
         AutoBuilder<UserDO> builder = new AutoBuilder<>(
-                userMapper, new UserWrapper(userQueryDTO)
+                userMapper, new UserWrapper(), userQueryDTO
         );
         return builder.simplePaginate();
     }

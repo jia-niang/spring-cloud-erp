@@ -15,7 +15,12 @@ import java.util.*;
 import java.util.function.Consumer;
 
 @Slf4j
-public class Builder<T> {
+public class Builder<T, Children extends Builder<T, Children>> {
+
+    /**
+     * 占位符
+     */
+    protected final Children children = (Children) this;
 
     protected final PlusMapper<T> mapper;
 
@@ -34,7 +39,7 @@ public class Builder<T> {
     /**
      * 所有被定义的关系
      */
-    protected HashMap<String, Relation<?, T>> relations = new HashMap<>();
+    protected HashMap<String, Relation<?, T, ?>> relations = new HashMap<>();
 
     /**
      * 需要被加载的关系数据
@@ -43,69 +48,69 @@ public class Builder<T> {
 
     public Builder(PlusMapper<T> mapper) {
         this.mapper = mapper;
-        this.wrapper = newWrapper();
+        this.wrapper = initWrapper();
     }
 
-    public PlusWrapper<T> newWrapper() {
+    public PlusWrapper<T> initWrapper() {
         return new PlusWrapper<>();
     }
 
-    public Builder<T> select(String... columns) {
+    public Children select(String... columns) {
         wrapper.select(columns);
-        return this;
+        return children;
     }
 
-    public Builder<T> filter(Consumer<PlusWrapper<T>> consumer) {
+    public Children filter(Consumer<PlusWrapper<T>> consumer) {
         return wrapper(consumer);
     }
 
-    public Builder<T> wrapper(Consumer<PlusWrapper<T>> consumer) {
+    public Children wrapper(Consumer<PlusWrapper<T>> consumer) {
         consumer.accept(wrapper);
-        return this;
+        return children;
     }
 
-    public Builder<T> orderByAsc(List<String> columns) {
+    public Children orderByAsc(List<String> columns) {
         wrapper.orderByAsc(columns);
-        return this;
+        return children;
     }
 
-    public Builder<T> orderByAsc(String... columns) {
+    public Children orderByAsc(String... columns) {
         return orderByAsc(Arrays.asList(columns));
     }
 
-    public Builder<T> orderByDesc(List<String> columns) {
+    public Children orderByDesc(List<String> columns) {
         wrapper.orderByDesc(columns);
-        return this;
+        return children;
     }
 
-    public Builder<T> orderByDesc(String... columns) {
+    public Children orderByDesc(String... columns) {
         return orderByDesc(Arrays.asList(columns));
     }
 
-    public Builder<T> offset(int value) {
+    public Children offset(int value) {
         offsetNum = value;
-        return this;
+        return children;
     }
 
-    public Builder<T> skip(int value) {
+    public Children skip(int value) {
         return offset(value);
     }
 
-    public Builder<T> limit(int value) {
+    public Children limit(int value) {
         limitNum = value;
-        return this;
+        return children;
     }
 
-    public Builder<T> forPage(int page, int perPage) {
+    public Children forPage(int page, int perPage) {
         return offset((page - 1) * perPage).limit(perPage);
     }
 
     /**
      * 被定义后才会加载关系数据
      */
-    public Builder<T> with(String... relations) {
+    public Children with(String... relations) {
         this.loadRelations.addAll(Arrays.asList(relations));
-        return this;
+        return children;
     }
 
     /**
@@ -213,37 +218,49 @@ public class Builder<T> {
     /**
      * 预定义向关系中添加其他添加
      */
-    public <TC> void setRelation(String name, Relation<TC, T> relation) {
+    public <TC> void setRelation(String name, Relation<TC, T, ?> relation) {
         // 直接被替换，还是抛出异常
         if (!relations.containsKey(name)) {
             relations.put(name, relation);
         }
     }
 
-    public <TC> Builder<T> hasOne(String name, Consumer<HasOne<TC, T>> callback) {
+    /**
+     * 一对一关系
+     */
+    public <TC> Children hasOne(String name, Consumer<HasOne<TC, T>> callback) {
         HasOne<TC, T> oneRelation = new HasOne<>(mapper);
         setRelation(name, oneRelation);
         callback.accept(oneRelation);
-        return this;
+        return children;
     }
 
-    public <TC> Builder<T> hasMany(String name, Consumer<HasMany<TC, T>> callback) {
+    /**
+     * 一对多关系
+     */
+    public <TC> Children hasMany(String name, Consumer<HasMany<TC, T>> callback) {
         HasMany<TC, T> manyRelation = new HasMany<>(mapper);
         setRelation(name, manyRelation);
         callback.accept(manyRelation);
-        return this;
+        return children;
     }
 
-    public <TC> Builder<T> belongsTo(String name, Consumer<BelongsTo<TC, T>> callback) {
+    /**
+     * 一对多反关系
+     */
+    public <TC> Children belongsTo(String name, Consumer<BelongsTo<TC, T>> callback) {
         BelongsTo<TC, T> belongsToRelation = new BelongsTo<>(mapper);
         callback.accept(belongsToRelation);
-        return this;
+        return children;
     }
 
-    public <TC> Builder<T> belongsToMany(String name, Consumer<BelongsToMany<TC, T>> callback) {
+    /**
+     * 多对多关系
+     */
+    public <TC> Children belongsToMany(String name, Consumer<BelongsToMany<TC, T>> callback) {
         BelongsToMany<TC, T> belongsToManyRelation = new BelongsToMany<>(mapper);
         callback.accept(belongsToManyRelation);
-        return this;
+        return children;
     }
 
     /**
@@ -252,7 +269,7 @@ public class Builder<T> {
     private void eagerLoadRelationsData(List<T> records) {
         for (String key : loadRelations) {
             if (relations.containsKey(key)) {
-                Relation<?, T> relation = relations.get(key);
+                Relation<?, T, ?> relation = relations.get(key);
                 relation.initRelation(records);
             }
         }

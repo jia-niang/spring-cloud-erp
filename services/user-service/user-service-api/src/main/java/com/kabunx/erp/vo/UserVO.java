@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -20,4 +21,6 @@ public class UserVO extends BaseVO {
     Date createdAt;
 
     MemberVO member;
+
+    List<MemberVO> members;
 }

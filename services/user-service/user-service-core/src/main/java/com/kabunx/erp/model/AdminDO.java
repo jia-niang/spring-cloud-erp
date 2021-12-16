@@ -1,7 +1,6 @@
 package com.kabunx.erp.model;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kabunx.erp.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,15 +41,12 @@ public class AdminDO extends BaseDO {
     Integer status;
 
     @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.INSERT)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date createdAt;
 
     @TableField(typeHandler = DateTypeHandler.class, fill = FieldFill.UPDATE)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date updatedAt;
 
     @TableField(typeHandler = DateTypeHandler.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     Date activatedAt;
 
     @TableLogic

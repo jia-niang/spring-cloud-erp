@@ -11,12 +11,12 @@ import java.util.function.BiConsumer;
 @Slf4j
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class HasOne<TC, TP> extends Relation<TC, TP> {
+public class HasOne<TC, TP> extends Relation<TC, TP, HasOne<TC, TP>> {
 
     private final static String name = "hasOne";
 
     /**
-     * 整合数据，将关联数据绑定到主数据
+     * 自定义回调，关联数据回填到主属性中
      */
     private BiConsumer<TP, TC> integrate;
 
