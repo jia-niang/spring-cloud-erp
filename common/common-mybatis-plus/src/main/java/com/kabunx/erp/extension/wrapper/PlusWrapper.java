@@ -37,7 +37,7 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
                 }
                 field.setAccessible(true);
                 Object value = field.get(queryDTO);
-                if (value == null) {
+                if (null == value) {
                     continue;
                 }
                 buildWrapper(field, value);

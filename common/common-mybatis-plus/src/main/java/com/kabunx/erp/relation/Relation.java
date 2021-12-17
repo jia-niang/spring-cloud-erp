@@ -114,7 +114,7 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
      * 必须通过该方法获取Wrapper实例
      */
     protected PlusWrapper<TC> getRelatedWrapper() {
-        if (relatedWrapper == null) {
+        if (null == relatedWrapper) {
             relatedWrapper = new PlusWrapper<>();
         }
         return relatedWrapper;
@@ -145,10 +145,10 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
      */
     public List<Object> pluckByKey(List<TP> records, String key) {
         return new Collection<>(records).pluck(r -> {
-            if (localCollect != null) {
-                return localCollect.apply(r);
+            if (null == localCollect) {
+                return getDeclaredFieldValue(r, key);
             }
-            return getDeclaredFieldValue(r, key);
+            return localCollect.apply(r);
         });
     }
 
@@ -157,15 +157,15 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
      */
     protected TC getOneRelatedValue(TP record, String ownerKey) {
         List<TC> values = getManyRelatedValues(record, ownerKey);
-        return values == null ? null : values.get(0);
+        return null == values ? null : values.get(0);
     }
 
     protected List<TC> getManyRelatedValues(TP record, String ownerKey) {
         Object key;
-        if (localCollect != null) {
-            key = localCollect.apply(record);
-        } else {
+        if (null == localCollect) {
             key = getDeclaredFieldValue(record, ownerKey);
+        } else {
+            key = localCollect.apply(record);
         }
         if (!relatedData.containsKey(key)) {
             return null;
@@ -178,15 +178,15 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
      */
     protected Map<Object, List<TC>> groupRelatedData(List<TC> results, String foreignKey) {
         return new Collection<>(results).groupBy(r -> {
-            if (relatedGroupingBy != null) {
-                return relatedGroupingBy.apply(r);
+            if (null == relatedGroupingBy) {
+                return getDeclaredFieldValue(r, foreignKey);
             }
-            return getDeclaredFieldValue(r, foreignKey);
+            return relatedGroupingBy.apply(r);
         });
     }
 
     protected Boolean requiredRelatedArgs() {
-        return relatedMapper != null && foreignKey != null;
+        return null != relatedMapper && null != foreignKey;
     }
 
     /**

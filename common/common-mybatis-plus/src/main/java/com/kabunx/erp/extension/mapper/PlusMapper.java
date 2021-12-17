@@ -42,7 +42,7 @@ public interface PlusMapper<T> extends BaseMapper<T> {
 
     default T firstOrFail(@Param(Constants.WRAPPER) QueryWrapper<T> queryWrapper) {
         T result = this.first(queryWrapper);
-        if (result == null) {
+        if (null == result) {
             throw new PlusException(PlusExceptionEnum.NOT_FOUND);
         }
         return result;

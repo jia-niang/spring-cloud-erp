@@ -67,7 +67,7 @@ public class Builder<T, Children extends Builder<T, Children>> {
     }
 
     public PlusWrapper<T> getWrapper() {
-        if (wrapper == null) {
+        if (null == wrapper) {
             wrapper = initPlusWrapper();
         }
         return wrapper;
@@ -203,8 +203,8 @@ public class Builder<T, Children extends Builder<T, Children>> {
                 }
             });
         }
-        if (limitNum != null) {
-            if (offsetNum != null) {
+        if (null != limitNum) {
+            if (null != offsetNum) {
                 wrapper.last("LIMIT " + offsetNum + "," + limitNum);
             } else {
                 wrapper.last("LIMIT " + limitNum);
@@ -231,7 +231,7 @@ public class Builder<T, Children extends Builder<T, Children>> {
 
     public T findOrFail(Serializable id) {
         T result = find(id);
-        if (result == null) {
+        if (null == result) {
             throw new PlusException(PlusExceptionEnum.NOT_FOUND);
         }
         return result;
@@ -247,7 +247,7 @@ public class Builder<T, Children extends Builder<T, Children>> {
 
     public T firstOrFail() {
         T result = first();
-        if (result == null) {
+        if (null == result) {
             throw new PlusException(PlusExceptionEnum.NOT_FOUND);
         }
         return result;
