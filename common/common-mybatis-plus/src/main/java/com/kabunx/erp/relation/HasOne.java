@@ -20,10 +20,6 @@ public class HasOne<TC, TP> extends Relation<TC, TP, HasOne<TC, TP>> {
      */
     private BiConsumer<TP, TC> integrate;
 
-    public HasOne() {
-        super();
-    }
-
     public HasOne(PlusMapper<TP> parent) {
         super(parent);
     }

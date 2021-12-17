@@ -19,10 +19,6 @@ public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
      */
     private BiConsumer<TP, TC> integrate;
 
-    public BelongsTo() {
-        super();
-    }
-
     public BelongsTo(PlusMapper<TP> parent) {
         super(parent);
     }
@@ -34,7 +30,6 @@ public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
         }
         initRelatedData(records, foreignKey, localKey);
         for (TP record : records) {
-            // 从EagerData获取record对应关系数据
             TC relatedValue = getOneRelatedValue(record, foreignKey);
             integrate.accept(record, relatedValue);
         }

@@ -7,12 +7,13 @@ import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.pagination.LengthPaginator;
 import com.kabunx.erp.pagination.SimplePaginator;
 import com.kabunx.erp.relation.*;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class Builder<T, Children extends Builder<T, Children>> {
@@ -22,19 +23,24 @@ public class Builder<T, Children extends Builder<T, Children>> {
      */
     protected final Children children = (Children) this;
 
-    protected final PlusMapper<T> mapper;
+    protected PlusMapper<T> mapper;
 
-    /**
-     * 构造器必须是一个原型bean，通过@Lookup注解实现
-     */
-    @Setter
     protected PlusWrapper<T> wrapper;
 
-    @Setter
+    /**
+     * 查询offset
+     */
     protected Integer offsetNum;
 
-    @Setter
+    /**
+     * 查询limit
+     */
     protected Integer limitNum;
+
+    /**
+     * 排序
+     */
+    protected HashMap<String, String> orders = new HashMap<>();
 
     /**
      * 所有被定义的关系
@@ -46,17 +52,34 @@ public class Builder<T, Children extends Builder<T, Children>> {
      */
     protected ArrayList<String> loadRelations = new ArrayList<>();
 
-    public Builder(PlusMapper<T> mapper) {
-        this.mapper = mapper;
-        this.wrapper = initWrapper();
+    /**
+     * 解决注解注入
+     */
+    public PlusMapper<T> getMapper() {
+        return mapper;
     }
 
-    public PlusWrapper<T> initWrapper() {
+    /**
+     * 初始化一个wrapper对象
+     */
+    public PlusWrapper<T> initPlusWrapper() {
         return new PlusWrapper<>();
     }
 
+    public PlusWrapper<T> getWrapper() {
+        if (wrapper == null) {
+            wrapper = initPlusWrapper();
+        }
+        return wrapper;
+    }
+
+    public Children setWrapper(PlusWrapper<T> wrapper) {
+        this.wrapper = wrapper;
+        return children;
+    }
+
     public Children select(String... columns) {
-        wrapper.select(columns);
+        getWrapper().select(columns);
         return children;
     }
 
@@ -65,12 +88,14 @@ public class Builder<T, Children extends Builder<T, Children>> {
     }
 
     public Children wrapper(Consumer<PlusWrapper<T>> consumer) {
-        consumer.accept(wrapper);
+        consumer.accept(getWrapper());
         return children;
     }
 
     public Children orderByAsc(List<String> columns) {
-        wrapper.orderByAsc(columns);
+        for (String column : columns) {
+            orders.put(column, "asc");
+        }
         return children;
     }
 
@@ -79,7 +104,9 @@ public class Builder<T, Children extends Builder<T, Children>> {
     }
 
     public Children orderByDesc(List<String> columns) {
-        wrapper.orderByDesc(columns);
+        for (String column : columns) {
+            orders.put(column, "desc");
+        }
         return children;
     }
 
@@ -105,32 +132,88 @@ public class Builder<T, Children extends Builder<T, Children>> {
         return offset((page - 1) * perPage).limit(perPage);
     }
 
+    public Children forPageAfterId(int page, int perPage) {
+        clearExistingOrders();
+        return orderByDesc("id").forPage(page, perPage);
+    }
+
     /**
-     * 被定义后才会加载关系数据
+     * 在分块时，对每个结果map处理
      */
-    public Children with(String... relations) {
-        this.loadRelations.addAll(Arrays.asList(relations));
-        return children;
+    public <R> List<R> chunkMap(Function<T, R> callback) {
+        List<R> results = new ArrayList<>();
+        chunk(1000, items -> {
+            results.addAll(
+                    items.stream().map(callback).collect(Collectors.toList())
+            );
+            return true;
+        });
+        return results;
+    }
+
+    public boolean chunkById(Integer count, Function<List<T>, Boolean> callback) {
+        return chunk(count, callback, true);
+    }
+
+    public boolean chunk(Integer count, Function<List<T>, Boolean> callback) {
+        return chunk(count, callback, false);
+    }
+
+    /**
+     * 将查询结果分成块。减少内存占用
+     */
+    public boolean chunk(Integer count, Function<List<T>, Boolean> callback, Boolean afterId) {
+        int stageCount;
+        List<T> results;
+        int page = 1;
+        do {
+            results = afterId
+                    ? forPageAfterId(page, count).get(false)
+                    : forPage(page, count).get(false);
+            stageCount = results.size();
+            if (stageCount == 0) {
+                break;
+            }
+            boolean result = callback.apply(results);
+            if (!result) {
+                return false;
+            }
+            results.clear();
+            page++;
+        } while (stageCount == count);
+        return true;
     }
 
     /**
      * 获取结果集
+     * 将对排序和limit做统一的处理
      */
     public List<T> get() {
-        String lastLimit = "";
+        return get(true);
+    }
+
+    public List<T> get(Boolean clearWrapper) {
+        PlusWrapper<T> wrapper = getWrapper();
+        if (!orders.isEmpty()) {
+            orders.forEach((key, value) -> {
+                if ("desc".equals(value)) {
+                    wrapper.orderByDesc(key);
+                } else {
+                    wrapper.orderByAsc(key);
+                }
+            });
+        }
         if (limitNum != null) {
             if (offsetNum != null) {
-                lastLimit = "LIMIT " + offsetNum + "," + limitNum;
+                wrapper.last("LIMIT " + offsetNum + "," + limitNum);
             } else {
-                lastLimit = "LIMIT " + limitNum;
+                wrapper.last("LIMIT " + limitNum);
             }
         }
-        if (!lastLimit.isEmpty()) {
-            wrapper.last(lastLimit);
-        }
-        List<T> records = mapper.selectList(wrapper);
+        List<T> records = getMapper().selectList(wrapper);
         // 加载被定义的关系数据
         eagerLoadRelationsData(records);
+        clear(clearWrapper);
         return records;
     }
 
@@ -139,11 +222,11 @@ public class Builder<T, Children extends Builder<T, Children>> {
     }
 
     public Long count() {
-        return mapper.selectCount(wrapper);
+        return getMapper().selectCount(getWrapper());
     }
 
     public T find(Serializable id) {
-        return mapper.selectById(id);
+        return getMapper().selectById(id);
     }
 
     public T findOrFail(Serializable id) {
@@ -216,6 +299,36 @@ public class Builder<T, Children extends Builder<T, Children>> {
     }
 
     /**
+     * 清除已有的排序
+     */
+    public void clearExistingOrders() {
+        orders.clear();
+    }
+
+    /**
+     * 清理分页数据
+     */
+    public void clear(Boolean clearWrapper) {
+        offsetNum = null;
+        limitNum = null;
+        loadRelations.clear();
+        clearExistingOrders();
+        if (clearWrapper) {
+            wrapper = null;
+        }
+    }
+
+    /**
+     * 被定义后才会加载关系数据
+     */
+    public Children with(String... relations) {
+        List<String> rls = Arrays.asList(relations);
+        this.loadRelations.removeAll(rls);
+        this.loadRelations.addAll(rls);
+        return children;
+    }
+
+    /**
      * 预定义向关系中添加其他添加
      */
     public <TC> void setRelation(String name, Relation<TC, T, ?> relation) {
@@ -229,7 +342,7 @@ public class Builder<T, Children extends Builder<T, Children>> {
      * 一对一关系
      */
     public <TC> Children hasOne(String name, Consumer<HasOne<TC, T>> callback) {
-        HasOne<TC, T> oneRelation = new HasOne<>(mapper);
+        HasOne<TC, T> oneRelation = new HasOne<>(getMapper());
         setRelation(name, oneRelation);
         callback.accept(oneRelation);
         return children;
@@ -239,7 +352,7 @@ public class Builder<T, Children extends Builder<T, Children>> {
      * 一对多关系
      */
     public <TC> Children hasMany(String name, Consumer<HasMany<TC, T>> callback) {
-        HasMany<TC, T> manyRelation = new HasMany<>(mapper);
+        HasMany<TC, T> manyRelation = new HasMany<>(getMapper());
         setRelation(name, manyRelation);
         callback.accept(manyRelation);
         return children;
@@ -249,7 +362,8 @@ public class Builder<T, Children extends Builder<T, Children>> {
      * 一对多反关系
      */
     public <TC> Children belongsTo(String name, Consumer<BelongsTo<TC, T>> callback) {
-        BelongsTo<TC, T> belongsToRelation = new BelongsTo<>(mapper);
+        BelongsTo<TC, T> belongsToRelation = new BelongsTo<>(getMapper());
+        setRelation(name, belongsToRelation);
         callback.accept(belongsToRelation);
         return children;
     }
@@ -258,7 +372,8 @@ public class Builder<T, Children extends Builder<T, Children>> {
      * 多对多关系
      */
     public <TC> Children belongsToMany(String name, Consumer<BelongsToMany<TC, T>> callback) {
-        BelongsToMany<TC, T> belongsToManyRelation = new BelongsToMany<>(mapper);
+        BelongsToMany<TC, T> belongsToManyRelation = new BelongsToMany<>(getMapper());
+        setRelation(name, belongsToManyRelation);
         callback.accept(belongsToManyRelation);
         return children;
     }
@@ -270,7 +385,7 @@ public class Builder<T, Children extends Builder<T, Children>> {
         for (String key : loadRelations) {
             if (relations.containsKey(key)) {
                 Relation<?, T, ?> relation = relations.get(key);
-                relation.initRelation(records);
+                relation.handleRelation(records);
             }
         }
     }

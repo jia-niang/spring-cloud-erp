@@ -19,12 +19,12 @@ public class AutoBuilder<T> extends Builder<T, AutoBuilder<T>> {
     private final QueryDTO queryDTO;
 
     public AutoBuilder(
-            PlusMapper<T> mapper,
-            PlusWrapper<T> wrapper,
+            PlusMapper<T> plusMapper,
+            PlusWrapper<T> plusWrapper,
             QueryDTO queryDTO
     ) {
-        super(mapper);
-        this.wrapper = wrapper;
+        this.mapper = plusMapper;
+        this.wrapper = plusWrapper;
         this.queryDTO = queryDTO;
     }
 

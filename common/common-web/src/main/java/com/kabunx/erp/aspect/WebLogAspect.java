@@ -38,13 +38,13 @@ public class WebLogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes != null) {
             HttpServletRequest request = attributes.getRequest();
-            WebLog log = new WebLog();
-            log.setIp(request.getRemoteAddr());
-            log.setMethod(request.getMethod());
-            log.setUri(request.getRequestURI());
-            log.setArgs(joinPoint.getArgs());
-            log.setSignature(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-            WebLogAspect.log.info("请求信息：{}", Hydrate.map2String(log));
+            WebLog webLog = new WebLog();
+            webLog.setIp(request.getRemoteAddr());
+            webLog.setMethod(request.getMethod());
+            webLog.setUri(request.getRequestURI());
+            webLog.setArgs(joinPoint.getArgs());
+            webLog.setSignature(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+            log.info("请求信息：{}", Hydrate.map2String(webLog));
         }
     }
 

@@ -24,8 +24,6 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
 
     protected PlusMapper<TC> relatedMapper;
 
-    protected PlusWrapper<TC> relatedWrapper;
-
     /**
      * 自定义外间
      */
@@ -42,14 +40,19 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     protected Function<TP, Object> localCollect;
 
     /**
-     * 关联数据
-     */
-    protected Map<Object, List<TC>> relatedData = new HashMap<>();
-
-    /**
      * 用户自定义关联模型数据分组
      */
     protected Function<TC, Object> relatedGroupingBy;
+
+    /**
+     * 关联wrapper
+     */
+    protected PlusWrapper<TC> relatedWrapper;
+
+    /**
+     * 关联数据
+     */
+    protected Map<Object, List<TC>> relatedData = new HashMap<>();
 
     public Relation() {
         super();
@@ -57,17 +60,11 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
 
     public Relation(PlusMapper<TP> parent) {
         this.parentMapper = parent;
-        this.relatedWrapper = initPlusWrapper();
     }
 
     public Relation(PlusMapper<TC> related, PlusMapper<TP> parent) {
         this.relatedMapper = related;
         this.parentMapper = parent;
-        this.relatedWrapper = initPlusWrapper();
-    }
-
-    public PlusWrapper<TC> initPlusWrapper() {
-        return new PlusWrapper<>();
     }
 
     public void setRelatedArgs(PlusMapper<TC> relatedMapper, String foreignKey) {
@@ -80,25 +77,67 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
         this.localKey = localKey;
     }
 
+    /**
+     * 处理数据对应的关联数据，并销毁过程数据
+     */
+    public void handleRelation(List<TP> records) {
+        initRelation(records);
+        clear();
+    }
+
     public abstract void initRelation(List<TP> records);
 
     /**
-     * 别名
+     * wrapper的别名
      */
     public void filter(Consumer<PlusWrapper<TC>> callback) {
-        callback.accept(relatedWrapper);
-    }
-
-    public PlusWrapper<TC> filter() {
-        return relatedWrapper;
+        wrapper(callback);
     }
 
     /**
      * 添加额外过滤
      */
     public Children wrapper(Consumer<PlusWrapper<TC>> callback) {
-        callback.accept(relatedWrapper);
+        callback.accept(getRelatedWrapper());
         return children;
+    }
+
+    /**
+     * 清理过程对象
+     */
+    public void clear() {
+        relatedWrapper = null;
+        relatedData.clear();
+    }
+
+    /**
+     * 必须通过该方法获取Wrapper实例
+     */
+    protected PlusWrapper<TC> getRelatedWrapper() {
+        if (relatedWrapper == null) {
+            relatedWrapper = new PlusWrapper<>();
+        }
+        return relatedWrapper;
+    }
+
+    /**
+     * 初始化关系数据
+     */
+    protected void initRelatedData(List<TP> records) {
+        initRelatedData(records, localKey, foreignKey);
+    }
+
+    /**
+     * 初始化关系数据，已根据关联主键分组
+     */
+    protected void initRelatedData(List<TP> records, String ownerKey, String relatedKey) {
+        List<Object> collection = pluckByKey(records, ownerKey);
+        if (!collection.isEmpty()) {
+            PlusWrapper<TC> wrapper = getRelatedWrapper();
+            wrapper.in(relatedKey, collection);
+            List<TC> results = relatedMapper.selectList(wrapper);
+            relatedData = groupRelatedData(results, relatedKey);
+        }
     }
 
     /**
@@ -114,23 +153,6 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     }
 
     /**
-     * 初始化关系数据
-     */
-    protected void initRelatedData(List<TP> records) {
-        initRelatedData(records, localKey, foreignKey);
-    }
-
-    protected void initRelatedData(List<TP> records, String ownerKey, String relatedKey) {
-        List<Object> collection = pluckByKey(records, ownerKey);
-        if (!collection.isEmpty()) {
-            PlusWrapper<TC> wrapper = newRelatedWrapper();
-            wrapper.in(relatedKey, collection);
-            List<TC> results = relatedMapper.selectList(wrapper);
-            relatedData = groupRelatedData(results, relatedKey);
-        }
-    }
-
-    /**
      * 获取关联数据
      */
     protected TC getOneRelatedValue(TP record, String ownerKey) {
@@ -139,7 +161,12 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     }
 
     protected List<TC> getManyRelatedValues(TP record, String ownerKey) {
-        Object key = getDeclaredFieldValue(record, ownerKey);
+        Object key;
+        if (localCollect != null) {
+            key = localCollect.apply(record);
+        } else {
+            key = getDeclaredFieldValue(record, ownerKey);
+        }
         if (!relatedData.containsKey(key)) {
             return null;
         }
@@ -158,18 +185,12 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
         });
     }
 
-    protected PlusWrapper<TC> newRelatedWrapper() {
-        if (relatedWrapper == null) {
-            relatedWrapper = new PlusWrapper<>();
-        }
-        return relatedWrapper;
-    }
-
     protected Boolean requiredRelatedArgs() {
-        return relatedWrapper != null && foreignKey != null;
+        return relatedMapper != null && foreignKey != null;
     }
 
     /**
+     * 备用方法
      * 反射机制获取属性值
      */
     protected Object getDeclaredFieldValue(Object object, String fieldName) {
@@ -182,21 +203,6 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
         } catch (Exception ex) {
             log.warn("属性【{}】获取值失败", fieldName);
             return null;
-        }
-    }
-
-    /**
-     * 通过反射将值添加到对应属性上
-     * 暂时用不到，
-     * 目前可通过回调处理关系数据的绑
-     */
-    protected void setDeclaredFieldValue(Object object, String fieldName, Object value) {
-        try {
-            Field field = object.getClass().getDeclaredField(fieldName);
-            field.setAccessible(true);
-            field.set(object, value);
-        } catch (Exception ignored) {
-            log.warn("属性【{}】赋值失败", fieldName);
         }
     }
 }

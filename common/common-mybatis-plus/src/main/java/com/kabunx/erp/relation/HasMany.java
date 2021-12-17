@@ -20,10 +20,6 @@ public class HasMany<TC, TP> extends Relation<TC, TP, HasMany<TC, TP>> {
      */
     private BiConsumer<TP, List<TC>> integrate;
 
-    public HasMany() {
-        super();
-    }
-
     public HasMany(PlusMapper<TP> parent) {
         super(parent);
     }

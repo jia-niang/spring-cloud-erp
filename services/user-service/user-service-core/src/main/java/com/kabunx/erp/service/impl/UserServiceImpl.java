@@ -14,7 +14,7 @@ import com.kabunx.erp.dto.UserFromDTO;
 import com.kabunx.erp.mapper.UserMapper;
 import com.kabunx.erp.model.UserDO;
 import com.kabunx.erp.service.UserService;
-import com.kabunx.erp.util.SpringUtils;
+import com.kabunx.erp.util.SpringApplicationUtils;
 import com.kabunx.erp.vo.UserVO;
 import com.kabunx.erp.wrapper.UserWrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Resource
-    MemberMapper memberMapper;
+    UserBuilder userBuilder;
 
     @Override
     public UserVO findById(Long id) {
@@ -39,10 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByAccount(String account) {
-        UserBuilder userBuilder = SpringUtils.getBean(UserBuilder.class);
+//        UserBuilder userBuilder = SpringApplicationUtils.getBean(UserBuilder.class);
         UserDO user = userBuilder
-                .loadMember(memberMapper)
-                .loadMembers(memberMapper)
+                .loadMember()
+                .loadMembers()
                 .filter(w -> {
                     w.eq("account", account);
                 })
