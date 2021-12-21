@@ -40,4 +40,7 @@ public class UserDO extends BaseDO {
 
     @TableField(exist = false)
     List<MemberDO> members;
+
+    @TableField(exist = false)
+    List<RoleDO> roles;
 }

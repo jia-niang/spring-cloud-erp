@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class Builder<T, Children extends Builder<T, Children>> {
-
     /**
      * 占位符
      */

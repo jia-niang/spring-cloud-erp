@@ -18,7 +18,7 @@ public class HasOne<TC, TP> extends Relation<TC, TP, HasOne<TC, TP>> {
     /**
      * 自定义回调，关联数据回填到主属性中
      */
-    private BiConsumer<TP, TC> integrate;
+    private BiConsumer<TP, TC> merge;
 
     public HasOne(PlusMapper<TP> parent) {
         super(parent);
@@ -32,11 +32,11 @@ public class HasOne<TC, TP> extends Relation<TC, TP, HasOne<TC, TP>> {
         initRelatedData(records);
         for (TP record : records) {
             TC relationValue = getOneRelatedValue(record, localKey);
-            integrate.accept(record, relationValue);
+            merge.accept(record, relationValue);
         }
     }
 
     private Boolean requiredConditions() {
-        return requiredRelatedArgs() && integrate != null;
+        return requiredRelatedArgs() && merge != null;
     }
 }

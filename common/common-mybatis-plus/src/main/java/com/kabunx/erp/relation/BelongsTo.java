@@ -17,7 +17,7 @@ public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
     /**
      * 自定义回调，关联数据回填到主属性中
      */
-    private BiConsumer<TP, TC> integrate;
+    private BiConsumer<TP, TC> merge;
 
     public BelongsTo(PlusMapper<TP> parent) {
         super(parent);
@@ -31,11 +31,11 @@ public class BelongsTo<TC, TP> extends Relation<TC, TP, BelongsTo<TC, TP>> {
         initRelatedData(records, foreignKey, localKey);
         for (TP record : records) {
             TC relatedValue = getOneRelatedValue(record, foreignKey);
-            integrate.accept(record, relatedValue);
+            merge.accept(record, relatedValue);
         }
     }
 
     private Boolean requiredConditions() {
-        return requiredRelatedArgs() && integrate != null;
+        return requiredRelatedArgs() && merge != null;
     }
 }

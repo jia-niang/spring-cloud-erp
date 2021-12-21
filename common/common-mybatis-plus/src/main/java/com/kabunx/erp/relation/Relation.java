@@ -3,6 +3,7 @@ package com.kabunx.erp.relation;
 import com.kabunx.erp.domain.Collection;
 import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.extension.wrapper.PlusWrapper;
+import com.kabunx.erp.util.ReflectUtils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.CaseUtils;
@@ -146,7 +147,7 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     public List<Object> pluckByKey(List<TP> records, String key) {
         return new Collection<>(records).pluck(r -> {
             if (null == localCollect) {
-                return getDeclaredFieldValue(r, key);
+                return ReflectUtils.getDeclaredFieldValue(r, key);
             }
             return localCollect.apply(r);
         });
@@ -163,7 +164,7 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     protected List<TC> getManyRelatedValues(TP record, String ownerKey) {
         Object key;
         if (null == localCollect) {
-            key = getDeclaredFieldValue(record, ownerKey);
+            key = ReflectUtils.getDeclaredFieldValue(record, ownerKey);
         } else {
             key = localCollect.apply(record);
         }
@@ -179,7 +180,7 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     protected Map<Object, List<TC>> groupRelatedData(List<TC> results, String foreignKey) {
         return new Collection<>(results).groupBy(r -> {
             if (null == relatedGroupingBy) {
-                return getDeclaredFieldValue(r, foreignKey);
+                return ReflectUtils.getDeclaredFieldValue(r, foreignKey);
             }
             return relatedGroupingBy.apply(r);
         });
@@ -187,22 +188,5 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
 
     protected Boolean requiredRelatedArgs() {
         return null != relatedMapper && null != foreignKey;
-    }
-
-    /**
-     * 备用方法
-     * 反射机制获取属性值
-     */
-    protected Object getDeclaredFieldValue(Object object, String fieldName) {
-        // 我们约定bean的属性为驼峰模式
-        fieldName = CaseUtils.toCamelCase(fieldName, false, '_');
-        try {
-            Field field = object.getClass().getDeclaredField(fieldName);
-            field.setAccessible(true);
-            return field.get(object);
-        } catch (Exception ex) {
-            log.warn("属性【{}】获取值失败", fieldName);
-            return null;
-        }
     }
 }

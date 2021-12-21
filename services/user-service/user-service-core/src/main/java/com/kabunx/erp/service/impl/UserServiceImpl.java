@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
         UserDO user = userBuilder
                 .loadMember()
                 .loadMembers()
+                .loadRoles()
                 .filter(w -> {
                     w.eq("account", account);
                 })

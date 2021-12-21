@@ -1,7 +1,6 @@
 package com.kabunx.erp.relation;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
-import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,7 @@ public class HasMany<TC, TP> extends Relation<TC, TP, HasMany<TC, TP>> {
     /**
      * 自定义回调，关联数据回填到主属性的回调
      */
-    private BiConsumer<TP, List<TC>> integrate;
+    private BiConsumer<TP, List<TC>> merge;
 
     public HasMany(PlusMapper<TP> parent) {
         super(parent);
@@ -33,11 +32,11 @@ public class HasMany<TC, TP> extends Relation<TC, TP, HasMany<TC, TP>> {
         for (TP record : records) {
             // 从EagerData获取record对应关系数据
             List<TC> values = getManyRelatedValues(record, localKey);
-            integrate.accept(record, values);
+            merge.accept(record, values);
         }
     }
 
     private Boolean requiredConditions() {
-        return requiredRelatedArgs() && integrate != null;
+        return requiredRelatedArgs() && merge != null;
     }
 }

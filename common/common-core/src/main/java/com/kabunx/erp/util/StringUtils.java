@@ -22,4 +22,13 @@ public class StringUtils {
         String replacement = "$1_$2";
         return name.replaceAll(regex, replacement).toLowerCase();
     }
+
+    public static boolean isNotEmpty(String... fields) {
+        for (String field : fields) {
+            if (field == null || field.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
