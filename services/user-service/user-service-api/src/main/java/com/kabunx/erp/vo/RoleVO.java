@@ -4,14 +4,10 @@ import com.kabunx.erp.pojo.BaseVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MemberVO extends BaseVO {
-    private Long userId;
+public class RoleVO extends BaseVO {
+    Long id;
 
-    private String accessToken;
-
-    Date tokenExpiredTime;
+    String name;
 }

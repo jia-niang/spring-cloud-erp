@@ -77,13 +77,21 @@ public class UserBuilder extends Builder<UserDO, UserBuilder> {
     }
 
     public UserBuilder loadRoles() {
+        return loadRoles(true);
+    }
+
+    public UserBuilder loadRoles(Boolean carry) {
         String relationName = "roles";
         belongsToMany(relationName, (BelongsToMany<RoleDO, UserDO> relation) -> {
             relation.setRelatedArgs(roleMapper, "user_role", "user_id", "role_id");
             relation.setLocalCollect(UserDO::getId);
+            relation.setRelatedGroupingBy(RoleDO::getPivotForeignId);
             relation.setMerge(UserDO::setRoles);
         });
-        return with(relationName);
+        if (carry) {
+            return with(relationName);
+        }
+        return this;
     }
 
 }

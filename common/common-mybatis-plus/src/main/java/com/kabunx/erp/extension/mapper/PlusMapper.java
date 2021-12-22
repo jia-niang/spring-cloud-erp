@@ -5,17 +5,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.kabunx.erp.exception.PlusException;
 import com.kabunx.erp.exception.PlusExceptionEnum;
-import com.kabunx.erp.model.PivotDO;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 public interface PlusMapper<T> extends BaseMapper<T> {
 
-    /**
-     * 如果要自动填充，@{@code Param}(xx) xx参数名必须是 list/collection/array 3个的其中之一
-     */
-    List<T> joinWrapper(
+    List<T> joinPivotWrapper(
             @Param("pivot_table") String table,
             @Param("pivot_foreign_key") String foreignKey,
             @Param("pivot_related_key") String relatedKey,

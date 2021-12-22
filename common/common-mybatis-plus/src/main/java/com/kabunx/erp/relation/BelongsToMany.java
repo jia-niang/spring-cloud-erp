@@ -2,7 +2,6 @@ package com.kabunx.erp.relation;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.extension.wrapper.PlusWrapper;
-import com.kabunx.erp.model.PivotDO;
 import com.kabunx.erp.util.StringUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -75,24 +74,22 @@ public class BelongsToMany<TC, TP> extends Relation<TC, TP, BelongsToMany<TC, TP
             return;
         }
         initRelatedData(records);
+        for (TP record : records) {
+            List<TC> relatedValue = getManyRelatedValues(record, "pivotForeignId");
+            merge.accept(record, relatedValue);
+        }
     }
 
     protected void initRelatedData(List<TP> records, String ownerKey, String relatedKey) {
         List<Object> collection = pluckByKey(records, ownerKey);
         if (!collection.isEmpty()) {
             PlusWrapper<TC> wrapper = getRelatedWrapper();
-            // 这里必须被定义为related
-            wrapper.select("*");
             wrapper.in(String.format("%s.%s", table, foreignPivotKey), collection);
-            List<TC> results = relatedMapper.joinWrapper(
+            List<TC> results = relatedMapper.joinPivotWrapper(
                     table, foreignPivotKey, relatedPivotKey, wrapper
             );
-//            relatedData = groupPivotRelatedData(results, foreignPivotKey);
+            relatedData = groupRelatedData(results, "pivotForeignId");
         }
-    }
-
-    protected Map<Object, List<TC>> groupPivotRelatedData(List<PivotDO> results, String key) {
-        return null;
     }
 
     private Boolean requiredConditions() {

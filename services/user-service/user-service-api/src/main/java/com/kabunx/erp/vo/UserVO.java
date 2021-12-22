@@ -23,4 +23,6 @@ public class UserVO extends BaseVO {
     MemberVO member;
 
     List<MemberVO> members;
+
+    List<RoleVO> roles;
 }
