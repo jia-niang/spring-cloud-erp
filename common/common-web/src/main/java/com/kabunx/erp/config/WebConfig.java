@@ -21,7 +21,7 @@ import java.util.List;
  * 这个将导致JackJsonConfig配置失效
  */
 @Configuration
-public class WebAuthConfig extends WebMvcConfigurationSupport {
+public class WebConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public AuthHeaderInterceptor authHeaderInterceptor() {
