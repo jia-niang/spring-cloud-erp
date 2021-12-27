@@ -43,14 +43,14 @@ public class ObjectUtils {
      * 字符串是否为空
      */
     public static boolean isEmpty(CharSequence value) {
-        return StringHelpers.isBlank(value);
+        return StringPlusUtils.isBlank(value);
     }
 
     /**
      * 字符串是否为空
      */
     public static boolean isEmpty(String value) {
-        return StringHelpers.isBlank(value);
+        return StringPlusUtils.isBlank(value);
     }
 
     /**
@@ -115,14 +115,14 @@ public class ObjectUtils {
      * 字符串不为空，或者不是所有字符都为whitespace字符
      */
     public static boolean notEmpty(CharSequence value) {
-        return StringHelpers.isNotBlank(value);
+        return StringPlusUtils.isNotBlank(value);
     }
 
     /**
      * 字符串不为空，或者不是所有字符都为whitespace字符
      */
     public static boolean notEmpty(String value) {
-        return StringHelpers.isNotBlank(value);
+        return StringPlusUtils.isNotBlank(value);
     }
 
     /**
@@ -264,7 +264,7 @@ public class ObjectUtils {
         if (value == null) {
             return false;
         }
-        value = StringHelpers.trim(value).toLowerCase();
+        value = StringPlusUtils.trim(value).toLowerCase();
         return TRUE_SET.contains(value) || FALSE_SET.contains(value);
     }
 
@@ -275,7 +275,7 @@ public class ObjectUtils {
         if (value == null) {
             return false;
         }
-        value = StringHelpers.trim(value).toLowerCase();
+        value = StringPlusUtils.trim(value).toLowerCase();
         return TRUE_SET.contains(value);
     }
 
@@ -371,9 +371,9 @@ public class ObjectUtils {
         }
         // Date-String类型
         else if (source instanceof Date && target instanceof String) {
-            return DateHelpers.getDateTime((Date) source).equals(target) || DateHelpers.getDate((Date) source).equals(target);
+            return DatePlusUtils.getDateTime((Date) source).equals(target) || DatePlusUtils.getDate((Date) source).equals(target);
         } else if (target instanceof Date && source instanceof String) {
-            return DateHelpers.getDateTime((Date) target).equals(source) || DateHelpers.getDate((Date) target).equals(source);
+            return DatePlusUtils.getDateTime((Date) target).equals(source) || DatePlusUtils.getDate((Date) target).equals(source);
         } else {
             return String.valueOf(source).equals(String.valueOf(target));
         }
@@ -421,6 +421,6 @@ public class ObjectUtils {
         for (ConstraintViolation<T> err : errors) {
             allErrors.add(err.getMessage());
         }
-        return StringHelpers.join(allErrors);
+        return StringPlusUtils.join(allErrors);
     }
 }

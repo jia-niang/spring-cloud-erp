@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Slf4j
-public class DateHelpers extends DateUtils {
+public class DatePlusUtils extends DateUtils {
     /**
      * 日期时间格式
      */
@@ -92,7 +92,7 @@ public class DateHelpers extends DateUtils {
      * 转换字符串为日期date
      */
     public static Date convert2FormatDate(String datetime, String fmt) {
-        if (StringHelpers.isBlank(datetime)) {
+        if (StringPlusUtils.isBlank(datetime)) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat(fmt);
@@ -195,7 +195,7 @@ public class DateHelpers extends DateUtils {
      *
      * @return 上午/下午
      */
-    public static String getAmPm() {
+    public static String getAmOrPm() {
         Calendar c = Calendar.getInstance();
         int hours = c.get(Calendar.HOUR_OF_DAY);
         if (hours <= 9) {
@@ -384,7 +384,7 @@ public class DateHelpers extends DateUtils {
             return Collections.emptyList();
         }
         //日期工具类准备
-        DateFormat format = new SimpleDateFormat(DateHelpers.FORMAT_DATE_Y4MD);
+        DateFormat format = new SimpleDateFormat(DatePlusUtils.FORMAT_DATE_Y4MD);
         String dBegin = format.format(startTime);
 
         //设置开始时间
@@ -442,9 +442,9 @@ public class DateHelpers extends DateUtils {
                 ymd[2] = "0" + ymd[2];
             }
         }
-        parts[0] = StringHelpers.join(ymd, "-");
+        parts[0] = StringPlusUtils.join(ymd, "-");
         if (parts.length == 1) {
-            return DateHelpers.convert2FormatDate(parts[0], DateHelpers.FORMAT_DATE_Y4MD);
+            return DatePlusUtils.convert2FormatDate(parts[0], DatePlusUtils.FORMAT_DATE_Y4MD);
         }
         // 18:20:30:103
         String[] hmsArray = new String[3];
@@ -469,7 +469,7 @@ public class DateHelpers extends DateUtils {
         } else {
             hmsArray[2] = "00";
         }
-        parts[1] = StringHelpers.join(hmsArray, ":");
-        return convert2FormatDate(StringHelpers.join(parts, " "), FORMAT_DATETIME_Y4MDHMS);
+        parts[1] = StringPlusUtils.join(hmsArray, ":");
+        return convert2FormatDate(StringPlusUtils.join(parts, " "), FORMAT_DATETIME_Y4MDHMS);
     }
 }

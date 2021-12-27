@@ -155,9 +155,9 @@ public class EncryptUtils {
             seed = getDefaultKey();
         }
         if (seed.length() < 16) {
-            seed = seed + StrUtils.cut(KEY_FILL, 16 - seed.length());
+            seed = seed + StringPlusUtils.cut(KEY_FILL, 16 - seed.length());
         } else if (seed.length() > 16) {
-            seed = StrUtils.cut(seed, 16);
+            seed = StringPlusUtils.cut(seed, 16);
         }
         return seed.getBytes();
     }

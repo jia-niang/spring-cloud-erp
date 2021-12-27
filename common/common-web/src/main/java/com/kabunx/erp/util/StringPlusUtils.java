@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * 字符串处理工具
  */
-public class StringHelpers extends StringUtils {
+public class StringPlusUtils extends StringUtils {
 
     /**
      * 默认分隔符 ,
