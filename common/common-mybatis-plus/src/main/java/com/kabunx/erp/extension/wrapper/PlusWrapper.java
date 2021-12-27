@@ -2,7 +2,6 @@ package com.kabunx.erp.extension.wrapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.dto.QueryDTO;
-import com.kabunx.erp.extension.JoinSegmentList;
 import com.kabunx.erp.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,25 +15,7 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
 
     private static final List<String> ignores = Arrays.asList("page", "pageSize");
 
-    private final JoinSegmentList joins = new JoinSegmentList();
-
     public PlusWrapper() {
-    }
-
-    public PlusWrapper<T> getSelf() {
-        return this;
-    }
-
-    public <TJ> PlusWrapper<T> join() {
-        return this;
-    }
-
-    public <TL> PlusWrapper<T> leftJoin() {
-        return getSelf();
-    }
-
-    public <TR> PlusWrapper<T> rightJoin() {
-        return this;
     }
 
     public void autoBuild(QueryDTO queryDTO) {
@@ -61,7 +42,6 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
     @Override
     public void clear() {
         super.clear();
-        joins.clear();
     }
 
     private void buildWrapper(Field field, Object value) {

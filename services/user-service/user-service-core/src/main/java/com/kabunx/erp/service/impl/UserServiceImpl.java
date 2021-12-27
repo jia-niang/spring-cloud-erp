@@ -39,11 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByAccount(String account) {
-//        UserBuilder userBuilder = SpringApplicationUtils.getBean(UserBuilder.class);
         UserDO user = userBuilder
-                .loadMember()
+                .loadMember(filter -> filter.eq("status", 0))
                 .loadMembers()
-                .loadRoles()
+                .loadRoles(filter -> filter.eq("name", "测试"))
                 .filter(w -> {
                     w.eq("account", account);
                 })

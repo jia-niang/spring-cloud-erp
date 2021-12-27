@@ -6,9 +6,7 @@ import com.kabunx.erp.extension.wrapper.PlusWrapper;
 import com.kabunx.erp.util.ReflectUtils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.text.CaseUtils;
 
-import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -91,15 +89,15 @@ public abstract class Relation<TC, TP, Children extends Relation<TC, TP, Childre
     /**
      * wrapper的别名
      */
-    public void filter(Consumer<PlusWrapper<TC>> callback) {
-        wrapper(callback);
+    public void filter(Consumer<PlusWrapper<TC>> filter) {
+        wrapper(filter);
     }
 
     /**
      * 添加额外过滤
      */
-    public Children wrapper(Consumer<PlusWrapper<TC>> callback) {
-        callback.accept(getRelatedWrapper());
+    public Children wrapper(Consumer<PlusWrapper<TC>> wrapper) {
+        wrapper.accept(getRelatedWrapper());
         return children;
     }
 
