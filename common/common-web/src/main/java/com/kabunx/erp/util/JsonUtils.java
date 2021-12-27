@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * jackson处理工具，建议使用来DO<->VO
+ * jackson处理工具
  */
 @Slf4j
 public class JsonUtils {
@@ -38,7 +38,7 @@ public class JsonUtils {
         try {
             return getObjectMapper().writeValueAsString(object);
         } catch (Exception e) {
-            log.error("Java转Json异常", e);
+            log.error("Object转Json异常", e);
             return null;
         }
     }
@@ -50,7 +50,7 @@ public class JsonUtils {
         try {
             return getObjectMapper().readValue(jsonStr, clazz);
         } catch (Exception e) {
-            log.error("Json转Java异常", e);
+            log.error("Json转Object异常", e);
             return null;
         }
     }
@@ -62,7 +62,7 @@ public class JsonUtils {
         try {
             return getObjectMapper().readValue(stringify(object), clazz);
         } catch (Exception e) {
-            log.error("Json转Java异常", e);
+            log.error("Json转Object异常", e);
             return null;
         }
     }
@@ -72,12 +72,11 @@ public class JsonUtils {
      */
     public static Map<String, Object> parseObject(String jsonStr) {
         try {
-            JavaType javaType = getObjectMapper()
-                    .getTypeFactory()
+            JavaType javaType = getObjectMapper().getTypeFactory()
                     .constructParametricType(Map.class, String.class, Object.class);
             return getObjectMapper().readValue(jsonStr, javaType);
         } catch (Exception e) {
-            log.error("Json转Java异常", e);
+            log.error("Json转Object异常", e);
             return null;
         }
     }
@@ -96,7 +95,7 @@ public class JsonUtils {
         try {
             return getObjectMapper().readValue(jsonStr, typeReference);
         } catch (Exception e) {
-            log.error("Json转Java异常", e);
+            log.error("Json转Object异常", e);
             return null;
         }
     }
@@ -106,12 +105,11 @@ public class JsonUtils {
      */
     public static <T> List<T> parseArray(String jsonStr, Class<T> clazz) {
         try {
-            JavaType javaType = getObjectMapper()
-                    .getTypeFactory()
+            JavaType javaType = getObjectMapper().getTypeFactory()
                     .constructParametricType(List.class, clazz);
             return getObjectMapper().readValue(jsonStr, javaType);
         } catch (Exception e) {
-            log.error("Json转Java异常", e);
+            log.error("Json转Object异常", e);
             return null;
         }
     }
