@@ -54,7 +54,7 @@ public class HashSecretValidator implements ConstraintValidator<com.kabunx.erp.c
     private HashSecret decrypt2Entity(String value) {
         String original = AESUtils.decrypt(value, getKey());
         if (original != null) {
-            String[] data = original.split(GlobalConstant.BASE_STRING_REGEX, 2);
+            String[] data = original.split(GlobalConstant.SPLIT_REGEX, 2);
             if (data.length == 2) {
                 return new HashSecret(data[0], Long.parseLong(data[1]));
             }

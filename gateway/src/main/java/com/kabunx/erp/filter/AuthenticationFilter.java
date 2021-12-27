@@ -111,7 +111,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     }
 
     private String[] parseCustomToken(String token) {
-        String[] elements = token.split(GlobalConstant.BASE_STRING_REGEX, 2);
+        String[] elements = token.split(GlobalConstant.SPLIT_REGEX, 2);
         if (elements.length != 2) {
             return null;
         }

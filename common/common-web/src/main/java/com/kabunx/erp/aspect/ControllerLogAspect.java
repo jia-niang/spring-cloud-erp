@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @Slf4j
 @Order(1)
-public class WebLogAspect {
+public class ControllerLogAspect {
 
     /**
      * execution 代表要执行的表达式主体
