@@ -2,7 +2,7 @@ version: '3'
 services:
   # 数据库服务
   mysql:
-    container_name: erp-mysql
+    container_name: mysql
     image: kabunx/mysql:${MYSQL_VERSION:-latest}
     restart: always
     build:
@@ -24,7 +24,7 @@ services:
       - database
   # 缓存服务
   redis:
-    container_name: erp-redis
+    container_name: redis
     image: redis:${REDIS_TAG:-alpine}
     restart: always
     volumes:
@@ -33,7 +33,28 @@ services:
       - "${REDIS_PORT:-6379}:6379"
     networks:
       - database
-  #
+  # gitea
+  gitea:
+    container_name: gitea
+    image: gitea/gitea
+    restart: always
+    env_file:
+      - ./env/gitea.env
+    volumes:
+      - /data/docker/volumes/gitea/:/data/
+      - /home/jonathan/.ssh/:/data/git/.ssh
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    networks:
+      - database
+      - public
+
+  # drone
   drone-servce:
     container_name: drone-service
     image: drone/drone
@@ -48,6 +69,7 @@ services:
       - "4431:443"
     depends_on:
       - mysql
+      - gitea
     networks:
       - database
       - public
@@ -68,7 +90,7 @@ services:
 
   # 注册&配置中心
   nacos:
-    container_name: nacos-standalone
+    container_name: nacos
     image: kabunx/nacos:${NACOS_VERSION:-1.4.2}
     build:
       context: ./nacos
@@ -90,7 +112,7 @@ services:
 
   # 流量控制、熔断降级
   sentinel:
-    container_name: erp-sentinel
+    container_name: sentinel
     image: kabunx/sentinel:${SENTINEL_VERSION:-1.8.2}
     build:
       context: ./sentinel
