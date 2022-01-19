@@ -2,7 +2,7 @@ package com.kabunx.erp.extension.wrapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kabunx.erp.dto.QueryDTO;
-import com.kabunx.erp.util.StringUtils;
+import com.kabunx.erp.util.StringPlusUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
@@ -45,7 +45,7 @@ public class PlusWrapper<T> extends QueryWrapper<T> {
     }
 
     private void buildWrapper(Field field, Object value) {
-        String methodName = "where" + StringUtils.capitalize(field.getName());
+        String methodName = "where" + StringPlusUtils.capitalize(field.getName());
         Class<?> wrapperClass = this.getClass();
         try {
             Method whereMethod = wrapperClass.getDeclaredMethod(methodName, field.getType());

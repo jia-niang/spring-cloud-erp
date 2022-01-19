@@ -2,13 +2,12 @@ package com.kabunx.erp.relation;
 
 import com.kabunx.erp.extension.mapper.PlusMapper;
 import com.kabunx.erp.extension.wrapper.PlusWrapper;
-import com.kabunx.erp.util.StringUtils;
+import com.kabunx.erp.util.StringPlusUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.BiConsumer;
 
 /**
@@ -93,6 +92,6 @@ public class BelongsToMany<TC, TP> extends Relation<TC, TP, BelongsToMany<TC, TP
     }
 
     private Boolean requiredConditions() {
-        return StringUtils.isNotEmpty(table, foreignPivotKey, relatedPivotKey) && merge != null;
+        return StringPlusUtils.isNotEmpty(table, foreignPivotKey, relatedPivotKey) && merge != null;
     }
 }

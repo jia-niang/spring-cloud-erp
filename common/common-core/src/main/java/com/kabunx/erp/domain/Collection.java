@@ -18,6 +18,10 @@ public class Collection<T> {
         this.items = items;
     }
 
+    public static <T> Collection<T> make(List<T> items) {
+        return new Collection<>(items);
+    }
+
     public List<T> get() {
         return items;
     }
@@ -67,24 +71,6 @@ public class Collection<T> {
     }
 
     /**
-     * 返回集合中所有指定回调的集合项
-     */
-    public <C> Collection<C> only(Function<T, C> mapper) {
-        return new Collection<>(
-                items.stream().map(mapper).collect(Collectors.toList())
-        );
-    }
-
-    /**
-     * 返回除了指定回调以外的所有项目
-     */
-    public Collection<T> except(Predicate<T> filter) {
-        return new Collection<>(
-                items.stream().filter(filter).collect(Collectors.toList())
-        );
-    }
-
-    /**
      * 获取集合中指定键对应的所有值
      */
     public <C> List<C> pluck(Function<T, C> mapper, Boolean notNull, Boolean unique) {
@@ -118,7 +104,14 @@ public class Collection<T> {
     }
 
     /**
-     *
+     * alias for map
+     */
+    public <C> Collection<C> only(Function<T, C> mapper) {
+        return map(mapper);
+    }
+
+    /**
+     * 映射为新的集合
      */
     public <C> Collection<C> map(Function<T, C> mapper) {
         return new Collection<>(items.stream().map(mapper).collect(Collectors.toList()));

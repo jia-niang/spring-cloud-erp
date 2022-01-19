@@ -58,6 +58,13 @@
         </filter>
     </appender>
 
+    <!-- 3、logstash -->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <destination>127.0.0.1:5004</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder"/>
+    </appender>
+
     <!--
         <logger>用来设置某一个包或者具体的某一个类的日志打印级别、
         以及指定<appender>。<logger>仅有一个name属性，
@@ -76,7 +83,7 @@
     -->
     <!-- 开发环境输出至控制台 -->
     <springProfile name="dev">
-        <logger name="com.alibaba.nacos" level="OFF" addtivity="false"></logger>
+        <logger name="com.alibaba.nacos" level="OFF" addtivity="false"/>
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
@@ -87,6 +94,7 @@
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="FILE"/>
+            <appender-ref ref="LOGSTASH"/>
         </root>
     </springProfile>
 

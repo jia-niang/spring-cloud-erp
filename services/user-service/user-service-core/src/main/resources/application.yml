@@ -8,8 +8,11 @@ spring:
     name: erp-user-service
   profiles:
     active: dev
-  jackson:
-    property-naming-strategy: SNAKE_CASE
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://localhost:9411
 
 mybatis-plus:
   global-config:
@@ -17,6 +20,3 @@ mybatis-plus:
       logic-delete-field: deleted_time
       logic-delete-value: UNIX_TIMESTAMP()
       logic-not-delete-value: 0
-
-logging:
-  config: classpath:log4j2.xml
