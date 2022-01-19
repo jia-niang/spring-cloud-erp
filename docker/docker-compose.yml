@@ -107,7 +107,7 @@ services:
   # 分布式跟踪系统
   zipkin:
     container_name: zipkin
-    image: openzipkin/zipkin-slim
+    image: openzipkin/zipkin
     restart: always
     env_file:
       - ./env/zipkin.env
