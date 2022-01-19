@@ -68,12 +68,12 @@ services:
 
   # 注册&配置中心
   nacos:
-    container_name: erp-nacos-standalone
-    image: kabunx/nacos:${NACOS_VERSION:-2.0.3}
+    container_name: nacos-standalone
+    image: kabunx/nacos:${NACOS_VERSION:-1.4.2}
     build:
       context: ./nacos
       args:
-        - NACOS_VERSION=${NACOS_VERSION:-2.0.3}
+        - NACOS_VERSION=${NACOS_VERSION:-1.4.2}
     restart: always
     env_file:
       - ./env/nacos-mysql.env
